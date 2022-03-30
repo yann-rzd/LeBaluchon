@@ -7,8 +7,26 @@
 
 import Foundation
 
+
+enum CurrencyServiceError: Error {
+    case failedToFetchConversionRate
+    
+    
+}
+
 final class CurrencyService: CurencyServiceProtocol {
-    func fetchConversionRates() {
+    
+    static let shared = CurrencyService()
+ 
+    init(
+        networkService: NetworkServiceProtocol = NetworkService.shared
+    ) {
+        self.networkService = networkService
+    }
+    
+    
+    
+    func fetchConversionRates(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void) {
        
         guard let url = getRatesUrl() else {
             return
@@ -21,23 +39,19 @@ final class CurrencyService: CurencyServiceProtocol {
         
         networkService.fetch(urlRequest: urlRequest) { (result: Result<FixerLatestResponse, NetworkServiceError>) in
             switch result {
-            case .failure(let error):
-                print(error)
+            case .failure:
+                completionHandler(.failure(.failedToFetchConversionRate))
+                print("Erreur lors de la récupération des taux de conversion")
+                return
             case .success(let ratesResponse):
+                let rates = ratesResponse.rates
+                completionHandler(.success(rates))
                 print(ratesResponse)
+                return
+                
             }
         }
     }
-    
-    
-    static let shared = CurrencyService()
-    
-    init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
-    ) {
-        self.networkService = networkService
-    }
-    
     
     private func getRatesUrl() -> URL? {
         

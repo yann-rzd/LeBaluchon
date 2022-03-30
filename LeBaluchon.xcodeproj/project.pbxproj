@@ -7,15 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E459433427ECC8DE00FE0259 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433327ECC8DE00FE0259 /* NetworkService.swift */; };
+		E459433727ECC92000FE0259 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433627ECC92000FE0259 /* NetworkServiceError.swift */; };
+		E459433927ECC93400FE0259 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433827ECC93400FE0259 /* NetworkServiceProtocol.swift */; };
+		E459433B27ECC94500FE0259 /* FixerLatestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433A27ECC94500FE0259 /* FixerLatestResponse.swift */; };
+		E459433D27ECC95900FE0259 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433C27ECC95900FE0259 /* CurrencyService.swift */; };
+		E459433F27ECC97100FE0259 /* CurencyServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433E27ECC97100FE0259 /* CurencyServiceProtocol.swift */; };
 		E45B8C1227E386E100238229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C1127E386E100238229 /* AppDelegate.swift */; };
 		E45B8C1427E386E100238229 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C1327E386E100238229 /* SceneDelegate.swift */; };
-		E45B8C1627E386E100238229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C1527E386E100238229 /* ViewController.swift */; };
+		E45B8C1627E386E100238229 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C1527E386E100238229 /* CurrencyViewController.swift */; };
 		E45B8C1927E386E100238229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1727E386E100238229 /* Main.storyboard */; };
 		E45B8C1B27E386E100238229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1A27E386E100238229 /* Assets.xcassets */; };
 		E45B8C1E27E386E100238229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1C27E386E100238229 /* LaunchScreen.storyboard */; };
 		E45B8C2927E386E100238229 /* LeBaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C2827E386E100238229 /* LeBaluchonTests.swift */; };
 		E45B8C3327E386E100238229 /* LeBaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */; };
 		E45B8C3527E386E100238229 /* LeBaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */; };
+		E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41727F35B27002200F8 /* TranslateService.swift */; };
+		E4D6E41A27F35B40002200F8 /* TranslateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41927F35B40002200F8 /* TranslateServiceProtocol.swift */; };
+		E4D6E41C27F35B4C002200F8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41B27F35B4C002200F8 /* WeatherService.swift */; };
+		E4D6E41E27F35B5A002200F8 /* WeatherServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */; };
+		E4D6E42027F36296002200F8 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41F27F36296002200F8 /* TranslateViewController.swift */; };
+		E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E42127F362A3002200F8 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +48,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E459433327ECC8DE00FE0259 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		E459433627ECC92000FE0259 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
+		E459433827ECC93400FE0259 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		E459433A27ECC94500FE0259 /* FixerLatestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixerLatestResponse.swift; sourceTree = "<group>"; };
+		E459433C27ECC95900FE0259 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		E459433E27ECC97100FE0259 /* CurencyServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurencyServiceProtocol.swift; sourceTree = "<group>"; };
 		E45B8C0E27E386E100238229 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45B8C1127E386E100238229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E45B8C1327E386E100238229 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E45B8C1527E386E100238229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E45B8C1527E386E100238229 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
 		E45B8C1827E386E100238229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E45B8C1A27E386E100238229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E45B8C1D27E386E100238229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +67,12 @@
 		E45B8C2E27E386E100238229 /* LeBaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITests.swift; sourceTree = "<group>"; };
 		E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E4D6E41727F35B27002200F8 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
+		E4D6E41927F35B40002200F8 /* TranslateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceProtocol.swift; sourceTree = "<group>"; };
+		E4D6E41B27F35B4C002200F8 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceProtocol.swift; sourceTree = "<group>"; };
+		E4D6E41F27F36296002200F8 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		E4D6E42127F362A3002200F8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +100,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E459433527ECC8E800FE0259 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E459434327ECC9F100FE0259 /* NetworkService */,
+				E459433A27ECC94500FE0259 /* FixerLatestResponse.swift */,
+				E4D6E41527F35AE1002200F8 /* TranslateService */,
+				E4D6E41627F35B02002200F8 /* WeatherService */,
+				E459434427ECCA0900FE0259 /* CurrencyService */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E459434027ECC98D00FE0259 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E45B8C1527E386E100238229 /* CurrencyViewController.swift */,
+				E4D6E41F27F36296002200F8 /* TranslateViewController.swift */,
+				E4D6E42127F362A3002200F8 /* WeatherViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E459434127ECC9A400FE0259 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E45B8C1727E386E100238229 /* Main.storyboard */,
+				E45B8C1C27E386E100238229 /* LaunchScreen.storyboard */,
+				E45B8C1A27E386E100238229 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E459434327ECC9F100FE0259 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				E459433327ECC8DE00FE0259 /* NetworkService.swift */,
+				E459433627ECC92000FE0259 /* NetworkServiceError.swift */,
+				E459433827ECC93400FE0259 /* NetworkServiceProtocol.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		E459434427ECCA0900FE0259 /* CurrencyService */ = {
+			isa = PBXGroup;
+			children = (
+				E459433C27ECC95900FE0259 /* CurrencyService.swift */,
+				E459433E27ECC97100FE0259 /* CurencyServiceProtocol.swift */,
+			);
+			path = CurrencyService;
+			sourceTree = "<group>";
+		};
 		E45B8C0527E386E000238229 = {
 			isa = PBXGroup;
 			children = (
@@ -99,12 +174,11 @@
 		E45B8C1027E386E100238229 /* LeBaluchon */ = {
 			isa = PBXGroup;
 			children = (
+				E459434127ECC9A400FE0259 /* View */,
+				E459434027ECC98D00FE0259 /* Controller */,
+				E459433527ECC8E800FE0259 /* Model */,
 				E45B8C1127E386E100238229 /* AppDelegate.swift */,
 				E45B8C1327E386E100238229 /* SceneDelegate.swift */,
-				E45B8C1527E386E100238229 /* ViewController.swift */,
-				E45B8C1727E386E100238229 /* Main.storyboard */,
-				E45B8C1A27E386E100238229 /* Assets.xcassets */,
-				E45B8C1C27E386E100238229 /* LaunchScreen.storyboard */,
 				E45B8C1F27E386E100238229 /* Info.plist */,
 			);
 			path = LeBaluchon;
@@ -125,6 +199,24 @@
 				E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */,
 			);
 			path = LeBaluchonUITests;
+			sourceTree = "<group>";
+		};
+		E4D6E41527F35AE1002200F8 /* TranslateService */ = {
+			isa = PBXGroup;
+			children = (
+				E4D6E41727F35B27002200F8 /* TranslateService.swift */,
+				E4D6E41927F35B40002200F8 /* TranslateServiceProtocol.swift */,
+			);
+			path = TranslateService;
+			sourceTree = "<group>";
+		};
+		E4D6E41627F35B02002200F8 /* WeatherService */ = {
+			isa = PBXGroup;
+			children = (
+				E4D6E41B27F35B4C002200F8 /* WeatherService.swift */,
+				E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */,
+			);
+			path = WeatherService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +350,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E45B8C1627E386E100238229 /* ViewController.swift in Sources */,
+				E459433727ECC92000FE0259 /* NetworkServiceError.swift in Sources */,
+				E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */,
+				E45B8C1627E386E100238229 /* CurrencyViewController.swift in Sources */,
+				E459433927ECC93400FE0259 /* NetworkServiceProtocol.swift in Sources */,
+				E4D6E41A27F35B40002200F8 /* TranslateServiceProtocol.swift in Sources */,
+				E4D6E41C27F35B4C002200F8 /* WeatherService.swift in Sources */,
+				E4D6E41E27F35B5A002200F8 /* WeatherServiceProtocol.swift in Sources */,
+				E459433427ECC8DE00FE0259 /* NetworkService.swift in Sources */,
+				E459433F27ECC97100FE0259 /* CurencyServiceProtocol.swift in Sources */,
+				E459433D27ECC95900FE0259 /* CurrencyService.swift in Sources */,
+				E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */,
 				E45B8C1227E386E100238229 /* AppDelegate.swift in Sources */,
+				E459433B27ECC94500FE0259 /* FixerLatestResponse.swift in Sources */,
 				E45B8C1427E386E100238229 /* SceneDelegate.swift in Sources */,
+				E4D6E42027F36296002200F8 /* TranslateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

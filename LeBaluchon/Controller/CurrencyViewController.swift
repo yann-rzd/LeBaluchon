@@ -9,15 +9,30 @@ import UIKit
 
 final class CurrencyViewController: UIViewController {
 
+    @IBOutlet weak var currencyToConvertTextField: UITextField!
+    @IBOutlet weak var currencyConvertedTextField: UITextField!
+    
+    private let currencyService = CurrencyService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 
-        currencyService.fetchConversionRates()
+        currencyService.fetchConversionRates { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let rates):
+                    print(rates)
+                }
+            }
+        }
     }
-
-    private let currencyService = CurrencyService()
-
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        currencyToConvertTextField.resignFirstResponder()
+        currencyConvertedTextField.resignFirstResponder()
+    }
 }
 
 

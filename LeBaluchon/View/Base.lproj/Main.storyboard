@@ -4,74 +4,157 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Currency View Controller-->
+        <!--Converter-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CurrencyViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="8mo-Iq-TsP">
+                                <rect key="frame" x="20" y="50" width="374" height="118"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DXR-dk-f2d">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gw-uo-vGp">
+                                                <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOa-NF-nDS">
+                                                <rect key="frame" x="311" y="0.0" width="63" height="34"/>
+                                                <color key="backgroundColor" red="0.091246989429999995" green="0.087770063489999994" blue="0.091994160350000007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <menu key="menu" id="X41-Pl-tQ7">
+                                                    <children>
+                                                        <command title="Item 1" id="sYC-sr-w4N"/>
+                                                        <command title="Item 2" id="8Cf-UL-SyG"/>
+                                                    </children>
+                                                </menu>
+                                                <state key="normal" title="Currency">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sTC-OV-sO6">
+                                        <rect key="frame" x="0.0" y="84" width="374" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="niY-pI-ArN">
+                                                <rect key="frame" x="0.0" y="0.0" width="301" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSp-SH-2JE">
+                                                <rect key="frame" x="311" y="0.0" width="63" height="34"/>
+                                                <color key="backgroundColor" red="0.091246989429999995" green="0.087770063489999994" blue="0.091994160350000007" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <menu key="menu" id="id5-hC-0jm">
+                                                    <children>
+                                                        <command title="Item 1" id="VLw-HP-k9A"/>
+                                                        <command title="Item 2" id="MlG-m8-MVf"/>
+                                                    </children>
+                                                </menu>
+                                                <state key="normal" title="Currency">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <color key="backgroundColor" red="0.60370311536505683" green="0.79809287780656801" blue="0.9235519255050505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="8mo-Iq-TsP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="a1Q-jm-zH6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8mo-Iq-TsP" secondAttribute="trailing" constant="20" id="iCP-Q9-eJH"/>
+                            <constraint firstItem="8mo-Iq-TsP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="wlo-bc-IFK"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="RWO-7r-XQf" appends="YES" id="AK3-NZ-q0U"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="Cz1-MG-waG"/>
+                    <navigationItem key="navigationItem" title="Converter" id="Cz1-MG-waG"/>
+                    <connections>
+                        <outlet property="currencyConvertedTextField" destination="niY-pI-ArN" id="a0X-pX-oj7"/>
+                        <outlet property="currencyToConvertTextField" destination="3gw-uo-vGp" id="xnU-UG-NAv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="RWO-7r-XQf">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="2Fu-FY-4E7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1933" y="-15"/>
+            <point key="canvasLocation" x="1932" y="-21"/>
         </scene>
-        <!--View Controller-->
+        <!--Translator-->
         <scene sceneID="PZe-Ju-rL8">
             <objects>
-                <viewController id="dIG-zT-qj3" sceneMemberID="viewController">
+                <viewController id="dIG-zT-qj3" customClass="TranslateViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bX0-dP-LMk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="f4y-Fs-QFE"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <color key="backgroundColor" red="0.60370311539999999" green="0.79809287780000004" blue="0.92355192549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PRP-Xe-tqk"/>
+                    <navigationItem key="navigationItem" title="Translator" id="PRP-Xe-tqk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOC-FI-vCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1954" y="732"/>
         </scene>
-        <!--View Controller-->
+        <!--Weather-->
         <scene sceneID="rhY-Ok-0m6">
             <objects>
-                <viewController id="iQs-5n-Lme" sceneMemberID="viewController">
+                <viewController id="iQs-5n-Lme" customClass="WeatherViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XsY-YD-KZs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="KaF-C4-j89"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" red="0.60370311539999999" green="0.79809287780000004" blue="0.92355192549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3Y4-bF-804"/>
+                    <navigationItem key="navigationItem" title="Weather" id="3Y4-bF-804"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sso-R7-wrZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="1492"/>
+            <point key="canvasLocation" x="1932" y="1499"/>
         </scene>
-        <!--Item-->
+        <!--Convertor-->
         <scene sceneID="wxv-6i-OMT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B0d-rW-vh1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kof-Aj-bGf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="b0x-sh-xfc"/>
+                <navigationController id="kof-Aj-bGf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Convertor" image="Currency" id="b0x-sh-xfc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UOF-qh-VtB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="UOF-qh-VtB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EOA-DZ-BBc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B0d-rW-vh1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="974" y="-21"/>
         </scene>
@@ -81,8 +164,10 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="T1I-u0-W6x" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Yd-Xr-LR9">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.60370311539999999" green="0.79809287780000004" blue="0.92355192549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="kof-Aj-bGf" kind="relationship" relationship="viewControllers" id="a4d-MU-ODO"/>
@@ -94,15 +179,27 @@
             </objects>
             <point key="canvasLocation" x="-333" y="249"/>
         </scene>
-        <!--Item-->
+        <!--Translator-->
         <scene sceneID="iaz-sk-GfS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ewx-4w-3b6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5QF-Jp-zRx"/>
+                    <tabBarItem key="tabBarItem" title="Translator" image="Translation" id="5QF-Jp-zRx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qxc-iz-eyd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -113,15 +210,27 @@
             </objects>
             <point key="canvasLocation" x="954" y="732"/>
         </scene>
-        <!--Item-->
+        <!--Weather-->
         <scene sceneID="DdY-xY-oxv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pdg-Cq-NBt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="kAE-Hu-xcX"/>
+                    <tabBarItem key="tabBarItem" title="Weather" image="Weather" id="kAE-Hu-xcX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kfv-Rc-fwB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -134,14 +243,8 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="Currency" width="25" height="25"/>
+        <image name="Translation" width="25" height="25"/>
+        <image name="Weather" width="25" height="25"/>
     </resources>
 </document>
