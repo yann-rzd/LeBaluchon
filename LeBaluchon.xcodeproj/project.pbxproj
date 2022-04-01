@@ -28,6 +28,8 @@
 		E4D6E41E27F35B5A002200F8 /* WeatherServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */; };
 		E4D6E42027F36296002200F8 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41F27F36296002200F8 /* TranslateViewController.swift */; };
 		E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E42127F362A3002200F8 /* WeatherViewController.swift */; };
+		E4F583C127F73DD400FB6D59 /* CurrencyToConvertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F583C027F73DD400FB6D59 /* CurrencyToConvertTableViewController.swift */; };
+		E4F583C327F73DF100FB6D59 /* CurrencyConvertedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F583C227F73DF100FB6D59 /* CurrencyConvertedTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceProtocol.swift; sourceTree = "<group>"; };
 		E4D6E41F27F36296002200F8 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		E4D6E42127F362A3002200F8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		E4F583C027F73DD400FB6D59 /* CurrencyToConvertTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyToConvertTableViewController.swift; sourceTree = "<group>"; };
+		E4F583C227F73DF100FB6D59 /* CurrencyConvertedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertedTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				E459434327ECC9F100FE0259 /* NetworkService */,
-				E459433A27ECC94500FE0259 /* FixerLatestResponse.swift */,
 				E4D6E41527F35AE1002200F8 /* TranslateService */,
 				E4D6E41627F35B02002200F8 /* WeatherService */,
 				E459434427ECCA0900FE0259 /* CurrencyService */,
@@ -115,7 +118,7 @@
 		E459434027ECC98D00FE0259 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E45B8C1527E386E100238229 /* CurrencyViewController.swift */,
+				E4F583C427F73E0700FB6D59 /* CurrencyControllers */,
 				E4D6E41F27F36296002200F8 /* TranslateViewController.swift */,
 				E4D6E42127F362A3002200F8 /* WeatherViewController.swift */,
 			);
@@ -146,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				E459433C27ECC95900FE0259 /* CurrencyService.swift */,
+				E459433A27ECC94500FE0259 /* FixerLatestResponse.swift */,
 				E459433E27ECC97100FE0259 /* CurencyServiceProtocol.swift */,
 			);
 			path = CurrencyService;
@@ -217,6 +221,16 @@
 				E4D6E41D27F35B5A002200F8 /* WeatherServiceProtocol.swift */,
 			);
 			path = WeatherService;
+			sourceTree = "<group>";
+		};
+		E4F583C427F73E0700FB6D59 /* CurrencyControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E45B8C1527E386E100238229 /* CurrencyViewController.swift */,
+				E4F583C027F73DD400FB6D59 /* CurrencyToConvertTableViewController.swift */,
+				E4F583C227F73DF100FB6D59 /* CurrencyConvertedTableViewController.swift */,
+			);
+			path = CurrencyControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E459433727ECC92000FE0259 /* NetworkServiceError.swift in Sources */,
+				E4F583C327F73DF100FB6D59 /* CurrencyConvertedTableViewController.swift in Sources */,
 				E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */,
 				E45B8C1627E386E100238229 /* CurrencyViewController.swift in Sources */,
 				E459433927ECC93400FE0259 /* NetworkServiceProtocol.swift in Sources */,
@@ -361,6 +376,7 @@
 				E459433F27ECC97100FE0259 /* CurencyServiceProtocol.swift in Sources */,
 				E459433D27ECC95900FE0259 /* CurrencyService.swift in Sources */,
 				E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */,
+				E4F583C127F73DD400FB6D59 /* CurrencyToConvertTableViewController.swift in Sources */,
 				E45B8C1227E386E100238229 /* AppDelegate.swift in Sources */,
 				E459433B27ECC94500FE0259 /* FixerLatestResponse.swift in Sources */,
 				E45B8C1427E386E100238229 /* SceneDelegate.swift in Sources */,
