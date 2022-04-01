@@ -8,9 +8,6 @@
 import UIKit
 
 final class CurrencyViewController: UIViewController {
-    
-    
-
     @IBOutlet weak var valueToConvertTextField: UITextField!
     @IBOutlet weak var valueConvertedTextField: UITextField!
     

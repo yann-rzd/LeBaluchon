@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyConvertedTableViewController: UIViewController {
+class CurrencyConvertedViewController: UIViewController {
     @IBOutlet weak var currencyConvertedTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -19,13 +19,13 @@ class CurrencyConvertedTableViewController: UIViewController {
     }
 }
 
-extension CurrencyConvertedTableViewController: UITableViewDelegate {
+extension CurrencyConvertedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         printContent("test")
     }
 }
 
-extension CurrencyConvertedTableViewController: UITableViewDataSource {
+extension CurrencyConvertedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
