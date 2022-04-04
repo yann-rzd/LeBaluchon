@@ -14,7 +14,32 @@ enum CurrencyServiceError: Error {
     
 }
 
+enum CurrencySelectionType {
+    case source
+    case target
+}
+
 final class CurrencyService: CurencyServiceProtocol {
+    
+    
+    var onSourceCurrencyChanged: ((Currency) -> Void)?
+    var onTargetCurrencyChanged: ((Currency) -> Void)?
+    
+    var sourceCurrency: Currency = .EUR {
+        didSet {
+            onSourceCurrencyChanged?(sourceCurrency)
+        }
+    }
+    
+    var targetCurrency: Currency = .USD {
+        didSet {
+            onTargetCurrencyChanged?(targetCurrency)
+        }
+    }
+    
+    var currencySelectionType: CurrencySelectionType?
+    
+    let currencies: [Currency] = Currency.allCases
     
     static let shared = CurrencyService()
  
@@ -25,6 +50,16 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     
+    func assignCurrency(currency: Currency) {
+        switch currencySelectionType {
+        case .target:
+            targetCurrency = currency
+        case .source:
+            sourceCurrency = currency
+        case .none:
+            break
+        }
+    }
     
     func fetchConversionRates(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void) {
        

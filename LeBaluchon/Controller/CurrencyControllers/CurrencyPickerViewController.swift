@@ -1,5 +1,5 @@
 //
-//  CurrencyToConvertTableViewController.swift
+//  CurrencyPickerViewController.swift
 //  LeBaluchon
 //
 //  Created by Yann Rouzaud on 01/04/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyToConvertViewController: UIViewController {
+class CurrencyPickerViewController: UIViewController {
     @IBOutlet weak var currencyToConvertTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -17,22 +17,35 @@ class CurrencyToConvertViewController: UIViewController {
         currencyToConvertTableView.delegate = self
         currencyToConvertTableView.dataSource = self
     }
+    
+    
+    private let currencyService = CurrencyService.shared
 }
 
-extension CurrencyToConvertViewController: UITableViewDelegate {
+extension CurrencyPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        printContent("test")
+        let selectedCurrency = currencyService.currencies[indexPath.row]
+        currencyService.assignCurrency(currency: selectedCurrency)
+        
+        dismiss(animated: true) { [weak self] in
+            //self?.currencyService.currencySelectionType = nil
+        }
     }
 }
 
-extension CurrencyToConvertViewController: UITableViewDataSource {
+extension CurrencyPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        currencyService.currencies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Hello World"
+        
+        let currency = currencyService.currencies[indexPath.row]
+        cell.textLabel?.text = currency.name
+        cell.detailTextLabel?.text = currency.rawValue
         return cell
     }
 }
+
+
