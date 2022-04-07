@@ -70,14 +70,17 @@
                                 <rect key="frame" x="20" y="60" width="374" height="63.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-si-jZR">
-                                        <rect key="frame" x="0.0" y="0.0" width="290" height="63.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="63.5"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="continue"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tix-I4-mah">
-                                        <rect key="frame" x="295" y="0.0" width="79" height="63.5"/>
+                                        <rect key="frame" x="293" y="0.0" width="81" height="63.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="81" id="2K2-mm-Ena"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="EUR">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
@@ -123,6 +126,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="directional-arrows"/>
+                                <connections>
+                                    <action selector="didTapOnSwapCurrenciesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AUB-AW-wKX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -146,6 +152,7 @@
                     <navigationItem key="navigationItem" title="Converter" id="Cz1-MG-waG"/>
                     <connections>
                         <outlet property="sourceCurrencyButton" destination="tix-I4-mah" id="75R-8x-86w"/>
+                        <outlet property="swapCurrenciesButton" destination="mRH-m8-OnG" id="TaW-9y-SFb"/>
                         <outlet property="targetCurrencyButton" destination="r5Y-Zb-4lT" id="AVe-dZ-8Zm"/>
                         <outlet property="valueConvertedTextField" destination="Wrf-6G-itY" id="KAr-sc-Gzj"/>
                         <outlet property="valueToConvertTextField" destination="tRp-si-jZR" id="ysc-u2-3Po"/>
@@ -487,7 +494,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="M9s-fe-Dex"/>
+        <segue reference="4RZ-Bk-n2n"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Currency" width="25" height="25"/>

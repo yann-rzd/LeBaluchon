@@ -8,5 +8,5 @@
 import Foundation
 
 protocol CurencyServiceProtocol {
-    func fetchConversionRates(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void)
+    //func fetchConversionRates(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void)
 }

@@ -25,10 +25,12 @@ class CurrencyPickerViewController: UIViewController {
 extension CurrencyPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCurrency = currencyService.currencies[indexPath.row]
+        
+        print("3. JE RECUPERE LA DEVISE SELECTIONNER \(selectedCurrency)")
         currencyService.assignCurrency(currency: selectedCurrency)
         
         dismiss(animated: true) { [weak self] in
-            //self?.currencyService.currencySelectionType = nil
+            self?.currencyService.currencySelectionType = nil
         }
     }
 }
