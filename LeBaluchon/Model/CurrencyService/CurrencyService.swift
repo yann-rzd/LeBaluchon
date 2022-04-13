@@ -63,6 +63,7 @@ final class CurrencyService: CurencyServiceProtocol {
     var currencySelectionType: CurrencySelectionType?
     
     let currencies: [Currency] = Currency.allCases
+    var filteredCurrencies: [Currency]!
     
     static let shared = CurrencyService()
  
