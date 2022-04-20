@@ -179,7 +179,11 @@
                                 <rect key="frame" x="20" y="128" width="374" height="43"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-wA-UIT">
-                                        <rect key="frame" x="0.0" y="0.0" width="116.5" height="43"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="140" id="6Us-Wp-aKM"/>
+                                            <constraint firstAttribute="height" constant="43" id="kMB-u2-xrE"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Français">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
@@ -190,10 +194,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp3-Bg-NDU">
-                                        <rect key="frame" x="172.5" y="0.0" width="43" height="43"/>
+                                        <rect key="frame" x="165.5" y="0.0" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="DSN-PS-DCJ"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="EKe-LU-jTz"/>
                                             <constraint firstAttribute="width" constant="43" id="nlE-Pq-JsM"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="zoj-S7-enu"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Button" image="double-arrow"/>
@@ -202,7 +208,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcH-fb-elr">
-                                        <rect key="frame" x="271" y="0.0" width="103" height="43"/>
+                                        <rect key="frame" x="234" y="0.0" width="140" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="140" id="vs0-R0-swv"/>
+                                            <constraint firstAttribute="height" constant="43" id="wVY-OJ-ZPt"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Anglais">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
