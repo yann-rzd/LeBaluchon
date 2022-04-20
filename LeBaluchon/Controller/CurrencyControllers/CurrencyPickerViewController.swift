@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyPickerViewController: UIViewController, UISearchBarDelegate {
+final class CurrencyPickerViewController: UIViewController {
     @IBOutlet weak var currencyToConvertTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -16,33 +16,27 @@ class CurrencyPickerViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBindings()
+        
         currencyToConvertTableView.delegate = self
         currencyToConvertTableView.dataSource = self
         
         searchBar.delegate = self
-        currencyService.filteredCurrencies = currencyService.currencies
+        
+        currencyService.filteredCurrencies = currencyService.filteredCurrencies
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        currencyService.filteredCurrencies = []
-        
-        if searchText.isEmpty {
-            currencyService.filteredCurrencies = currencyService.currencies
-        } else {
-            for currency in currencyService.currencies {
-                if currency.name.lowercased().contains(searchText.lowercased()) {
-                    currencyService.filteredCurrencies.append(currency)
-                }
-            }
+    
+    private func setupBindings() {
+        currencyService.onSearchResultChanged = { [weak self] in
+            self?.currencyToConvertTableView.reloadData()
         }
-
-        self.currencyToConvertTableView.reloadData()
     }
 }
 
 extension CurrencyPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCurrency = currencyService.currencies[indexPath.row]
+        let selectedCurrency = currencyService.filteredCurrencies[indexPath.row]
         
         print("3. JE RECUPERE LA DEVISE SELECTIONNER \(selectedCurrency)")
         currencyService.assignCurrency(currency: selectedCurrency)
@@ -68,4 +62,9 @@ extension CurrencyPickerViewController: UITableViewDataSource {
     }
 }
 
+extension CurrencyPickerViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        currencyService.searchText = searchText
+    }
+}
 

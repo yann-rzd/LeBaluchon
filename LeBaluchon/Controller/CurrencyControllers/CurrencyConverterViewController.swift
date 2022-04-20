@@ -22,7 +22,7 @@ final class CurrencyConverterViewController: UIViewController {
         
         valueToConvertTextField.delegate = self
         
-        
+        valueConvertedTextField.inputView = UIView()
         
         setupBindings()
         
@@ -36,6 +36,10 @@ final class CurrencyConverterViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -90,6 +94,7 @@ final class CurrencyConverterViewController: UIViewController {
         currencyService.onConvertedValueChanged =  { [weak self] convertedValue in
             self?.valueConvertedTextField.text = convertedValue?.description ?? ""
         }
+        
     }
     
 }

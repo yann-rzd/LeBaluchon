@@ -25,6 +25,7 @@ final class CurrencyService: CurencyServiceProtocol {
     var onSourceCurrencyChanged: ((Currency) -> Void)?
     var onTargetCurrencyChanged: ((Currency) -> Void)?
     
+    var onSearchResultChanged: (() -> Void)?
     
     var valueToConvert: Int? = 1 {
         didSet {
@@ -62,8 +63,20 @@ final class CurrencyService: CurencyServiceProtocol {
     
     var currencySelectionType: CurrencySelectionType?
     
-    let currencies: [Currency] = Currency.allCases
-    var filteredCurrencies: [Currency]!
+    
+    var searchText = "" {
+        didSet {
+            filteredCurrencies = getFilteredCurrencies(searchText: searchText)
+        }
+    }
+ 
+  
+    
+   lazy var filteredCurrencies: [Currency] = currencies {
+        didSet {
+            onSearchResultChanged?()
+        }
+    }
     
     static let shared = CurrencyService()
  
@@ -119,6 +132,24 @@ final class CurrencyService: CurencyServiceProtocol {
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    private func getFilteredCurrencies(searchText: String) -> [Currency] {
+        guard !searchText.isEmpty else {
+            return currencies
+        }
+        
+        return currencies.filter { currency in
+            currency.name.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
+    private let currencies: [Currency] = Currency.allCases
 //
 //    func fetchRatesSymnols(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void) {
 //
