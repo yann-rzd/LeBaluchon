@@ -21,6 +21,8 @@ class TranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupToolBar()
+        sourceLanguageTextView.delegate = self
         sourceLanguageTextView.text = ""
         targetLanguageTextView.text = ""
 
@@ -56,6 +58,10 @@ class TranslateViewController: UIViewController {
         translateService.swapLanguages()
     }
     
+    
+    @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
+    }
+    
     private func setupBindings() {
         translateService.onSourceLanguageChanged = { [weak self] sourceLanguage in
             self?.sourceLanguageButton.setTitle(sourceLanguage.name, for: .normal)
@@ -67,14 +73,57 @@ class TranslateViewController: UIViewController {
         
         
         translateService.onSourceTextChanged = { [weak self] textToConvert in
-            self?.sourceLanguageTextView.text = textToConvert.description ?? ""
+            self?.sourceLanguageTextView.text = textToConvert
         }
         
         
         translateService.onTargetTextChanged =  { [weak self] convertedText in
-            self?.targetLanguageTextView.text = convertedText.description ?? ""
+            self?.targetLanguageTextView.text = convertedText
         }
+        
+    }
+    
+    
+    private func setupToolBar() {
+        let toolBar = UIToolbar()
+        
+        let clearButton = UIBarButtonItem(
+            title: "CLEAR",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.translateService.emptySourceText() } )
+        )
+        
+        toolBar.items = [
+            .flexibleSpace(),
+            clearButton
+           
+        ]
+        
+        
+        toolBar.sizeToFit()
+        
+        sourceLanguageTextView.inputAccessoryView = toolBar
+        
         
     }
 }
 
+
+extension TranslateViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let textViewText = textView.text,
+              let rangeIn = Range(range, in: textViewText)
+        else {
+            return false
+        }
+        
+        
+        let valueToConvertText = textViewText.replacingCharacters(in: rangeIn, with: text)
+    
+        
+        translateService.sourceText = valueToConvertText
+        
+        return false
+    }
+    
+}

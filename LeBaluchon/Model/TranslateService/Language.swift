@@ -26,7 +26,7 @@ enum Language: String, CaseIterable {
     case lt
     case ca
     case mk
-    case zhCN
+    case zhCN = "zh-CN"
     case ms
     case zhTW
     case mt
@@ -68,7 +68,7 @@ enum Language: String, CaseIterable {
     case ur
     case hu
     case vi
-    case ic
+    case `is`
     case cy
     case id
     case yi
@@ -135,7 +135,7 @@ enum Language: String, CaseIterable {
         case .ur: return "Urdu"
         case .hu: return "Hungarian"
         case .vi: return "Vietnamese"
-        case .ic: return "Icelandic"
+        case .is: return "Icelandic"
         case .cy: return "Welsh"
         case .id: return "Indonesian"
         case .yi: return "Yiddish"

@@ -235,7 +235,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcS-sa-tbB">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcS-sa-tbB">
                                 <rect key="frame" x="20" y="513" width="374" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -246,6 +246,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhq-dM-W0C">
+                                <rect key="frame" x="20" y="743" width="374" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fre-kh-Wob"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Translate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapOnTranslateButton:" destination="dIG-zT-qj3" eventType="touchUpInside" id="hJM-lj-Xcq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f4y-Fs-QFE"/>
                         <color key="backgroundColor" red="0.60370311539999999" green="0.79809287780000004" blue="0.92355192549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -256,10 +271,13 @@
                             <constraint firstItem="FH0-x5-SEp" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="68E-qf-xsE"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="KcS-sa-tbB" secondAttribute="bottom" constant="100" id="KO5-e2-3CI"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="KcS-sa-tbB" secondAttribute="trailing" constant="20" id="MEV-s1-zhg"/>
+                            <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="Qhq-dM-W0C" secondAttribute="trailing" constant="20" id="NFs-bu-DP4"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="FH0-x5-SEp" secondAttribute="trailing" constant="20" id="Pct-LG-adT"/>
                             <constraint firstItem="FH0-x5-SEp" firstAttribute="top" secondItem="FJh-V8-z5O" secondAttribute="bottom" constant="50" id="ShT-DU-GYg"/>
+                            <constraint firstItem="Qhq-dM-W0C" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="TZ5-Zk-bQ1"/>
                             <constraint firstItem="FJh-V8-z5O" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="aGs-0a-O08"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="FJh-V8-z5O" secondAttribute="trailing" constant="20" id="bHr-yz-7kc"/>
+                            <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="Qhq-dM-W0C" secondAttribute="bottom" constant="30" id="jGw-Kg-sO3"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="sbx-dy-89y" appends="YES" id="TE3-sC-HPN"/>
@@ -660,6 +678,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

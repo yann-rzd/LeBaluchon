@@ -56,6 +56,7 @@ final class TranslateService {
     
     var sourceText = "" {
         didSet {
+            print(sourceText)
             onSourceTextChanged?(sourceText)
         }
     }
@@ -86,12 +87,9 @@ final class TranslateService {
     
     
     
-    
-    
-    
-    
-    
-    
+    func emptySourceText() {
+        sourceText.removeAll()
+    }
     
     
     private let apiKey = ""
