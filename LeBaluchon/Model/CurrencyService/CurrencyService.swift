@@ -134,73 +134,9 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     
-    
-    
-    
-    
-    
-    private func getFilteredCurrencies(searchText: String) -> [Currency] {
-        guard !searchText.isEmpty else {
-            return currencies
-        }
-        
-        return currencies.filter { currency in
-            currency.name.lowercased().contains(searchText.lowercased())
-        }
-    }
-    
     private let currencies: [Currency] = Currency.allCases
-//
-//    func fetchRatesSymnols(completionHandler: @escaping (Result<[String: Double], CurrencyServiceError>) -> Void) {
-//
-//        guard let url = getRatesUrl(path: "api/latest") else {
-//            return
-//        }
-//
-//        var urlRequest = URLRequest(url: url)
-//
-//        urlRequest.httpMethod = "GET"
-//
-//        networkService.fetch(urlRequest: urlRequest) { (result: Result<FixerLatestResponse, NetworkServiceError>) in
-//            switch result {
-//            case .failure:
-//                completionHandler(.failure(.failedToFetchConversionRate))
-//                print("Erreur lors de la récupération des taux de conversion")
-//                return
-//            case .success(let ratesResponse):
-//                let rates = ratesResponse.rates
-//                completionHandler(.success(rates))
-//                print(ratesResponse)
-//                return
-//
-//            }
-//        }
-//    }
     
-    private func getRatesUrl() -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "data.fixer.io"
-        urlComponents.path = "/api/latest"
-        urlComponents.queryItems = [
-            .init(name: "access_key", value: "3a76b9ba8ccd1e783d8b18001496f9fa")
-        ]
-        
-        return urlComponents.url
-    }
-    
-    
-    private func convertValue() {
-        
-        guard let conversionRate = conversionRate,
-              let valueToConvert = valueToConvert
-        else {
-            return
-        }
-        
-        self.convertedValue =  Double(valueToConvert) * conversionRate
-    }
+
     
     
     private let networkService: NetworkServiceProtocol
@@ -235,4 +171,39 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     private var rates: [String: Double]?
+    
+    private func getFilteredCurrencies(searchText: String) -> [Currency] {
+        guard !searchText.isEmpty else {
+            return currencies
+        }
+        
+        return currencies.filter { currency in
+            currency.name.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
+    private func getRatesUrl() -> URL? {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "http"
+        urlComponents.host = "data.fixer.io"
+        urlComponents.path = "/api/latest"
+        urlComponents.queryItems = [
+            .init(name: "access_key", value: "3a76b9ba8ccd1e783d8b18001496f9fa")
+        ]
+        
+        return urlComponents.url
+    }
+    
+    
+    private func convertValue() {
+        
+        guard let conversionRate = conversionRate,
+              let valueToConvert = valueToConvert
+        else {
+            return
+        }
+        
+        self.convertedValue =  Double(valueToConvert) * conversionRate
+    }
 }

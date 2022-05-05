@@ -178,20 +178,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FJh-V8-z5O">
                                 <rect key="frame" x="20" y="128" width="374" height="43"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-wA-UIT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-wA-UIT">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="6Us-Wp-aKM"/>
                                             <constraint firstAttribute="height" constant="43" id="kMB-u2-xrE"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Français">
+                                        <buttonConfiguration key="configuration" style="plain" title="Français">
                                             <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <segue destination="nt8-nv-m8e" kind="presentation" identifier="LanguageSourceSegue" id="Cno-dF-Fwg"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp3-Bg-NDU">
                                         <rect key="frame" x="165.5" y="0.0" width="43" height="43"/>
@@ -202,10 +198,7 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="zoj-S7-enu"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button" image="double-arrow"/>
-                                        <connections>
-                                            <action selector="didTapOnSwapLanguagesButton:" destination="dIG-zT-qj3" eventType="touchUpInside" id="k2f-Ic-wNh"/>
-                                        </connections>
+                                        <state key="normal" title="Button" image="right-arrows"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcH-fb-elr">
                                         <rect key="frame" x="234" y="0.0" width="140" height="43"/>
@@ -219,38 +212,32 @@
                                             <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="nt8-nv-m8e" kind="presentation" identifier="LanguageTargetSegue" id="Ibe-P7-6cy"/>
+                                            <segue destination="e4D-zZ-BI5" kind="presentation" identifier="LanguageTargetSegue" id="Ibe-P7-6cy"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FH0-x5-SEp">
-                                <rect key="frame" x="20" y="221" width="374" height="200"/>
+                                <rect key="frame" x="20" y="187" width="374" height="281.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="kAs-WL-1x5"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KcS-sa-tbB">
-                                <rect key="frame" x="20" y="513" width="374" height="200"/>
+                                <rect key="frame" x="20" y="488.5" width="374" height="242.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="aS8-G3-Ate"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhq-dM-W0C">
-                                <rect key="frame" x="20" y="743" width="374" height="40"/>
+                                <rect key="frame" x="20" y="747" width="374" height="50"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="fre-kh-Wob"/>
+                                    <constraint firstAttribute="height" constant="50" id="fre-kh-Wob"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -269,15 +256,17 @@
                             <constraint firstItem="FJh-V8-z5O" firstAttribute="top" secondItem="f4y-Fs-QFE" secondAttribute="top" constant="40" id="1OR-Ce-20o"/>
                             <constraint firstItem="KcS-sa-tbB" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="5nx-hA-bly"/>
                             <constraint firstItem="FH0-x5-SEp" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="68E-qf-xsE"/>
-                            <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="KcS-sa-tbB" secondAttribute="bottom" constant="100" id="KO5-e2-3CI"/>
+                            <constraint firstItem="Qhq-dM-W0C" firstAttribute="top" secondItem="KcS-sa-tbB" secondAttribute="bottom" constant="16" id="KO5-e2-3CI"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="KcS-sa-tbB" secondAttribute="trailing" constant="20" id="MEV-s1-zhg"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="Qhq-dM-W0C" secondAttribute="trailing" constant="20" id="NFs-bu-DP4"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="FH0-x5-SEp" secondAttribute="trailing" constant="20" id="Pct-LG-adT"/>
-                            <constraint firstItem="FH0-x5-SEp" firstAttribute="top" secondItem="FJh-V8-z5O" secondAttribute="bottom" constant="50" id="ShT-DU-GYg"/>
+                            <constraint firstItem="FH0-x5-SEp" firstAttribute="top" secondItem="FJh-V8-z5O" secondAttribute="bottom" constant="16" id="ShT-DU-GYg"/>
                             <constraint firstItem="Qhq-dM-W0C" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="TZ5-Zk-bQ1"/>
                             <constraint firstItem="FJh-V8-z5O" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="aGs-0a-O08"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="FJh-V8-z5O" secondAttribute="trailing" constant="20" id="bHr-yz-7kc"/>
-                            <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="Qhq-dM-W0C" secondAttribute="bottom" constant="30" id="jGw-Kg-sO3"/>
+                            <constraint firstItem="KcS-sa-tbB" firstAttribute="top" secondItem="FH0-x5-SEp" secondAttribute="bottom" constant="20" id="btb-mf-gaR"/>
+                            <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="Qhq-dM-W0C" secondAttribute="bottom" constant="16" id="jGw-Kg-sO3"/>
+                            <constraint firstItem="KcS-sa-tbB" firstAttribute="height" secondItem="FH0-x5-SEp" secondAttribute="height" multiplier="0.862069" id="mgA-Fc-Hsi"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="sbx-dy-89y" appends="YES" id="TE3-sC-HPN"/>
@@ -287,7 +276,6 @@
                     <connections>
                         <outlet property="sourceLanguageButton" destination="Pq3-wA-UIT" id="SYd-CY-jPB"/>
                         <outlet property="sourceLanguageTextView" destination="FH0-x5-SEp" id="PHr-Wp-D4R"/>
-                        <outlet property="swapLanguagesButton" destination="Kp3-Bg-NDU" id="Ecc-mc-n2L"/>
                         <outlet property="targetLanguageButton" destination="BcH-fb-elr" id="fhS-Iq-YrN"/>
                         <outlet property="targetLanguageTextView" destination="KcS-sa-tbB" id="Pmb-c8-uh7"/>
                     </connections>
@@ -299,7 +287,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1864" y="1306"/>
+            <point key="canvasLocation" x="1863.7681159420292" y="1305.8035714285713"/>
         </scene>
         <!--Language Picker View Controller-->
         <scene sceneID="5iU-VQ-v5c">
@@ -310,7 +298,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="U6h-Rd-1Hf">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" id="OyJ-1v-DWG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -338,6 +326,7 @@
                             <constraint firstItem="MaA-hp-xWo" firstAttribute="bottom" secondItem="U6h-Rd-1Hf" secondAttribute="bottom" id="yrd-Q9-bSi"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="jU3-zi-c88"/>
                     <connections>
                         <outlet property="languageToTranslateTableView" destination="U6h-Rd-1Hf" id="JTc-hh-gZc"/>
                         <outlet property="searchBar" destination="OyJ-1v-DWG" id="fcn-t9-BOx"/>
@@ -345,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJE-te-lmg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2757" y="1306"/>
+            <point key="canvasLocation" x="3666.666666666667" y="1305.8035714285713"/>
         </scene>
         <!--Weather-->
         <scene sceneID="rhY-Ok-0m6">
@@ -659,9 +648,26 @@
             </objects>
             <point key="canvasLocation" x="930" y="2117"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gx8-XE-UBc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e4D-zZ-BI5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VWC-eS-G1e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nt8-nv-m8e" kind="relationship" relationship="rootViewController" id="m6C-W1-n4i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZW-1h-KZ9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2756.521739130435" y="1305.8035714285713"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ibe-P7-6cy"/>
         <segue reference="4RZ-Bk-n2n"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -669,7 +675,7 @@
         <image name="Translation" width="25" height="25"/>
         <image name="Weather" width="25" height="25"/>
         <image name="directional-arrows" width="512" height="512"/>
-        <image name="double-arrow" width="512" height="512"/>
+        <image name="right-arrows" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

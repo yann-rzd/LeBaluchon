@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class TranslateViewController: UIViewController {
 
     @IBOutlet weak var sourceLanguageTextView: UITextView!
@@ -14,8 +15,6 @@ class TranslateViewController: UIViewController {
     
     @IBOutlet weak var sourceLanguageButton: UIButton!
     @IBOutlet weak var targetLanguageButton: UIButton!
-    
-    @IBOutlet weak var swapLanguagesButton: UIButton!
     
     private let translateService = TranslateService.shared
     
@@ -29,6 +28,7 @@ class TranslateViewController: UIViewController {
         targetLanguageTextView.inputView = UIView()
         
         setupBindings()
+        translateService.setup()
         
         
     }
@@ -41,7 +41,7 @@ class TranslateViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if let _ = segue.destination as? LanguagePickerViewController,
+        if let _ = segue.destination as? UINavigationController,
            let segueIdentifier = segue.identifier
         {
             switch segueIdentifier {
@@ -54,31 +54,51 @@ class TranslateViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapOnSwapLanguagesButton(_ sender: UIButton) {
-        translateService.swapLanguages()
-    }
-    
     
     @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
+        translateService.fetchTranslation { result in
+            switch result {
+            case .failure(let error):
+                print("Display error with alert")
+            case .success:
+                print("Success")
+            }
+            print("Should stop activity indicator !devrait être sur le main thread")
+        }
     }
     
     private func setupBindings() {
         translateService.onSourceLanguageChanged = { [weak self] sourceLanguage in
-            self?.sourceLanguageButton.setTitle(sourceLanguage.name, for: .normal)
+            DispatchQueue.main.async {
+                self?.sourceLanguageButton.setTitle(sourceLanguage?.name ?? "", for: .normal)
+            }
+       
+           
         }
         
         translateService.onTargetLanguageChanged = { [weak self] targetLanguage in
-            self?.targetLanguageButton.setTitle(targetLanguage.name, for: .normal)
+            DispatchQueue.main.async {
+                self?.targetLanguageButton.setTitle(targetLanguage.name, for: .normal)
+            }
+       
+            
         }
         
         
         translateService.onSourceTextChanged = { [weak self] textToConvert in
-            self?.sourceLanguageTextView.text = textToConvert
+            DispatchQueue.main.async {
+                self?.sourceLanguageTextView.text = textToConvert
+            }
+       
+            
         }
         
         
         translateService.onTargetTextChanged =  { [weak self] convertedText in
-            self?.targetLanguageTextView.text = convertedText
+            DispatchQueue.main.async {
+                self?.targetLanguageTextView.text = convertedText
+            }
+       
         }
         
     }
@@ -92,9 +112,17 @@ class TranslateViewController: UIViewController {
             primaryAction: UIAction(handler: { [weak self] _ in self?.translateService.emptySourceText() } )
         )
         
+        clearButton.tintColor = .gray
+        
+        let doneButton = UIBarButtonItem(
+            title: "DONE",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.view.endEditing(true) } )
+        )
+        
         toolBar.items = [
+            clearButton,
             .flexibleSpace(),
-            clearButton
+            doneButton
            
         ]
         
@@ -102,7 +130,6 @@ class TranslateViewController: UIViewController {
         toolBar.sizeToFit()
         
         sourceLanguageTextView.inputAccessoryView = toolBar
-        
         
     }
 }

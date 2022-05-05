@@ -16,15 +16,33 @@ class LanguagePickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
+   
         
         languageToTranslateTableView.delegate = self
         languageToTranslateTableView.dataSource = self
     }
     
+    
     private func setupBindings() {
         translateService.onSearchResultChanged = { [weak self] in
             self?.languageToTranslateTableView.reloadData()
         }
+    }
+    
+    @objc private func dismissLanguagePicker() {
+        dismiss(animated: true) { [weak self] in
+            self?.translateService.languageSelectionType = nil
+        }
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = translateService.languageSelectionType?.navigationTitle
+        
+        let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissLanguagePicker))
+        
+        navigationItem.rightBarButtonItem = closeBarButtonItem
+        
     }
 }
 
@@ -34,9 +52,7 @@ extension LanguagePickerViewController: UITableViewDelegate {
         
         translateService.assignLanguage(language: selectedLanguage)
         
-        dismiss(animated: true) { [weak self] in
-            self?.translateService.languageSelectionType = nil
-        }
+        dismissLanguagePicker()
     }
 }
 

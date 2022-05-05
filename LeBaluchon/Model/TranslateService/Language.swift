@@ -28,7 +28,7 @@ enum Language: String, CaseIterable {
     case mk
     case zhCN = "zh-CN"
     case ms
-    case zhTW
+    case zhTW = "zh-TW"
     case mt
     case hr
     case no
