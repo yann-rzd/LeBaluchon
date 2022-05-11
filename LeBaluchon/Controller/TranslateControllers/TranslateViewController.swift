@@ -15,6 +15,8 @@ class TranslateViewController: UIViewController {
     
     @IBOutlet weak var sourceLanguageButton: UIButton!
     @IBOutlet weak var targetLanguageButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var translateButton: UIButton!
     
     private let translateService = TranslateService.shared
     
@@ -56,6 +58,8 @@ class TranslateViewController: UIViewController {
     
     
     @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
+        toggleActivityIndicator(shown: true)
+        
         translateService.fetchTranslation { result in
             switch result {
             case .failure(let error):
@@ -63,7 +67,7 @@ class TranslateViewController: UIViewController {
             case .success:
                 print("Success")
             }
-            print("Should stop activity indicator !devrait être sur le main thread")
+            self.toggleActivityIndicator(shown: false)
         }
     }
     
@@ -72,16 +76,12 @@ class TranslateViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.sourceLanguageButton.setTitle(sourceLanguage?.name ?? "", for: .normal)
             }
-       
-           
         }
         
         translateService.onTargetLanguageChanged = { [weak self] targetLanguage in
             DispatchQueue.main.async {
                 self?.targetLanguageButton.setTitle(targetLanguage.name, for: .normal)
             }
-       
-            
         }
         
         
@@ -89,8 +89,6 @@ class TranslateViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.sourceLanguageTextView.text = textToConvert
             }
-       
-            
         }
         
         
@@ -101,6 +99,13 @@ class TranslateViewController: UIViewController {
        
         }
         
+    }
+    
+    private func toggleActivityIndicator(shown: Bool) {
+        DispatchQueue.main.async {
+            self.translateButton.isHidden = shown
+            self.activityIndicator.isHidden = !shown
+        }
     }
     
     

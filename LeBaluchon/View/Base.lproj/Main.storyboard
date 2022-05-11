@@ -220,7 +220,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FH0-x5-SEp">
                                 <rect key="frame" x="20" y="187" width="374" height="281.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="continue"/>
@@ -248,12 +248,20 @@
                                     <action selector="didTapOnTranslateButton:" destination="dIG-zT-qj3" eventType="touchUpInside" id="hJM-lj-Xcq"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i0B-Pt-gtl">
+                                <rect key="frame" x="187" y="752" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Lbh-6K-Ljf"/>
+                                    <constraint firstAttribute="height" constant="40" id="aSe-qL-mmI"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f4y-Fs-QFE"/>
                         <color key="backgroundColor" red="0.60370311539999999" green="0.79809287780000004" blue="0.92355192549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="FJh-V8-z5O" firstAttribute="top" secondItem="f4y-Fs-QFE" secondAttribute="top" constant="40" id="1OR-Ce-20o"/>
+                            <constraint firstItem="i0B-Pt-gtl" firstAttribute="centerX" secondItem="Qhq-dM-W0C" secondAttribute="centerX" id="4tc-vq-iMm"/>
                             <constraint firstItem="KcS-sa-tbB" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="5nx-hA-bly"/>
                             <constraint firstItem="FH0-x5-SEp" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="68E-qf-xsE"/>
                             <constraint firstItem="Qhq-dM-W0C" firstAttribute="top" secondItem="KcS-sa-tbB" secondAttribute="bottom" constant="16" id="KO5-e2-3CI"/>
@@ -265,6 +273,7 @@
                             <constraint firstItem="FJh-V8-z5O" firstAttribute="leading" secondItem="f4y-Fs-QFE" secondAttribute="leading" constant="20" id="aGs-0a-O08"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="trailing" secondItem="FJh-V8-z5O" secondAttribute="trailing" constant="20" id="bHr-yz-7kc"/>
                             <constraint firstItem="KcS-sa-tbB" firstAttribute="top" secondItem="FH0-x5-SEp" secondAttribute="bottom" constant="20" id="btb-mf-gaR"/>
+                            <constraint firstItem="i0B-Pt-gtl" firstAttribute="centerY" secondItem="Qhq-dM-W0C" secondAttribute="centerY" id="hgq-LB-KRL"/>
                             <constraint firstItem="f4y-Fs-QFE" firstAttribute="bottom" secondItem="Qhq-dM-W0C" secondAttribute="bottom" constant="16" id="jGw-Kg-sO3"/>
                             <constraint firstItem="KcS-sa-tbB" firstAttribute="height" secondItem="FH0-x5-SEp" secondAttribute="height" multiplier="0.862069" id="mgA-Fc-Hsi"/>
                         </constraints>
@@ -274,10 +283,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Translator" id="PRP-Xe-tqk"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="i0B-Pt-gtl" id="Xne-TJ-I4u"/>
                         <outlet property="sourceLanguageButton" destination="Pq3-wA-UIT" id="SYd-CY-jPB"/>
                         <outlet property="sourceLanguageTextView" destination="FH0-x5-SEp" id="PHr-Wp-D4R"/>
                         <outlet property="targetLanguageButton" destination="BcH-fb-elr" id="fhS-Iq-YrN"/>
                         <outlet property="targetLanguageTextView" destination="KcS-sa-tbB" id="Pmb-c8-uh7"/>
+                        <outlet property="translateButton" destination="Qhq-dM-W0C" id="wLo-Na-63Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOC-FI-vCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
