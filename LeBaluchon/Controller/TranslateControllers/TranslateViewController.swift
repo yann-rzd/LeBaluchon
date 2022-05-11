@@ -63,7 +63,7 @@ class TranslateViewController: UIViewController {
         translateService.fetchTranslation { result in
             switch result {
             case .failure(let error):
-                print("Display error with alert")
+                self.presentAlert()
             case .success:
                 print("Success")
             }
@@ -106,6 +106,15 @@ class TranslateViewController: UIViewController {
             self.translateButton.isHidden = shown
             self.activityIndicator.isHidden = !shown
         }
+    }
+    
+    private func presentAlert() {
+        DispatchQueue.main.async {
+            let alertVC = UIAlertController(title: "Error", message: "Failed to translate", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alertVC, animated: true, completion: nil)
+        }
+        
     }
     
     
