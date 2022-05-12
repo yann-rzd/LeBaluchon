@@ -58,8 +58,6 @@ class TranslateViewController: UIViewController {
     
     
     @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
-        toggleActivityIndicator(shown: true)
-        
         translateService.fetchTranslation { result in
             switch result {
             case .failure(let error):
@@ -67,7 +65,6 @@ class TranslateViewController: UIViewController {
             case .success:
                 print("Success")
             }
-            self.toggleActivityIndicator(shown: false)
         }
     }
     
@@ -99,13 +96,15 @@ class TranslateViewController: UIViewController {
        
         }
         
-    }
-    
-    private func toggleActivityIndicator(shown: Bool) {
-        DispatchQueue.main.async {
-            self.translateButton.isHidden = shown
-            self.activityIndicator.isHidden = !shown
+        translateService.onIsLoadingChanged = { [weak self] isLoading in
+            DispatchQueue.main.async {
+                let buttonTitle = isLoading ? "" : "Translate"
+                self?.translateButton.setTitle(buttonTitle, for: .normal)
+                self?.activityIndicator.isHidden = !isLoading
+            }
+       
         }
+        
     }
     
     private func presentAlert() {

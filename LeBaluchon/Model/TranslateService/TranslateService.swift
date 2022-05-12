@@ -55,7 +55,16 @@ final class TranslateService {
     
     var onSearchResultChanged: (() -> Void)?
     
-    let languages: [Language] = Language.allCases
+    
+    var onIsLoadingChanged: ((Bool) -> Void)?
+    
+    
+    
+    var isLoading = false {
+        didSet {
+            onIsLoadingChanged?(isLoading)
+        }
+    }
     
     var languageSelectionType: LanguageSelectionType?
     
@@ -72,15 +81,25 @@ final class TranslateService {
         }
     }
     
-    
     var sourceText = "" {
+            didSet {
+                print(sourceText)
+                onSourceTextChanged?(sourceText)
+            }
+        }
+    
+    var searchText = "" {
         didSet {
-            print(sourceText)
-            onSourceTextChanged?(sourceText)
+            filteredLanguages = getFilteredLanguages(searchText: searchText)
         }
     }
     
-
+    
+    lazy var filteredLanguages: [Language] = languages {
+        didSet {
+            onSearchResultChanged?()
+        }
+    }
     
     func assignLanguage(language: Language) {
         switch languageSelectionType {
@@ -126,7 +145,14 @@ final class TranslateService {
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        print("✅✅ is  Loading => SET TO TRUE ")
+        isLoading = true
+        
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<TranslationResponse, NetworkServiceError>) in
+            
+            print("❌❌ is  Loading => SET TO FALSE ")
+            self?.isLoading = false
+            
             switch result {
             case .failure:
                 completionHandler(.failure(.failedToFetchTranslation))
@@ -152,6 +178,7 @@ final class TranslateService {
     func setup() {
         sourceLanguage = nil
         targetLanguage = .en
+        isLoading = false
     }
 
     
@@ -171,12 +198,21 @@ final class TranslateService {
     
     private let apiKey = ""
     
-    
-    
-    
+
     private let networkService: NetworkServiceProtocol
     
+    private let languages: [Language] = Language.allCases
     
+    
+    private func getFilteredLanguages(searchText: String) -> [Language] {
+        guard !searchText.isEmpty else {
+            return languages
+        }
+        
+        return languages.filter { language in
+            language.name.lowercased().contains(searchText.lowercased())
+        }
+    }
     
     
     private func getFetchTranslationUrl() -> URL? {

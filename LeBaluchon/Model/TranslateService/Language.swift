@@ -135,7 +135,7 @@ enum Language: String, CaseIterable {
         case .ur: return "Urdu"
         case .hu: return "Hungarian"
         case .vi: return "Vietnamese"
-        case .is: return "Icelandic"
+        case .`is`: return "Icelandic"
         case .cy: return "Welsh"
         case .id: return "Indonesian"
         case .yi: return "Yiddish"

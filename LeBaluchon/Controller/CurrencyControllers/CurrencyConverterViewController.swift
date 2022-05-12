@@ -47,6 +47,19 @@ final class CurrencyConverterViewController: UIViewController {
         valueConvertedTextField.resignFirstResponder()
     }
     
+    @IBAction func didTapOnSyncCurrenciesButton(_ sender: UIButton) {
+        currencyService.fetchConversionRates { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let rates):
+                    print(rates)
+                }
+            }
+        }
+    }
+    
     @IBAction func didTapOnSwapCurrenciesButton(_ sender: UIButton) {
         currencyService.swapCurrencies()
     }
