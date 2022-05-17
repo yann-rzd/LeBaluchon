@@ -361,19 +361,19 @@
         <!--Weather-->
         <scene sceneID="rhY-Ok-0m6">
             <objects>
-                <viewController id="iQs-5n-Lme" customClass="WeatherViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iQs-5n-Lme" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XsY-YD-KZs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New-York" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arg-7r-WVw">
-                                <rect key="frame" x="50" y="168" width="181.5" height="48"/>
+                                <rect key="frame" x="50" y="124" width="181.5" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="UXE-iS-Afl">
-                                <rect key="frame" x="50" y="256" width="314" height="80"/>
+                                <rect key="frame" x="50" y="212" width="314" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eab-qk-iNq">
                                         <rect key="frame" x="0.0" y="0.0" width="121.5" height="80"/>
@@ -419,7 +419,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ccS-qP-yRK">
-                                <rect key="frame" x="50" y="486" width="314" height="48"/>
+                                <rect key="frame" x="50" y="442" width="314" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paris" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xj-7I-XU0">
                                         <rect key="frame" x="0.0" y="0.0" width="92" height="48"/>
@@ -441,7 +441,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Bj-WJ-Vdg">
-                                <rect key="frame" x="50" y="574" width="314" height="80"/>
+                                <rect key="frame" x="50" y="530" width="314" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OE6-Bw-tx1">
                                         <rect key="frame" x="0.0" y="0.0" width="167.5" height="80"/>
@@ -508,12 +508,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sso-R7-wrZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1759" y="2112"/>
+            <point key="canvasLocation" x="1706" y="2827"/>
         </scene>
-        <!--City Picker Table View Controller-->
+        <!--View Controller-->
         <scene sceneID="MhB-Wj-Eew">
             <objects>
-                <viewController id="jOo-2D-rAC" customClass="CityPickerTableViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jOo-2D-rAC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vZM-UZ-s8v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -550,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ioT-77-k1k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2633" y="2111"/>
+            <point key="canvasLocation" x="2490" y="2827"/>
         </scene>
         <!--Convertor-->
         <scene sceneID="wxv-6i-OMT">
@@ -663,12 +663,28 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iQs-5n-Lme" kind="relationship" relationship="rootViewController" id="VzF-VE-WGB"/>
+                        <segue destination="Iez-KV-D9B" kind="relationship" relationship="rootViewController" id="GUY-QG-eEQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACr-0u-bay" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="930" y="2117"/>
+        </scene>
+        <!--Weather-->
+        <scene sceneID="PaW-yK-Z8A">
+            <objects>
+                <viewController id="Iez-KV-D9B" customClass="WeatherViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LBj-mK-etW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0RV-Ml-sAA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Weather" id="58F-1i-aOc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ico-KD-0HL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800" y="2117"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gx8-XE-UBc">

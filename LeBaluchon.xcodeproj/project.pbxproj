@@ -32,6 +32,7 @@
 		E4D6E42027F36296002200F8 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41F27F36296002200F8 /* TranslateViewController.swift */; };
 		E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E42127F362A3002200F8 /* WeatherViewController.swift */; };
 		E4E6367627F7536C00DDDB6D /* LanguagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */; };
+		E4F455652833E8540075AAF5 /* CustomWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */; };
 		E4F583C127F73DD400FB6D59 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		E4D6E41F27F36296002200F8 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
 		E4D6E42127F362A3002200F8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerViewController.swift; sourceTree = "<group>"; };
+		E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E45B8C1727E386E100238229 /* Main.storyboard */,
+				E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */,
 				E45B8C1C27E386E100238229 /* LaunchScreen.storyboard */,
 				E45B8C1A27E386E100238229 /* Assets.xcassets */,
 			);
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E459433727ECC92000FE0259 /* NetworkServiceError.swift in Sources */,
+				E4F455652833E8540075AAF5 /* CustomWeatherTableViewCell.swift in Sources */,
 				E45860D12810441500FBD56C /* Language.swift in Sources */,
 				E4D6E42227F362A3002200F8 /* WeatherViewController.swift in Sources */,
 				E45B8C1627E386E100238229 /* CurrencyConverterViewController.swift in Sources */,
