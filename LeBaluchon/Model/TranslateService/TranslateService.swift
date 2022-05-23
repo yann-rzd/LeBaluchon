@@ -119,8 +119,7 @@ final class TranslateService {
     
     
     func fetchTranslation(
-        completionHandler: @escaping (Result<Void, TranslateServiceError>) -> Void
-    ) {
+        completionHandler: @escaping (Result<Void, TranslateServiceError>) -> Void) {
        
         guard let url = getFetchTranslationUrl() else {
             completionHandler(.failure(.failedToFetchTranslation))

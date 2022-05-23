@@ -7,30 +7,76 @@
 
 import UIKit
 
-class CityPickerTableViewController: UIViewController {
+import UIKit
+
+class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
+        searchBar.searchBarStyle = UISearchBar.Style.prominent
+        searchBar.placeholder = " Search..."
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.delegate = self
+        
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+        view.addSubview(searchBar)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+        //your code here....
+    }
+    
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(CustomCityPickerTableViewCell.self, forCellReuseIdentifier: CustomCityPickerTableViewCell.identifier)
+        return tableView
+    }()
+    
+    private let searchBar: UISearchBar = UISearchBar()
+    
+    private let weatherService = WeatherService.shared
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Select City"
+        
+        let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissCityPicker))
+        
+        navigationItem.rightBarButtonItem = closeBarButtonItem
+        
+    }
+    
+    @objc private func dismissCityPicker() {
+        dismiss(animated: true, completion: nil)
     }
 
-    // MARK: - Table view data source
+}
 
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
+extension CityPickerViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCityPickerTableViewCell.identifier, for: indexPath) as? CustomCityPickerTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.textLabel?.text = "City"
+        
+        return cell
+    }
+    
 }
 
 

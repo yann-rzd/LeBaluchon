@@ -7,26 +7,28 @@
 
 import UIKit
 
-class CustomWeatherTableViewCell: UITableViewCell {
+final class CustomWeatherTableViewCell: UITableViewCell {
     static let identifier = "CustomWeatherTableViewCell"
     
-    let cityNameLabel: UILabel = {
+    private let cityNameLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
         view.font = .boldSystemFont(ofSize: 40.0)
-        view.text = "Paris"
+        view.text = ""
+        //view.textAlignment = .left
         return view
     }()
     
-    let displayCitiesButton: UIButton = {
+    let deleteCityButton: UIButton = {
         let view = UIButton(type: .system)
         view.configuration = .tinted()
 //        view.backgroundColor = .white
-        view.setTitle("Villes", for: .normal)
+        view.setTitle("Delete", for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.titleLabel?.text = "Villes"
+        view.titleLabel?.text = "Delete"
         view.titleLabel?.font = .systemFont(ofSize: 24.0, weight: .regular)
+        view.tintColor = .red
         return view
     }()
     
@@ -69,6 +71,7 @@ class CustomWeatherTableViewCell: UITableViewCell {
     let weatherImageView: UIImageView = {
         let view = UIImageView()
         view.frame = .init(x: 0, y: 0, width: 80.0, height: 80.0)
+        view.backgroundColor = .red
         return view
     }()
     
@@ -117,7 +120,7 @@ class CustomWeatherTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .horizontal
         view.alignment = .fill
-        view.distribution = .fill
+        view.distribution = .fillEqually
         view.spacing = 10
         return view
     }()
@@ -132,11 +135,12 @@ class CustomWeatherTableViewCell: UITableViewCell {
         commonInit()
     }
     
-    func commonInit() -> Void {
+    
+    private func commonInit() -> Void {
         contentView.backgroundColor = UIColor.weatherCellsBackground
         
         choosenCityStackView.addArrangedSubview(cityNameLabel)
-        choosenCityStackView.addArrangedSubview(displayCitiesButton)
+        choosenCityStackView.addArrangedSubview(deleteCityButton)
         
         weatherDescriptionStackView.addArrangedSubview(weatherDescriptionLabel)
         weatherDescriptionStackView.addArrangedSubview(maxTemperatureLabel)
@@ -156,16 +160,36 @@ class CustomWeatherTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             mainContainerStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             mainContainerStackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            mainContainerStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0.0 )
+            mainContainerStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: 0.0 ),
+            temperatureAndImageDescriptionStackView.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
+    
+    
+    var citySelection: CitySelection? {
+        didSet {
+            guard let citySelection = citySelection else { return }
+            cityNameLabel.text = citySelection.title
+        }
+    }
+    
+    var cityWeatherModel: WeatherCity? {
+        didSet {
+            guard let cityWeatherModel = cityWeatherModel else { return }
+            cityNameLabel.text = cityWeatherModel.title
+            minTemperatureLabel.text = "Min. \(cityWeatherModel.temparatureMin)°"
+            maxTemperatureLabel.text = "Max. \(cityWeatherModel.temperatureMax)°"
+            currentTemperatureLabel.text = "\(cityWeatherModel.temperatureCurrent)°"
+        }
+    }
+    
 }
 
 extension UIColor {
-class var weatherCellsBackground: UIColor {
-    if let color = UIColor(named: "lightBlue") {
-        return color
+    class var weatherCellsBackground: UIColor {
+        if let color = UIColor(named: "lightBlue") {
+            return color
+        }
+        fatalError("Could not find weatherCellsBackground color")
     }
-    fatalError("Could not find weatherCellsBackground color")
-  }
 }
