@@ -20,17 +20,47 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
-        
+//
         tableView.dataSource = self
+        tableView.delegate = self
         
-        view.addSubview(tableView)
-        view.addSubview(searchBar)
+      
+        
+        
+        let tableAndSearchStackView = UIStackView(arrangedSubviews: [
+            searchBar,
+            tableView
+        ])
+        
+        
+        tableAndSearchStackView.alignment = .fill
+        tableAndSearchStackView.distribution = .fill
+        tableAndSearchStackView.axis = .vertical
+        
+        
+
+        view.addSubview(tableAndSearchStackView)
+        
+        
+        
+        tableAndSearchStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableAndSearchStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableAndSearchStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableAndSearchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableAndSearchStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        
+        
+    
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        tableView.frame = view.bounds
+//    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         //your code here....
@@ -43,11 +73,13 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         return tableView
     }()
     
+    
     private let searchBar: UISearchBar = UISearchBar()
     
     private let weatherService = WeatherService.shared
     
     private func setupNavigationBar() {
+        navigationController?.navigationBar.backgroundColor = .white
         navigationItem.title = "Select City"
         
         let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissCityPicker))
@@ -64,7 +96,7 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
 extension CityPickerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return CitySelection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,11 +104,19 @@ extension CityPickerViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = "City"
+        
+        
+        let city = CitySelection.allCases[indexPath.row]
+        cell.textLabel?.text = city.title
         
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let city = CitySelection.allCases[indexPath.row]
+        weatherService.add(city: city)
+    }
 }
 
 

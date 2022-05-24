@@ -14,6 +14,14 @@ class WeatherViewController: UIViewController {
         tableView.dataSource = self
         
         view.addSubview(tableView)
+        
+        weatherService.weatherCitiesDidChange = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -33,7 +41,8 @@ class WeatherViewController: UIViewController {
     }
 
     @objc public func didTapMenuButton() {
-        present(CityPickerViewController(), animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: CityPickerViewController())
+        present(navigationController, animated: true, completion: nil)
     }
 
     private let tableView: UITableView = {

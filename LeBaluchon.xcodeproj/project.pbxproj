@@ -24,7 +24,7 @@
 		E45B8C3327E386E100238229 /* LeBaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */; };
 		E45B8C3527E386E100238229 /* LeBaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */; };
 		E4643BC327FAE40800E1C478 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4643BC227FAE40800E1C478 /* Currency.swift */; };
-		E46C26E128085EB00070ECEC /* CityPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C26E028085EB00070ECEC /* CityPickerTableViewController.swift */; };
+		E46C26E128085EB00070ECEC /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C26E028085EB00070ECEC /* CityPickerViewController.swift */; };
 		E4C8E159283BC1130034DE8B /* CustomCityPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */; };
 		E4C8E15B283BD2C20034DE8B /* WeatherCityList.json in Resources */ = {isa = PBXBuildFile; fileRef = E4C8E15A283BD2C20034DE8B /* WeatherCityList.json */; };
 		E4C8E15D283BE5B50034DE8B /* WeatherCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */; };
@@ -78,7 +78,7 @@
 		E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITests.swift; sourceTree = "<group>"; };
 		E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E4643BC227FAE40800E1C478 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		E46C26E028085EB00070ECEC /* CityPickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerTableViewController.swift; sourceTree = "<group>"; };
+		E46C26E028085EB00070ECEC /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCityPickerTableViewCell.swift; sourceTree = "<group>"; };
 		E4C8E15A283BD2C20034DE8B /* WeatherCityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WeatherCityList.json; sourceTree = "<group>"; };
 		E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCityResponse.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D6E42127F362A3002200F8 /* WeatherViewController.swift */,
-				E46C26E028085EB00070ECEC /* CityPickerTableViewController.swift */,
+				E46C26E028085EB00070ECEC /* CityPickerViewController.swift */,
 			);
 			path = WeatherControllers;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 				E4643BC327FAE40800E1C478 /* Currency.swift in Sources */,
 				E459433D27ECC95900FE0259 /* CurrencyService.swift in Sources */,
 				E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */,
-				E46C26E128085EB00070ECEC /* CityPickerTableViewController.swift in Sources */,
+				E46C26E128085EB00070ECEC /* CityPickerViewController.swift in Sources */,
 				E4F583C127F73DD400FB6D59 /* CurrencyPickerViewController.swift in Sources */,
 				E45B8C1227E386E100238229 /* AppDelegate.swift in Sources */,
 				E4E6367627F7536C00DDDB6D /* LanguagePickerViewController.swift in Sources */,

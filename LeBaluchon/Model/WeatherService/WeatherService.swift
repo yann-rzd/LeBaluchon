@@ -31,8 +31,10 @@ enum CitySelection: CaseIterable {
             return "New-York"
         case .paris:
             return "Paris"
-        default:
-            return "Unknown"
+        case .copenhague:
+            return "Copenhague"
+        case .london:
+            return "London"
         }
     }
 }
@@ -60,15 +62,25 @@ final class WeatherService {
     
     
     var selectedCities: [CitySelection] = [
-        .newyork,
-        .paris
     ] {
         didSet {
-            fetch { result in
-//                switch result {
-//                case .success():
-//                }
+            weatherCitiesDidChange?()
+            for selectedCity in selectedCities {
+                fetch(citySelection: selectedCity) { [weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        print("An error occured should display an alert")
+                    case .success(let weatherCity):
+                        self?.weatherCities[selectedCity] = weatherCity
+                        
+    
+                    }
+    //                switch result {
+    //                case .success():
+    //                }
+                }
             }
+           
         }
     }
     
@@ -78,15 +90,23 @@ final class WeatherService {
 //        .paris : .init(title: "Paris", description: "Nuages", temperatureMax: 19, temparatureMin: 8, temperatureCurrent: 17)
     ] {
         didSet {
+           
             // notifiy viewcontroller that the weather cities changed => tableview reload data
         }
     }
     
     
+    var weatherCitiesDidChange: (() -> Void)?
     
     
-    func fetch(completionHandler: @escaping (Result<Void, WeatherServiceError>) -> Void) {
-        guard let url = getRatesUrl() else {
+    
+    func add(city: CitySelection) {
+        selectedCities.append(city)
+    }
+    
+    
+    private func fetch(citySelection: CitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
+        guard let url = getWeatherUrl(city: citySelection.title) else {
             return
         }
 
@@ -102,12 +122,23 @@ final class WeatherService {
                 return
             case .success(let weatherCityResponse):
                 let cityName = weatherCityResponse.name
-                let weatherDescription = weatherCityResponse.weather[2]
+                let weatherDescription = weatherCityResponse.weather.first?.description
                 let temperatureMax = weatherCityResponse.main.tempMax
                 let temperatureMin = weatherCityResponse.main.tempMin
                 let temperature = weatherCityResponse.main.temp
-                let weatherIcon = weatherCityResponse.weather[3]
-                completionHandler(.success(()))
+                let weatherIcon = weatherCityResponse.weather.first?.icon
+                
+            
+                
+                let weatherCity = WeatherCity(
+                    title: cityName,
+                    description: weatherDescription!,
+                    temperatureMax: Int(temperatureMax),
+                    temparatureMin: Int(temperatureMin),
+                    temperatureCurrent: Int(temperature)
+                )
+                
+                completionHandler(.success(weatherCity))
                 return
 
             }
@@ -118,13 +149,14 @@ final class WeatherService {
     
     private let apiKey = "fdec102a8f3538aeca01f9b15b1c58a7"
     
-    private func getRatesUrl() -> URL? {
+    private func getWeatherUrl(city: String) -> URL? {
         
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.openweathermap.org"
         urlComponents.path = "/data/2.5/weather"
         urlComponents.queryItems = [
+            .init(name: "q", value: city),
             .init(name: "access_key", value: apiKey)
         ]
         
