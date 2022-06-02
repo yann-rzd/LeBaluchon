@@ -8,9 +8,19 @@
 import Foundation
 
 final class NetworkService: NetworkServiceProtocol {
+    
+    
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
+    }
+    
+    
+    private let urlSession: URLSession
+    
+    
     func fetch<T: Decodable>(urlRequest: URLRequest, completionHandler: @escaping (Result<T, NetworkServiceError>) -> Void) {
         
-        let urlSession = URLSession.shared
+       
         
         let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
             guard error == nil else {

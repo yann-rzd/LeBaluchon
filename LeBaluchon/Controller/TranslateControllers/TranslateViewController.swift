@@ -25,7 +25,10 @@ class TranslateViewController: UIViewController {
         setupToolBar()
         sourceLanguageTextView.delegate = self
         sourceLanguageTextView.text = ""
+        sourceLanguageTextView.layer.cornerRadius = 10.0
         targetLanguageTextView.text = ""
+        targetLanguageTextView.layer.cornerRadius = 10.0
+        translateButton.layer.cornerRadius = 10.0
 
         targetLanguageTextView.inputView = UIView()
         

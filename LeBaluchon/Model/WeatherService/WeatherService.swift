@@ -90,7 +90,7 @@ final class WeatherService {
 //        .paris : .init(title: "Paris", description: "Nuages", temperatureMax: 19, temparatureMin: 8, temperatureCurrent: 17)
     ] {
         didSet {
-           
+            weatherCitiesDidChange?()
             // notifiy viewcontroller that the weather cities changed => tableview reload data
         }
     }
@@ -102,6 +102,15 @@ final class WeatherService {
     
     func add(city: CitySelection) {
         selectedCities.append(city)
+    }
+    
+    
+    func remove(city: CitySelection) {
+        weatherCities[city] = nil
+        selectedCities.removeAll { citySelection in
+            citySelection == city
+        }
+        
     }
     
     
@@ -157,7 +166,7 @@ final class WeatherService {
         urlComponents.path = "/data/2.5/weather"
         urlComponents.queryItems = [
             .init(name: "q", value: city),
-            .init(name: "access_key", value: apiKey)
+            .init(name: "appid", value: apiKey)
         ]
         
         return urlComponents.url

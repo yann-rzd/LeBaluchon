@@ -56,7 +56,7 @@ class WeatherViewController: UIViewController {
 
 }
 
-extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
+extension WeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherService.selectedCities.count
     }
@@ -68,10 +68,19 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         
         let selectedCity = weatherService.selectedCities[indexPath.row]
         
+        cell.citySelection = selectedCity
         cell.cityWeatherModel = weatherService.weatherCities[selectedCity]
         
+        
+        cell.deleteCityButton.addAction(UIAction(handler: { [weak self] _ in
+            self?.weatherService.remove(city: selectedCity)
+        }), for: .touchUpInside)
         return cell
     }
     
 }
 
+
+extension WeatherViewController: UITableViewDelegate {
+    
+}

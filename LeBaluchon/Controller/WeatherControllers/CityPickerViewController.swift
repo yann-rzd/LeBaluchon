@@ -94,7 +94,7 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
 }
 
-extension CityPickerViewController: UITableViewDataSource, UITableViewDelegate {
+extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return CitySelection.allCases.count
     }
@@ -111,12 +111,14 @@ extension CityPickerViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
-    
+}
+
+
+extension CityPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let city = CitySelection.allCases[indexPath.row]
         weatherService.add(city: city)
+        dismiss(animated: true, completion: nil)
     }
 }
-
 

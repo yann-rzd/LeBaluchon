@@ -38,16 +38,17 @@ final class CurrencyConverterViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let refreshRatesBarButtonImage = UIImage(systemName: "arrow.counterclockwise")
+        let refreshRatesBarButton = UIBarButtonItem(image: refreshRatesBarButtonImage, style: .plain, target: self, action: #selector(didTapRefreshRatesButton))
+        navigationItem.rightBarButtonItem = refreshRatesBarButton
+        refreshRatesBarButton.tintColor = .white
         
     }
-    
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        valueToConvertTextField.resignFirstResponder()
-        valueConvertedTextField.resignFirstResponder()
-    }
-    
-    @IBAction func didTapOnSyncCurrenciesButton(_ sender: UIButton) {
+
+    @objc public func didTapRefreshRatesButton() {
         currencyService.fetchConversionRates { result in
             DispatchQueue.main.async {
                 switch result {
@@ -59,6 +60,12 @@ final class CurrencyConverterViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        valueToConvertTextField.resignFirstResponder()
+        valueConvertedTextField.resignFirstResponder()
+    }
+
     
     @IBAction func didTapOnSwapCurrenciesButton(_ sender: UIButton) {
         currencyService.swapCurrencies()

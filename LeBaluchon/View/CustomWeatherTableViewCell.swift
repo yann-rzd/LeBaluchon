@@ -37,7 +37,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
         view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "Belles éclaircies"
+        view.text = "--"
         return view
     }()
     
@@ -46,7 +46,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
         view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "Max. 19°"
+        view.text = "Max. --°"
         return view
     }()
     
@@ -55,7 +55,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
         view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "Min. 8°"
+        view.text = "Min. --°"
         return view
     }()
     
@@ -64,7 +64,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
         view.font = .systemFont(ofSize: 30.0, weight: .bold)
-        view.text = "17°"
+        view.text = "--°"
         return view
     }()
     
@@ -175,8 +175,8 @@ final class CustomWeatherTableViewCell: UITableViewCell {
     
     var cityWeatherModel: WeatherCity? {
         didSet {
+            //cityNameLabel.text = cityWeatherModel.title
             guard let cityWeatherModel = cityWeatherModel else { return }
-            cityNameLabel.text = cityWeatherModel.title
             minTemperatureLabel.text = "Min. \(cityWeatherModel.temparatureMin)°"
             maxTemperatureLabel.text = "Max. \(cityWeatherModel.temperatureMax)°"
             currentTemperatureLabel.text = "\(cityWeatherModel.temperatureCurrent)°"
