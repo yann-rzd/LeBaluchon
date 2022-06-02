@@ -7,24 +7,23 @@
 
 import Foundation
 
-
-enum CurrencyServiceError: Error {
-    case failedToFetchConversionRate
-}
-
-enum CurrencySelectionType {
-    case source
-    case target
-}
-
 final class CurrencyService: CurencyServiceProtocol {
+    
+    init(
+        networkService: NetworkServiceProtocol = NetworkService.shared
+    ) {
+        self.networkService = networkService
+    }
+    
+    
+    //MARK: -INTERNAL: propteries
+    
+    static let shared = CurrencyService()
     
     var onValueToConvertChanged: ((Int?) -> Void)?
     var onConvertedValueChanged: ((Double?) -> Void)?
-    
     var onSourceCurrencyChanged: ((Currency) -> Void)?
     var onTargetCurrencyChanged: ((Currency) -> Void)?
-    
     var onSearchResultChanged: (() -> Void)?
     
     var valueToConvert: Int? = 1 {
@@ -63,14 +62,11 @@ final class CurrencyService: CurencyServiceProtocol {
     
     var currencySelectionType: CurrencySelectionType?
     
-    
     var searchText = "" {
         didSet {
             filteredCurrencies = getFilteredCurrencies(searchText: searchText)
         }
     }
- 
-  
     
    lazy var filteredCurrencies: [Currency] = currencies {
         didSet {
@@ -78,14 +74,9 @@ final class CurrencyService: CurencyServiceProtocol {
         }
     }
     
-    static let shared = CurrencyService()
- 
-    init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
-    ) {
-        self.networkService = networkService
-    }
     
+    // MARK: - INTERNAL: methods
+ 
     func swapCurrencies() {
         let tempSourceCurrency = sourceCurrency
         sourceCurrency = targetCurrency
@@ -134,13 +125,11 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     
-    private let currencies: [Currency] = Currency.allCases
-    
-
-    
+    // MARK: - PRIVATE: properties
     
     private let networkService: NetworkServiceProtocol
     
+    private let currencies: [Currency] = Currency.allCases
     
     private var sourceRate: Double? {
         guard let rates = rates else { return nil }
@@ -159,8 +148,7 @@ final class CurrencyService: CurencyServiceProtocol {
         else {
             return nil
         }
-        
-       
+    
         // SOURCE CHF 1.1 / EUR 1.0
         // TARGET USD 1.5 / EUR 1.0
         
@@ -171,6 +159,9 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     private var rates: [String: Double]?
+    
+    
+    // MARK: - PRIVATE: methods
     
     private func getFilteredCurrencies(searchText: String) -> [Currency] {
         guard !searchText.isEmpty else {

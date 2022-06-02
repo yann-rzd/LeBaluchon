@@ -7,41 +7,7 @@
 
 import Foundation
 
-enum WeatherServiceError: Error {
-    case failedToFetchCityWeather
-}
-
-enum CitySelection: CaseIterable {
-    case paris, newyork, copenhague, london
-    
-    
-    var isDeletable: Bool {
-        switch self {
-        case .newyork:
-            return false
-        default:
-            return true
-        }
-    }
-    
-    
-    var title: String {
-        switch self {
-        case .newyork:
-            return "New-York"
-        case .paris:
-            return "Paris"
-        case .copenhague:
-            return "Copenhague"
-        case .london:
-            return "London"
-        }
-    }
-}
-
 final class WeatherService {
-    
-    static let shared = WeatherService()
     
     init(
         networkService: NetworkServiceProtocol = NetworkService.shared
@@ -49,17 +15,12 @@ final class WeatherService {
         self.networkService = networkService
     }
     
-//
-//    var foreignerCity: WeatherCity {
-//        weatherCities[0]
-//    }
-//
-//    var localCity: WeatherCity {
-//        weatherCities[1]
-//    }
     
+    // MARK: - INTERNAL: properties
     
+    static let shared = WeatherService()
     
+    var weatherCitiesDidChange: (() -> Void)?
     
     var selectedCities: [CitySelection] = [
     ] {
@@ -72,18 +33,12 @@ final class WeatherService {
                         print("An error occured should display an alert")
                     case .success(let weatherCity):
                         self?.weatherCities[selectedCity] = weatherCity
-                        
-    
                     }
-    //                switch result {
-    //                case .success():
-    //                }
                 }
             }
            
         }
     }
-    
     
     var weatherCities: [CitySelection : WeatherCity] = [:
 //        .newyork : .init(title: "New-York", description: "Bell eclaircies", temperatureMax: 21, temparatureMin: 10, temperatureCurrent: 19),
@@ -96,9 +51,7 @@ final class WeatherService {
     }
     
     
-    var weatherCitiesDidChange: (() -> Void)?
-    
-    
+    // MARK: - INTERNAL: methods
     
     func add(city: CitySelection) {
         selectedCities.append(city)
@@ -113,6 +66,28 @@ final class WeatherService {
         
     }
     
+    
+    // MARK: - PRIVATE: properties
+    private let networkService: NetworkServiceProtocol
+    
+    private let apiKey = "fdec102a8f3538aeca01f9b15b1c58a7"
+    
+    
+    // MARK: - PRIVATE: methods
+    
+    private func getWeatherUrl(city: String) -> URL? {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
+        urlComponents.queryItems = [
+            .init(name: "q", value: city),
+            .init(name: "appid", value: apiKey)
+        ]
+        
+        return urlComponents.url
+    }
     
     private func fetch(citySelection: CitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
         guard let url = getWeatherUrl(city: citySelection.title) else {
@@ -137,14 +112,13 @@ final class WeatherService {
                 let temperature = weatherCityResponse.main.temp
                 let weatherIcon = weatherCityResponse.weather.first?.icon
                 
-            
-                
                 let weatherCity = WeatherCity(
                     title: cityName,
                     description: weatherDescription!,
                     temperatureMax: Int(temperatureMax),
                     temparatureMin: Int(temperatureMin),
-                    temperatureCurrent: Int(temperature)
+                    temperatureCurrent: Int(temperature),
+                    weatherIconImage: weatherIcon ?? nil
                 )
                 
                 completionHandler(.success(weatherCity))
@@ -153,34 +127,4 @@ final class WeatherService {
             }
         }
     }
-    
-    private let networkService: NetworkServiceProtocol
-    
-    private let apiKey = "fdec102a8f3538aeca01f9b15b1c58a7"
-    
-    private func getWeatherUrl(city: String) -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
-        urlComponents.queryItems = [
-            .init(name: "q", value: city),
-            .init(name: "appid", value: apiKey)
-        ]
-        
-        return urlComponents.url
-    }
-    
-    
-}
-
-
-
-struct WeatherCity {
-    let title: String
-    let description: String
-    let temperatureMax: Int
-    let temparatureMin: Int
-    let temperatureCurrent: Int
 }

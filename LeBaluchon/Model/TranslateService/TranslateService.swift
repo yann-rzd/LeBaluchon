@@ -9,56 +9,24 @@ import Foundation
 
 import Combine
 
-
-
-struct TranslationResponse: Codable {
-    let data: TranslationContainer
-}
-
-struct TranslationContainer: Codable {
-    let translations: [TranslatedTextContainer]
-}
-
-struct TranslatedTextContainer: Codable {
-    let translatedText: String
-    let detectedSourceLanguage: String
-}
-
-enum TranslateServiceError: Error {
-    case failedToFetchTranslation
-}
-
-enum LanguageSelectionType {
-    case source
-    case target
-    
-    
-    var navigationTitle: String {
-        switch self {
-        case .source:
-            return "Select Source"
-        case .target:
-            return "Select Target"
-        }
-    }
-}
-
 final class TranslateService {
+    
+    init(
+        networkService: NetworkServiceProtocol = NetworkService.shared
+    ) {
+        self.networkService = networkService
+    }
+    
+    // MARK: - INTERNAL: properties
     
     static let shared = TranslateService()
     
     var onSourceLanguageChanged: ((Language?) -> Void)?
     var onTargetLanguageChanged: ((Language) -> Void)?
-    
     var onSourceTextChanged: ((String) -> Void)?
     var onTargetTextChanged: ((String) -> Void)?
-    
     var onSearchResultChanged: (() -> Void)?
-    
-    
     var onIsLoadingChanged: ((Bool) -> Void)?
-    
-    
     
     var isLoading = false {
         didSet {
@@ -73,7 +41,6 @@ final class TranslateService {
             onSourceLanguageChanged?(sourceLanguage)
         }
     }
-    
     
     var targetLanguage: Language = .en {
         didSet {
@@ -94,12 +61,14 @@ final class TranslateService {
         }
     }
     
-    
     lazy var filteredLanguages: [Language] = languages {
         didSet {
             onSearchResultChanged?()
         }
     }
+    
+    
+    // MARK: - INTERNAL: methods
     
     func assignLanguage(language: Language) {
         switch languageSelectionType {
@@ -112,11 +81,9 @@ final class TranslateService {
         }
     }
     
-    
     func emptySourceText() {
         sourceText.removeAll()
     }
-    
     
     func fetchTranslation(
         completionHandler: @escaping (Result<Void, TranslateServiceError>) -> Void) {
@@ -181,12 +148,9 @@ final class TranslateService {
     }
 
     
-    init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
-    ) {
-        self.networkService = networkService
-    }
+    // MARK: - PRIVATE: properties
     
+    private let networkService: NetworkServiceProtocol
     
     private(set) var targetText = "" {
         didSet {
@@ -194,14 +158,12 @@ final class TranslateService {
         }
     }
     
+    private let languages: [Language] = Language.allCases
     
     private let apiKey = ""
     
-
-    private let networkService: NetworkServiceProtocol
     
-    private let languages: [Language] = Language.allCases
-    
+    // MARK: - PRIVATE: methods
     
     private func getFilteredLanguages(searchText: String) -> [Language] {
         guard !searchText.isEmpty else {
@@ -212,7 +174,6 @@ final class TranslateService {
             language.name.lowercased().contains(searchText.lowercased())
         }
     }
-    
     
     private func getFetchTranslationUrl() -> URL? {
         
@@ -226,20 +187,4 @@ final class TranslateService {
         
         return urlComponents.url
     }
-    
-    
-}
-
-
-
-struct TranslationRequestBody: Encodable {
-    init(q: [String], target: String) {
-        self.q = q
-        self.target = target
-    }
-    
- 
-    
-    let q: [String]
-    let target: String
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol NetworkServiceProtocol {
     func fetch<T: Decodable>(urlRequest: URLRequest, completionHandler: @escaping (Result<T, NetworkServiceError>) -> Void)
 }

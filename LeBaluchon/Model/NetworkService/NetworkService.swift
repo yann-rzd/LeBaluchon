@@ -9,18 +9,18 @@ import Foundation
 
 final class NetworkService: NetworkServiceProtocol {
     
-    
     init(urlSession: URLSession = URLSession.shared) {
         self.urlSession = urlSession
     }
     
+    // MARK: - INTERNAL: properties
     
-    private let urlSession: URLSession
+    static let shared = NetworkService()
     
+    
+    // MARK: - INTERNAL: methods
     
     func fetch<T: Decodable>(urlRequest: URLRequest, completionHandler: @escaping (Result<T, NetworkServiceError>) -> Void) {
-        
-       
         
         let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
             guard error == nil else {
@@ -35,12 +35,10 @@ final class NetworkService: NetworkServiceProtocol {
                 return
             }
             
-            
             guard let data = data else {
                 completionHandler(.failure(.failedToFetch))
                 return
             }
-            
             
             let jsonDecoder = JSONDecoder()
             
@@ -52,14 +50,13 @@ final class NetworkService: NetworkServiceProtocol {
                 print(error)
                 completionHandler(.failure(.failedToFetch))
             }
-
-
         }
         
         task.resume()
     }
     
     
-    static let shared = NetworkService()
+    // MARK: - PRIVATE: proporties
     
+    private let urlSession: URLSession
 }
