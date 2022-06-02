@@ -171,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				E459433327ECC8DE00FE0259 /* NetworkService.swift */,
-				E459433627ECC92000FE0259 /* NetworkServiceError.swift */,
 				E459433827ECC93400FE0259 /* NetworkServiceProtocol.swift */,
+				E459433627ECC92000FE0259 /* NetworkServiceError.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";

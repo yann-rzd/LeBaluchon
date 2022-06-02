@@ -9,6 +9,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
 
+    // MARK: - INTERNAL: methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -25,7 +27,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-        tableView.rowHeight = self.view.safeAreaLayoutGuide.layoutFrame.height / 2
+        tableView.rowHeight = self.view.safeAreaLayoutGuide.layoutFrame.height / 3
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +45,9 @@ class WeatherViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
 
+    
+    // MARK: - PRIVATE: properties
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CustomWeatherTableViewCell.self, forCellReuseIdentifier: CustomWeatherTableViewCell.identifier)
@@ -53,6 +58,9 @@ class WeatherViewController: UIViewController {
     private let weatherService = WeatherService.shared
 
 }
+
+
+// MARK: - EXTENSIONS
 
 extension WeatherViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,7 +85,6 @@ extension WeatherViewController: UITableViewDataSource {
     }
     
 }
-
 
 extension WeatherViewController: UITableViewDelegate {
     

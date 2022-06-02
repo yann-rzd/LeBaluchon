@@ -11,6 +11,8 @@ import UIKit
 
 class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
+    // MARK: - INTERNAL: methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -20,28 +22,20 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
-//
+
         tableView.dataSource = self
         tableView.delegate = self
-        
-      
-        
         
         let tableAndSearchStackView = UIStackView(arrangedSubviews: [
             searchBar,
             tableView
         ])
         
-        
         tableAndSearchStackView.alignment = .fill
         tableAndSearchStackView.distribution = .fill
         tableAndSearchStackView.axis = .vertical
         
-        
-
         view.addSubview(tableAndSearchStackView)
-        
-        
         
         tableAndSearchStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -51,32 +45,27 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
             tableAndSearchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableAndSearchStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        
-        
-    
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        tableView.frame = view.bounds
-//    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         //your code here....
     }
     
 
+    // MARK: - PRIVATE: properties
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CustomCityPickerTableViewCell.self, forCellReuseIdentifier: CustomCityPickerTableViewCell.identifier)
         return tableView
     }()
     
-    
     private let searchBar: UISearchBar = UISearchBar()
     
     private let weatherService = WeatherService.shared
+    
+    
+    // MARK: - PRIVATE: methods
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.backgroundColor = .white
@@ -93,6 +82,9 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
     }
 
 }
+
+
+// MARK: - EXTENSIONS
 
 extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

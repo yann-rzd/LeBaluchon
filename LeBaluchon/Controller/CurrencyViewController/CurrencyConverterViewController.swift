@@ -8,20 +8,21 @@
 import UIKit
 
 final class CurrencyConverterViewController: UIViewController {
+    
+    // MARK: - INTERNAL: properties
+    
     @IBOutlet weak var valueToConvertTextField: UITextField!
     @IBOutlet weak var valueConvertedTextField: UITextField!
     @IBOutlet weak var swapCurrenciesButton: UIButton!
-    
     @IBOutlet weak var sourceCurrencyButton: UIButton!
     @IBOutlet weak var targetCurrencyButton: UIButton!
     
-    private let currencyService = CurrencyService.shared
+    
+    // MARK: - INTERNAL: methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         valueToConvertTextField.delegate = self
-        
         valueConvertedTextField.inputView = UIView()
         
         setupBindings()
@@ -47,6 +48,26 @@ final class CurrencyConverterViewController: UIViewController {
         refreshRatesBarButton.tintColor = .white
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if let _ = segue.destination as? CurrencyPickerViewController,
+           let segueIdentifier = segue.identifier
+        {
+            switch segueIdentifier {
+            case "CurrencySourceSegue":
+                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE SOURCE")
+                currencyService.currencySelectionType = .source
+            case "CurrencyTargetSegue":
+                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE CIBLE")
+                currencyService.currencySelectionType = .target
+            default: break
+            }
+            
+            print("2. JE PRESENTE LECRAN DE SELECTION DE DEVISE")
+        }
+    }
 
     @objc public func didTapRefreshRatesButton() {
         currencyService.fetchConversionRates { result in
@@ -71,26 +92,13 @@ final class CurrencyConverterViewController: UIViewController {
         currencyService.swapCurrencies()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if let _ = segue.destination as? CurrencyPickerViewController,
-           let segueIdentifier = segue.identifier
-        {
-            switch segueIdentifier {
-            case "CurrencySourceSegue":
-                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE SOURCE")
-                currencyService.currencySelectionType = .source
-            case "CurrencyTargetSegue":
-                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE CIBLE")
-                currencyService.currencySelectionType = .target
-            default: break
-            }
-            
-            print("2. JE PRESENTE LECRAN DE SELECTION DE DEVISE")
-        }
-    }
     
+    // MARK: - PRIVATE: properties
+    
+    private let currencyService = CurrencyService.shared
+    
+    
+    // MARK: - PRIVATE: methods
     
     private func setupBindings() {
         print("0. J?ASSIGNE LES BLOCKS DE CODES POUR INDIQUER QUOI FAIRE QUAND SOURCE ETT TARGET CHANGENT")
@@ -104,21 +112,18 @@ final class CurrencyConverterViewController: UIViewController {
             self?.targetCurrencyButton.setTitle(targetCurrency.rawValue, for: .normal)
         }
         
-        
-        
         currencyService.onValueToConvertChanged = { [weak self] valueToConvert in
             self?.valueToConvertTextField.text = valueToConvert?.description ?? ""
         }
         
-        
         currencyService.onConvertedValueChanged =  { [weak self] convertedValue in
             self?.valueConvertedTextField.text = convertedValue?.description ?? ""
         }
-        
     }
-    
 }
 
+
+// MARK: - EXTENSIONS
 
 extension CurrencyConverterViewController: UITextFieldDelegate {
     func textField(
@@ -132,20 +137,16 @@ extension CurrencyConverterViewController: UITextFieldDelegate {
             return false
         }
         
-        
         let valueToConvertText = textFieldText.replacingCharacters(in: rangeIn, with: string)
-        
         
         if string == "" && textFieldText.count == 1 {
             currencyService.valueToConvert = nil
             return false
         }
         
-        
         guard let valueToConvert = Int(valueToConvertText) else {
             return false
         }
-    
         
         currencyService.valueToConvert = valueToConvert
         

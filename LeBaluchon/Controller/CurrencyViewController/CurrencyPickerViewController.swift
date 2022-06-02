@@ -8,10 +8,14 @@
 import UIKit
 
 final class CurrencyPickerViewController: UIViewController {
+    
+    // MARK: - INTERNAL: methods
+    
     @IBOutlet weak var currencyToConvertTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private let currencyService = CurrencyService.shared
+    
+    // MARK: - INTERNAL: properties
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,7 @@ final class CurrencyPickerViewController: UIViewController {
         currencyService.filteredCurrencies = currencyService.filteredCurrencies
     }
     
+    private let currencyService = CurrencyService.shared
     
     private func setupBindings() {
         currencyService.onSearchResultChanged = { [weak self] in
