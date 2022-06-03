@@ -9,13 +9,13 @@ import UIKit
 
 final class CurrencyPickerViewController: UIViewController {
     
-    // MARK: - INTERNAL: methods
+    // MARK: - INTERNAL: properties
     
     @IBOutlet weak var currencyToConvertTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     
-    // MARK: - INTERNAL: properties
+    // MARK: - INTERNAL: methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,13 @@ final class CurrencyPickerViewController: UIViewController {
         currencyService.filteredCurrencies = currencyService.filteredCurrencies
     }
     
+    
+    // MARK: - PRIVATE: properties
+    
     private let currencyService = CurrencyService.shared
+    
+    
+    // MARK: - PRIVATE: methods
     
     private func setupBindings() {
         currencyService.onSearchResultChanged = { [weak self] in
@@ -38,6 +44,9 @@ final class CurrencyPickerViewController: UIViewController {
         }
     }
 }
+
+
+// MARK: - EXTENSIONS
 
 extension CurrencyPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

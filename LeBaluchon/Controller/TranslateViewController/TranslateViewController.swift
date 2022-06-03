@@ -9,16 +9,18 @@ import UIKit
 
 
 class TranslateViewController: UIViewController {
-
+    
+    // MARK: - INTERNAL: properties
+    
     @IBOutlet weak var sourceLanguageTextView: UITextView!
     @IBOutlet weak var targetLanguageTextView: UITextView!
-    
     @IBOutlet weak var sourceLanguageButton: UIButton!
     @IBOutlet weak var targetLanguageButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var translateButton: UIButton!
     
-    private let translateService = TranslateService.shared
+    
+    // MARK: - INTERNAL: methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,14 @@ class TranslateViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - PRIVATE: properties
+    
+    private let translateService = TranslateService.shared
+    
+    
+    // MARK: - PRIVATE: methods
+    
     private func setupBindings() {
         translateService.onSourceLanguageChanged = { [weak self] sourceLanguage in
             DispatchQueue.main.async {
@@ -84,13 +94,11 @@ class TranslateViewController: UIViewController {
             }
         }
         
-        
         translateService.onSourceTextChanged = { [weak self] textToConvert in
             DispatchQueue.main.async {
                 self?.sourceLanguageTextView.text = textToConvert
             }
         }
-        
         
         translateService.onTargetTextChanged =  { [weak self] convertedText in
             DispatchQueue.main.async {
@@ -105,9 +113,7 @@ class TranslateViewController: UIViewController {
                 self?.translateButton.setTitle(buttonTitle, for: .normal)
                 self?.activityIndicator.isHidden = !isLoading
             }
-       
         }
-        
     }
     
     private func presentAlert() {
@@ -116,9 +122,7 @@ class TranslateViewController: UIViewController {
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alertVC, animated: true, completion: nil)
         }
-        
     }
-    
     
     private func setupToolBar() {
         let toolBar = UIToolbar()
@@ -139,17 +143,15 @@ class TranslateViewController: UIViewController {
             clearButton,
             .flexibleSpace(),
             doneButton
-           
         ]
         
-        
         toolBar.sizeToFit()
-        
         sourceLanguageTextView.inputAccessoryView = toolBar
-        
     }
 }
 
+
+// MARK: - EXTENSIONS
 
 extension TranslateViewController: UITextViewDelegate {
     
@@ -160,13 +162,9 @@ extension TranslateViewController: UITextViewDelegate {
             return false
         }
         
-        
         let valueToConvertText = textViewText.replacingCharacters(in: rangeIn, with: text)
-    
-        
         translateService.sourceText = valueToConvertText
         
         return false
     }
-    
 }

@@ -9,10 +9,13 @@ import UIKit
 
 class LanguagePickerViewController: UIViewController {
 
+    // MARK: - INTERNAL: properties
+    
     @IBOutlet weak var languageToTranslateTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private let translateService = TranslateService.shared
+    
+    // MARK: - INTERNAL: methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,13 @@ class LanguagePickerViewController: UIViewController {
         translateService.searchText = ""
     }
     
+    
+    // MARK: - PRIVATE: properties
+    
+    private let translateService = TranslateService.shared
+    
+    
+    // MARK: - PRIVATE: methods
     
     private func setupBindings() {
         translateService.onSearchResultChanged = { [weak self] in
@@ -83,6 +93,9 @@ class LanguagePickerViewController: UIViewController {
         
     }
 }
+
+
+// MARK: - EXTENSIONS
 
 extension LanguagePickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
