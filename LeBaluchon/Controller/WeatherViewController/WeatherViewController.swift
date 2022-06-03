@@ -54,9 +54,7 @@ class WeatherViewController: UIViewController {
         return tableView
     }()
     
-    
     private let weatherService = WeatherService.shared
-
 }
 
 

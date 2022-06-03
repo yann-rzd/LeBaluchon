@@ -8,123 +8,7 @@
 import UIKit
 
 final class CustomWeatherTableViewCell: UITableViewCell {
-    static let identifier = "CustomWeatherTableViewCell"
     
-    private let cityNameLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.font = .boldSystemFont(ofSize: 40.0)
-        view.text = ""
-        //view.textAlignment = .left
-        return view
-    }()
-    
-    let deleteCityButton: UIButton = {
-        let view = UIButton(type: .system)
-        view.configuration = .tinted()
-//        view.backgroundColor = .white
-        view.setTitle("Delete", for: .normal)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.titleLabel?.text = "Delete"
-        view.titleLabel?.font = .systemFont(ofSize: 24.0, weight: .regular)
-        view.tintColor = .red
-        return view
-    }()
-    
-    let weatherDescriptionLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "--"
-        return view
-    }()
-    
-    let maxTemperatureLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "Max. --°"
-        return view
-    }()
-    
-    let minTemperatureLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.font = .systemFont(ofSize: 17.0, weight: .regular)
-        view.text = "Min. --°"
-        return view
-    }()
-    
-    let currentTemperatureLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.font = .systemFont(ofSize: 30.0, weight: .bold)
-        view.text = "--°"
-        return view
-    }()
-    
-    let weatherImageView: UIImageView = {
-        let view = UIImageView()
-        view.frame = .init(x: 0, y: 0, width: 80.0, height: 80.0)
-        view.backgroundColor = .red
-        return view
-    }()
-    
-    let mainContainerStackView: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        view.spacing = 50
-        return view
-    }()
-    
-    let choosenCityStackView: UIStackView  = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        view.spacing = 0
-        return view
-    }()
-    
-    let mainCityWeatherContainerStackView: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-        view.spacing = 50
-        return view
-    }()
-    
-    let weatherDescriptionStackView: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .vertical
-        view.alignment = .fill
-        view.distribution = .fill
-        view.spacing = 5
-        return view
-    }()
-    
-    let temperatureAndImageDescriptionStackView: UIStackView = {
-        let view = UIStackView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.axis = .horizontal
-        view.alignment = .fill
-        view.distribution = .fillEqually
-        view.spacing = 10
-        return view
-    }()
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
@@ -135,6 +19,147 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         commonInit()
     }
     
+    
+    // MARK: - INTERNAL: properties
+    
+    static let identifier = "CustomWeatherTableViewCell"
+    
+    let deleteCityButton: UIButton = {
+        let view = UIButton(type: .system)
+        view.configuration = .tinted()
+        view.setTitle("Delete", for: .normal)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.titleLabel?.text = "Delete"
+        view.titleLabel?.font = .systemFont(ofSize: 24.0, weight: .regular)
+        view.tintColor = .red
+        return view
+    }()
+    
+    var citySelection: CitySelection? {
+        didSet {
+            guard let citySelection = citySelection else { return }
+            cityNameLabel.text = citySelection.title
+        }
+    }
+    
+    var cityWeatherModel: WeatherCity? {
+        didSet {
+            //cityNameLabel.text = cityWeatherModel.title
+            guard let cityWeatherModel = cityWeatherModel else { return }
+            minTemperatureLabel.text = "Min. \(cityWeatherModel.temparatureMin)°"
+            maxTemperatureLabel.text = "Max. \(cityWeatherModel.temperatureMax)°"
+            currentTemperatureLabel.text = "\(cityWeatherModel.temperatureCurrent)°"
+        }
+    }
+    
+    // MARK: - PRIVATE: properties
+    
+    private let cityNameLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.font = .boldSystemFont(ofSize: 40.0)
+        view.text = ""
+        return view
+    }()
+    
+    
+    
+    private let weatherDescriptionLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.font = .systemFont(ofSize: 17.0, weight: .regular)
+        view.text = "--"
+        return view
+    }()
+    
+    private let maxTemperatureLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.font = .systemFont(ofSize: 17.0, weight: .regular)
+        view.text = "Max. --°"
+        return view
+    }()
+    
+    private let minTemperatureLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.font = .systemFont(ofSize: 17.0, weight: .regular)
+        view.text = "Min. --°"
+        return view
+    }()
+    
+    private let currentTemperatureLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.textColor = .black
+        view.font = .systemFont(ofSize: 30.0, weight: .bold)
+        view.text = "--°"
+        return view
+    }()
+    
+    private let weatherImageView: UIImageView = {
+        let view = UIImageView()
+        view.frame = .init(x: 0, y: 0, width: 80.0, height: 80.0)
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    private let mainContainerStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        view.spacing = 50
+        return view
+    }()
+    
+    private let choosenCityStackView: UIStackView  = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        view.spacing = 0
+        return view
+    }()
+    
+    private let mainCityWeatherContainerStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.alignment = .fill
+        view.distribution = .equalSpacing
+        view.spacing = 50
+        return view
+    }()
+    
+    private let weatherDescriptionStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .vertical
+        view.alignment = .fill
+        view.distribution = .fill
+        view.spacing = 5
+        return view
+    }()
+    
+    private let temperatureAndImageDescriptionStackView: UIStackView = {
+        let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.alignment = .fill
+        view.distribution = .fillEqually
+        view.spacing = 10
+        return view
+    }()
+
+    
+    // MARK: - PRIVATE: methods
     
     private func commonInit() -> Void {
         contentView.backgroundColor = UIColor.weatherCellsBackground
@@ -164,26 +189,10 @@ final class CustomWeatherTableViewCell: UITableViewCell {
             temperatureAndImageDescriptionStackView.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
-    
-    
-    var citySelection: CitySelection? {
-        didSet {
-            guard let citySelection = citySelection else { return }
-            cityNameLabel.text = citySelection.title
-        }
-    }
-    
-    var cityWeatherModel: WeatherCity? {
-        didSet {
-            //cityNameLabel.text = cityWeatherModel.title
-            guard let cityWeatherModel = cityWeatherModel else { return }
-            minTemperatureLabel.text = "Min. \(cityWeatherModel.temparatureMin)°"
-            maxTemperatureLabel.text = "Max. \(cityWeatherModel.temperatureMax)°"
-            currentTemperatureLabel.text = "\(cityWeatherModel.temperatureCurrent)°"
-        }
-    }
-    
 }
+
+
+// MARK: - EXTENSIONS
 
 extension UIColor {
     class var weatherCellsBackground: UIColor {
