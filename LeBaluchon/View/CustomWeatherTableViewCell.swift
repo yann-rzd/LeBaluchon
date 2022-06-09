@@ -35,7 +35,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         return view
     }()
     
-    var citySelection: CitySelection? {
+    var citySelection: WeatherCitySelection? {
         didSet {
             guard let citySelection = citySelection else { return }
             cityNameLabel.text = citySelection.title

@@ -7,9 +7,8 @@
 
 import Foundation
 
-enum CitySelection: CaseIterable {
+enum WeatherCitySelection: CaseIterable {
     case paris, newyork, copenhague, london
-    
     
     var isDeletable: Bool {
         switch self {
@@ -19,7 +18,6 @@ enum CitySelection: CaseIterable {
             return true
         }
     }
-    
     
     var title: String {
         switch self {

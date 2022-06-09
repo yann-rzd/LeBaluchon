@@ -74,13 +74,11 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissCityPicker))
         
         navigationItem.rightBarButtonItem = closeBarButtonItem
-        
     }
     
     @objc private func dismissCityPicker() {
         dismiss(animated: true, completion: nil)
     }
-
 }
 
 
@@ -88,7 +86,7 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
 extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return CitySelection.allCases.count
+        return WeatherCitySelection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,19 +94,16 @@ extension CityPickerViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        
-        
-        let city = CitySelection.allCases[indexPath.row]
+        let city = WeatherCitySelection.allCases[indexPath.row]
         cell.textLabel?.text = city.title
         
         return cell
     }
 }
 
-
 extension CityPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let city = CitySelection.allCases[indexPath.row]
+        let city = WeatherCitySelection.allCases[indexPath.row]
         weatherService.add(city: city)
         dismiss(animated: true, completion: nil)
     }

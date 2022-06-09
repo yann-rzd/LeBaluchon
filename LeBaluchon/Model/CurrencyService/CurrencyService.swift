@@ -188,7 +188,6 @@ final class CurrencyService: CurencyServiceProtocol {
     
     
     private func convertValue() {
-        
         guard let conversionRate = conversionRate,
               let valueToConvert = valueToConvert
         else {

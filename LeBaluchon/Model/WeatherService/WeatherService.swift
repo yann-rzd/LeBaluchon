@@ -22,7 +22,7 @@ final class WeatherService {
     
     var weatherCitiesDidChange: (() -> Void)?
     
-    var selectedCities: [CitySelection] = [
+    var selectedCities: [WeatherCitySelection] = [
     ] {
         didSet {
             weatherCitiesDidChange?()
@@ -40,7 +40,7 @@ final class WeatherService {
         }
     }
     
-    var weatherCities: [CitySelection : WeatherCity] = [:
+    var weatherCities: [WeatherCitySelection : WeatherCity] = [:
 //        .newyork : .init(title: "New-York", description: "Bell eclaircies", temperatureMax: 21, temparatureMin: 10, temperatureCurrent: 19),
 //        .paris : .init(title: "Paris", description: "Nuages", temperatureMax: 19, temparatureMin: 8, temperatureCurrent: 17)
     ] {
@@ -53,17 +53,15 @@ final class WeatherService {
     
     // MARK: - INTERNAL: methods
     
-    func add(city: CitySelection) {
+    func add(city: WeatherCitySelection) {
         selectedCities.append(city)
     }
     
-    
-    func remove(city: CitySelection) {
+    func remove(city: WeatherCitySelection) {
         weatherCities[city] = nil
         selectedCities.removeAll { citySelection in
             citySelection == city
         }
-        
     }
     
     
@@ -89,7 +87,7 @@ final class WeatherService {
         return urlComponents.url
     }
     
-    private func fetch(citySelection: CitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
+    private func fetch(citySelection: WeatherCitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
         guard let url = getWeatherUrl(city: citySelection.title) else {
             return
         }
