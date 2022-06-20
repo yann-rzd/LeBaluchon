@@ -22,7 +22,7 @@ enum WeatherCitySelection: CaseIterable {
     var title: String {
         switch self {
         case .newyork:
-            return "New-York"
+            return "New York"
         case .paris:
             return "Paris"
         case .copenhague:

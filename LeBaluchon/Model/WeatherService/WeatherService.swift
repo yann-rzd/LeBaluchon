@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 final class WeatherService {
     
     init(
@@ -21,22 +22,19 @@ final class WeatherService {
     static let shared = WeatherService()
     
     var weatherCitiesDidChange: (() -> Void)?
+    var isLoadingDidChange: ((Bool) -> Void)?
+    var didProduceError: ((WeatherServiceError) -> Void)?
+    
+    var isLoading: Bool {
+        currentDownloadCount != 0
+    }
     
     var selectedCities: [WeatherCitySelection] = [
+        .newyork
     ] {
         didSet {
             weatherCitiesDidChange?()
-            for selectedCity in selectedCities {
-                fetch(citySelection: selectedCity) { [weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        print("An error occured should display an alert")
-                    case .success(let weatherCity):
-                        self?.weatherCities[selectedCity] = weatherCity
-                    }
-                }
-            }
-           
+            fetchCitiesInformation()
         }
     }
     
@@ -54,6 +52,11 @@ final class WeatherService {
     // MARK: - INTERNAL: methods
     
     func add(city: WeatherCitySelection) {
+        guard !selectedCities.contains(city) else {
+            didProduceError?(.failedToAddNewCityAlreadyThere)
+            return
+        }
+        
         selectedCities.append(city)
     }
     
@@ -62,10 +65,32 @@ final class WeatherService {
         selectedCities.removeAll { citySelection in
             citySelection == city
         }
+        print("AFTER REMOVAL THERE IS \(selectedCities)")
+    }
+    
+    func fetchCitiesInformation() {
+        for selectedCity in selectedCities {
+            currentDownloadCount += 1
+            fetch(citySelection: selectedCity) { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    self?.didProduceError?(error)
+                case .success(let weatherCity):
+                    self?.weatherCities[selectedCity] = weatherCity
+                }
+                self?.currentDownloadCount -= 1
+            }
+        }
     }
     
     
     // MARK: - PRIVATE: properties
+    private var currentDownloadCount = 0 {
+        didSet {
+            isLoadingDidChange?(isLoading)
+        }
+    }
+    
     private let networkService: NetworkServiceProtocol
     
     private let apiKey = "fdec102a8f3538aeca01f9b15b1c58a7"

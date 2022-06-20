@@ -160,7 +160,7 @@ final class TranslateService {
     
     private let languages: [Language] = Language.allCases
     
-    private let apiKey = ""
+    private let apiKey = "AIzaSyBuDzRZPMVSRwstm7sVDV8Bd86rLGeg9ZM"
     
     
     // MARK: - PRIVATE: methods

@@ -24,7 +24,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
     
     static let identifier = "CustomWeatherTableViewCell"
     
-    let deleteCityButton: UIButton = {
+    lazy var deleteCityButton: UIButton = {
         let view = UIButton(type: .system)
         view.configuration = .tinted()
         view.setTitle("Delete", for: .normal)
@@ -32,6 +32,8 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         view.titleLabel?.text = "Delete"
         view.titleLabel?.font = .systemFont(ofSize: 24.0, weight: .regular)
         view.tintColor = .red
+        
+        view.addTarget(self, action: #selector(deleteCitySelection), for: .touchUpInside)
         return view
     }()
     
@@ -39,6 +41,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         didSet {
             guard let citySelection = citySelection else { return }
             cityNameLabel.text = citySelection.title
+            deleteCityButton.isHidden = !citySelection.isDeletable
         }
     }
     
@@ -189,6 +192,22 @@ final class CustomWeatherTableViewCell: UITableViewCell {
             temperatureAndImageDescriptionStackView.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
+    
+    
+    
+    
+    
+    @objc private func deleteCitySelection() {
+        guard let citySelection = citySelection else {
+            return
+        }
+
+        didTapDeleteButton?(citySelection)
+    }
+    
+    
+    var didTapDeleteButton: ((WeatherCitySelection) -> Void)?
+    
 }
 
 
