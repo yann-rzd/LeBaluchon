@@ -52,10 +52,6 @@ class CityPickerViewController: UIViewController {
         ])
     }
     
-    //func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
-        //your code here....
-    //}
-    
 
     // MARK: - PRIVATE: properties
     
@@ -135,7 +131,6 @@ extension CityPickerViewController: UITableViewDataSource {
         
         let city = weatherService.filteredCities[indexPath.row]
         cell.textLabel?.text = city.title
-        cell.detailTextLabel?.text = city.rawValue
         
         return cell
     }

@@ -24,6 +24,5 @@ final class CustomCityPickerTableViewCell: UITableViewCell {
     // MARK: - PRIVATE: methods
     
     private func commonInit() -> Void {
-
     }
 }

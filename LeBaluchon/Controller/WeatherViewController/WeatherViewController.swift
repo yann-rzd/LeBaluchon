@@ -15,6 +15,7 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar(isLoading: weatherService.isLoading)
         
+        tableView.backgroundColor = UIColor.tableViewBackground
         tableView.dataSource = self
         
         view.addSubview(tableView)
@@ -148,27 +149,19 @@ extension WeatherViewController: UITableViewDataSource {
             self?.weatherService.remove(city: citySelectionToDelete)
         }
         
-        
-        
-        //let action = UIAction(title: "delete") { [weak self] _ in
-        //    print("SIZE OF SELECTED CITIES => \( self?.weatherService.selectedCities.count ?? -1)")
-        //    guard let selectedCities = self?.weatherService.selectedCities,
-        //          selectedCities.indices.contains(indexPath.row)
-        //    else { return }
-        //
-        //    let cityToDelete = selectedCities[indexPath.row]
-        //    print("CITY TO DELETE => ❌❌ \(cityToDelete)")
-        //    self?.weatherService.remove(city: cityToDelete)
-        //}
-        //
-        //cell.deleteCityButton.addAction(action, for: .touchUpInside)
-        
-        
-        
         return cell
     }
 }
 
 extension WeatherViewController: UITableViewDelegate {
     
+}
+
+extension UIColor {
+    class var tableViewBackground: UIColor {
+        if let color = UIColor(named: "lightBlue") {
+            return color
+        }
+        fatalError("Could not find weatherCellsBackground color")
+    }
 }
