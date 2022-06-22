@@ -9,22 +9,27 @@ import UIKit
 
 import UIKit
 
-class CityPickerViewController: UIViewController, UISearchBarDelegate {
+class CityPickerViewController: UIViewController {
 
     // MARK: - INTERNAL: methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupToolBar()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = " Search..."
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
-
-        tableView.dataSource = self
-        tableView.delegate = self
+        
+        weatherService.filteredCities = weatherService.filteredCities
+        setupBinding()
         
         let tableAndSearchStackView = UIStackView(arrangedSubviews: [
             searchBar,
@@ -47,9 +52,9 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         ])
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+    //func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         //your code here....
-    }
+    //}
     
 
     // MARK: - PRIVATE: properties
@@ -60,7 +65,7 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
         return tableView
     }()
     
-    private let searchBar: UISearchBar = UISearchBar()
+    let searchBar: UISearchBar = UISearchBar()
     
     private let weatherService = WeatherService.shared
     
@@ -79,6 +84,40 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
     @objc private func dismissCityPicker() {
         dismiss(animated: true, completion: nil)
     }
+    
+    private func setupBinding() {
+        weatherService.onSearchResultChanged = { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func setupToolBar() {
+        let toolBar = UIToolbar()
+        
+        let clearButton = UIBarButtonItem(
+            title: "CLEAR",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.weatherService.emptySourceText() } )
+        )
+        
+        clearButton.tintColor = .gray
+        
+        let doneButton = UIBarButtonItem(
+            title: "DONE",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.view.endEditing(true) } )
+        )
+        
+        toolBar.items = [
+            clearButton,
+            .flexibleSpace(),
+            doneButton
+           
+        ]
+        
+        toolBar.sizeToFit()
+        
+        searchBar.inputAccessoryView = toolBar
+        
+    }
 }
 
 
@@ -86,7 +125,7 @@ class CityPickerViewController: UIViewController, UISearchBarDelegate {
 
 extension CityPickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return WeatherCitySelection.allCases.count
+        weatherService.filteredCities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,8 +133,9 @@ extension CityPickerViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let city = WeatherCitySelection.allCases[indexPath.row]
+        let city = weatherService.filteredCities[indexPath.row]
         cell.textLabel?.text = city.title
+        cell.detailTextLabel?.text = city.rawValue
         
         return cell
     }
@@ -103,9 +143,14 @@ extension CityPickerViewController: UITableViewDataSource {
 
 extension CityPickerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let city = WeatherCitySelection.allCases[indexPath.row]
+        let city = weatherService.filteredCities[indexPath.row]
         weatherService.add(city: city)
         dismiss(animated: true, completion: nil)
     }
 }
 
+extension CityPickerViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        weatherService.searchText = searchText
+    }
+}

@@ -24,6 +24,8 @@ final class WeatherService {
     var weatherCitiesDidChange: (() -> Void)?
     var isLoadingDidChange: ((Bool) -> Void)?
     var didProduceError: ((WeatherServiceError) -> Void)?
+    var onSearchResultChanged: (() -> Void)?
+    var onSourceTextChanged: ((String) -> Void)?
     
     var isLoading: Bool {
         currentDownloadCount != 0
@@ -48,6 +50,25 @@ final class WeatherService {
         }
     }
     
+    var searchText = "" {
+        didSet {
+            filteredCities = getFilteredCities(searchText: searchText)
+        }
+    }
+    
+    var sourceText = "" {
+        didSet {
+            print(sourceText)
+            onSourceTextChanged?(sourceText)
+        }
+    }
+    
+    lazy var filteredCities: [WeatherCitySelection] = cities {
+        didSet {
+            onSearchResultChanged?()
+        }
+    }
+    
     
     // MARK: - INTERNAL: methods
     
@@ -66,6 +87,10 @@ final class WeatherService {
             citySelection == city
         }
         print("AFTER REMOVAL THERE IS \(selectedCities)")
+    }
+    
+    func emptySourceText() {
+        sourceText.removeAll()
     }
     
     func fetchCitiesInformation() {
@@ -90,6 +115,8 @@ final class WeatherService {
             isLoadingDidChange?(isLoading)
         }
     }
+    
+    private let cities: [WeatherCitySelection] = WeatherCitySelection.allCases
     
     private let networkService: NetworkServiceProtocol
     
@@ -150,6 +177,16 @@ final class WeatherService {
                 return
 
             }
+        }
+    }
+    
+    private func getFilteredCities(searchText: String) -> [WeatherCitySelection] {
+        guard !searchText.isEmpty else {
+            return cities
+        }
+        
+        return cities.filter { city in
+            city.title.lowercased().contains(searchText.lowercased())
         }
     }
 }

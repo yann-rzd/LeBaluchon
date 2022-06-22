@@ -32,7 +32,6 @@ class LanguagePickerViewController: UIViewController {
         
         setupBindings()
         
-        
         translateService.searchText = ""
     }
     

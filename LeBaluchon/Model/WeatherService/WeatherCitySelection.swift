@@ -28,7 +28,7 @@ enum WeatherCitySelection: CaseIterable {
         case .copenhague:
             return "Copenhague"
         case .london:
-            return "London"
+            return "Londres"
         }
     }
 }
