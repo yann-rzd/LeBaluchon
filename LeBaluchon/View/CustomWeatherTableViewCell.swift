@@ -45,6 +45,8 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         }
     }
     
+    
+    
     var cityWeatherModel: WeatherCity? {
         didSet {
             //cityNameLabel.text = cityWeatherModel.title
@@ -52,6 +54,8 @@ final class CustomWeatherTableViewCell: UITableViewCell {
             minTemperatureLabel.text = "Min. \(cityWeatherModel.temparatureMin)°"
             maxTemperatureLabel.text = "Max. \(cityWeatherModel.temperatureMax)°"
             currentTemperatureLabel.text = "\(cityWeatherModel.temperatureCurrent)°"
+            weatherDescriptionLabel.text = "\(cityWeatherModel.description!)".firstUppercased
+            weatherImageView.load(url: URL.init(string: "http://openweathermap.org/img/w/\(cityWeatherModel.weatherIconImage!).png")!)
         }
     }
     
@@ -107,7 +111,7 @@ final class CustomWeatherTableViewCell: UITableViewCell {
     private let weatherImageView: UIImageView = {
         let view = UIImageView()
         view.frame = .init(x: 0, y: 0, width: 80.0, height: 80.0)
-        view.backgroundColor = .red
+        //view.backgroundColor = .red
         return view
     }()
     
@@ -219,5 +223,24 @@ extension UIColor {
             return color
         }
         fatalError("Could not find weatherCellsBackground color")
+    }
+}
+
+extension StringProtocol {
+    var firstUppercased: String { return prefix(1).uppercased() + dropFirst() }
+    var firstCapitalized: String { return prefix(1).capitalized + dropFirst() }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }

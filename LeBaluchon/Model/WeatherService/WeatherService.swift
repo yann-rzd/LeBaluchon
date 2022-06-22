@@ -106,6 +106,8 @@ final class WeatherService {
         urlComponents.path = "/data/2.5/weather"
         urlComponents.queryItems = [
             .init(name: "q", value: city),
+            .init(name: "lang", value: "fr"),
+            .init(name: "units", value: "metric"),
             .init(name: "appid", value: apiKey)
         ]
         
@@ -137,11 +139,11 @@ final class WeatherService {
                 
                 let weatherCity = WeatherCity(
                     title: cityName,
-                    description: weatherDescription!,
+                    description: weatherDescription,
                     temperatureMax: Int(temperatureMax),
                     temparatureMin: Int(temperatureMin),
                     temperatureCurrent: Int(temperature),
-                    weatherIconImage: weatherIcon ?? nil
+                    weatherIconImage: weatherIcon
                 )
                 
                 completionHandler(.success(weatherCity))

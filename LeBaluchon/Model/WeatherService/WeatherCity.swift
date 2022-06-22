@@ -9,7 +9,7 @@ import Foundation
 
 struct WeatherCity {
     let title: String
-    let description: String
+    let description: String?
     let temperatureMax: Int
     let temparatureMin: Int
     let temperatureCurrent: Int
