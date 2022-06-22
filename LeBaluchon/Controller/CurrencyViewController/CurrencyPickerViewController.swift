@@ -19,7 +19,8 @@ final class CurrencyPickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavigationBar()
+        setupToolBar()
         setupBindings()
         
         currencyToConvertTableView.delegate = self
@@ -42,6 +43,47 @@ final class CurrencyPickerViewController: UIViewController {
         currencyService.onSearchResultChanged = { [weak self] in
             self?.currencyToConvertTableView.reloadData()
         }
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationItem.title = "Select Currency"
+        
+        let closeBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissCurrencyPicker))
+        
+        navigationItem.rightBarButtonItem = closeBarButtonItem
+    }
+    
+    @objc private func dismissCurrencyPicker() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupToolBar() {
+        let toolBar = UIToolbar()
+        
+        let clearButton = UIBarButtonItem(
+            title: "CLEAR",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptySourceText() } )
+        )
+        
+        clearButton.tintColor = .gray
+        
+        let doneButton = UIBarButtonItem(
+            title: "DONE",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.view.endEditing(true) } )
+        )
+        
+        toolBar.items = [
+            clearButton,
+            .flexibleSpace(),
+            doneButton
+           
+        ]
+        
+        toolBar.sizeToFit()
+        
+        searchBar.inputAccessoryView = toolBar
+        
     }
 }
 

@@ -124,6 +124,10 @@ final class CurrencyService: CurencyServiceProtocol {
         }
     }
     
+    func emptySourceText() {
+        searchText.removeAll()
+    }
+    
     
     // MARK: - PRIVATE: properties
     

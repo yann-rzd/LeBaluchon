@@ -25,7 +25,6 @@ final class WeatherService {
     var isLoadingDidChange: ((Bool) -> Void)?
     var didProduceError: ((WeatherServiceError) -> Void)?
     var onSearchResultChanged: (() -> Void)?
-    var onSourceTextChanged: ((String) -> Void)?
     
     var isLoading: Bool {
         currentDownloadCount != 0
@@ -56,12 +55,6 @@ final class WeatherService {
         }
     }
     
-    var sourceText = "" {
-        didSet {
-            print(sourceText)
-            onSourceTextChanged?(sourceText)
-        }
-    }
     
     lazy var filteredCities: [WeatherCitySelection] = cities {
         didSet {
@@ -90,7 +83,7 @@ final class WeatherService {
     }
     
     func emptySourceText() {
-        sourceText.removeAll()
+        searchText.removeAll()
     }
     
     func fetchCitiesInformation() {

@@ -61,7 +61,7 @@ class CityPickerViewController: UIViewController {
         return tableView
     }()
     
-    let searchBar: UISearchBar = UISearchBar()
+    private let searchBar: UISearchBar = UISearchBar()
     
     private let weatherService = WeatherService.shared
     
