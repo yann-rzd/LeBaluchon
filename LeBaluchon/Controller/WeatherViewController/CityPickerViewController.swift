@@ -85,6 +85,10 @@ class CityPickerViewController: UIViewController {
         weatherService.onSearchResultChanged = { [weak self] in
             self?.tableView.reloadData()
         }
+        
+        weatherService.onSearchTextChanged = { [weak self] searchText in
+            self?.searchBar.text = searchText
+        }
     }
     
     private func setupToolBar() {

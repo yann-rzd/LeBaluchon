@@ -17,6 +17,9 @@ final class WeatherViewController: UIViewController {
         
         tableView.backgroundColor = UIColor.tableViewBackground
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
+        
+        refreshControl.addTarget(self, action: #selector(didTapRefreshButton), for: .valueChanged)
         
         view.addSubview(tableView)
         
@@ -31,10 +34,7 @@ final class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                
-        
         weatherService.fetchCitiesInformation()
-        
     }
 
     
@@ -64,7 +64,6 @@ final class WeatherViewController: UIViewController {
     
     // MARK: - PRIVATE: methods
     
-    
     private func setupBindings() {
         weatherService.weatherCitiesDidChange = { [weak self] in
             DispatchQueue.main.async {
@@ -75,6 +74,9 @@ final class WeatherViewController: UIViewController {
         weatherService.isLoadingDidChange = { [weak self] isLoading in
             DispatchQueue.main.async {
                 self?.setupNavigationBar(isLoading: isLoading)
+                if !isLoading {
+                    self?.refreshControl.endRefreshing()
+                }
             }
         }
         
@@ -122,6 +124,9 @@ final class WeatherViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    
+    private let refreshControl = UIRefreshControl()
+    
 }
 
 
@@ -154,7 +159,20 @@ extension WeatherViewController: UITableViewDataSource {
 }
 
 extension WeatherViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            weatherService.removeCity(cityIndex: indexPath.row)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        weatherService.selectedCities[indexPath.row] != .newYork
+        
+    }
 }
 
 extension UIColor {

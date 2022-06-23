@@ -8,11 +8,37 @@
 import XCTest
 @testable import LeBaluchon
 
-class LeBaluchonTests: XCTestCase {
+class CurrencyServiceTests: XCTestCase {
     
-    func testExampleFailure() throws {
+    
+    // MARK: fetchConversionRates
+    
+    func test_givenFailingNetwork_whenFetchRates_thenGetFailure() throws {
         let failureNetworkServiceMock = NetworkServiceMock(result: .failure(.failedToFetch))
         let currencyService = CurrencyService(networkService: failureNetworkServiceMock)
+        
+        
+        let expectation = XCTestExpectation(description: "Wait for completion")
+        
+        currencyService.fetchConversionRates { result in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .failedToFetchConversionRate)
+            case .success:
+                XCTFail("Should not be successful")
+            }
+            expectation.fulfill()
+        }
+        
+        
+        wait(for: [expectation], timeout: 0.1)
+        
+    }
+    
+    
+    func test_givenFailingUrl_whenFetchRates_thenGetFailure() throws {
+        let currencyUrlProviderMock = CurrencyUrlProviderMock()
+        let currencyService = CurrencyService(currencyUrlProvider: currencyUrlProviderMock)
         
         
         let expectation = XCTestExpectation(description: "Wait for completion")
@@ -36,7 +62,7 @@ class LeBaluchonTests: XCTestCase {
     
     
     
-    func testExampleSuccessful() throws {
+    func test_givenValidNetwork_whenFetchRates_thenGetSuccess() throws {
         let mockResponse = FixerLatestResponse(
             success: true,
             timestamp: 120321,
@@ -57,9 +83,8 @@ class LeBaluchonTests: XCTestCase {
             case .failure:
                 XCTFail("Should be succesful")
                 
-            case .success(let rates):
+            case .success:
                 XCTAssertTrue(true)
-                XCTAssertEqual(rates["USD"], 1.25)
             }
             expectation.fulfill()
         }

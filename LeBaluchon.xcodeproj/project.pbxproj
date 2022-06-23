@@ -20,13 +20,14 @@
 		E45B8C1927E386E100238229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1727E386E100238229 /* Main.storyboard */; };
 		E45B8C1B27E386E100238229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1A27E386E100238229 /* Assets.xcassets */; };
 		E45B8C1E27E386E100238229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E45B8C1C27E386E100238229 /* LaunchScreen.storyboard */; };
-		E45B8C2927E386E100238229 /* LeBaluchonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C2827E386E100238229 /* LeBaluchonTests.swift */; };
+		E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */; };
 		E45B8C3327E386E100238229 /* LeBaluchonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */; };
 		E45B8C3527E386E100238229 /* LeBaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */; };
 		E4643BC327FAE40800E1C478 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4643BC227FAE40800E1C478 /* Currency.swift */; };
 		E46C26E128085EB00070ECEC /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C26E028085EB00070ECEC /* CityPickerViewController.swift */; };
 		E4C8E159283BC1130034DE8B /* CustomCityPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */; };
 		E4C8E15D283BE5B50034DE8B /* WeatherCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */; };
+		E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */; };
 		E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41727F35B27002200F8 /* TranslateService.swift */; };
 		E4D6E41A27F35B40002200F8 /* TranslateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41927F35B40002200F8 /* TranslateServiceProtocol.swift */; };
 		E4D6E41C27F35B4C002200F8 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D6E41B27F35B4C002200F8 /* WeatherService.swift */; };
@@ -81,7 +82,7 @@
 		E45B8C1D27E386E100238229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E45B8C1F27E386E100238229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E45B8C2427E386E100238229 /* LeBaluchonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E45B8C2827E386E100238229 /* LeBaluchonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonTests.swift; sourceTree = "<group>"; };
+		E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceTests.swift; sourceTree = "<group>"; };
 		E45B8C2E27E386E100238229 /* LeBaluchonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeBaluchonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E45B8C3227E386E100238229 /* LeBaluchonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITests.swift; sourceTree = "<group>"; };
 		E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		E46C26E028085EB00070ECEC /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCityPickerTableViewCell.swift; sourceTree = "<group>"; };
 		E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCityResponse.swift; sourceTree = "<group>"; };
+		E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProviderMock.swift; sourceTree = "<group>"; };
 		E4D6E41727F35B27002200F8 /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		E4D6E41927F35B40002200F8 /* TranslateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceProtocol.swift; sourceTree = "<group>"; };
 		E4D6E41B27F35B4C002200F8 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -226,7 +228,8 @@
 		E45B8C2727E386E100238229 /* LeBaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
-				E45B8C2827E386E100238229 /* LeBaluchonTests.swift */,
+				E4D54E7F2864B99D00973FA6 /* Mocks */,
+				E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -247,6 +250,14 @@
 				E46C26E028085EB00070ECEC /* CityPickerViewController.swift */,
 			);
 			path = WeatherViewController;
+			sourceTree = "<group>";
+		};
+		E4D54E7F2864B99D00973FA6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		E4D6E41527F35AE1002200F8 /* TranslateService */ = {
@@ -464,7 +475,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E45B8C2927E386E100238229 /* LeBaluchonTests.swift in Sources */,
+				E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */,
+				E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

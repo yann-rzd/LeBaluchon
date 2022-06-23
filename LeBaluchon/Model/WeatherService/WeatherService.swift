@@ -25,13 +25,14 @@ final class WeatherService {
     var isLoadingDidChange: ((Bool) -> Void)?
     var didProduceError: ((WeatherServiceError) -> Void)?
     var onSearchResultChanged: (() -> Void)?
+    var onSearchTextChanged: ((String) -> Void)?
     
     var isLoading: Bool {
         currentDownloadCount != 0
     }
     
     var selectedCities: [WeatherCitySelection] = [
-        .newyork
+        .newYork
     ] {
         didSet {
             weatherCitiesDidChange?()
@@ -51,6 +52,7 @@ final class WeatherService {
     
     var searchText = "" {
         didSet {
+            onSearchTextChanged?(searchText)
             filteredCities = getFilteredCities(searchText: searchText)
         }
     }
@@ -72,6 +74,11 @@ final class WeatherService {
         }
         
         selectedCities.append(city)
+    }
+    
+    func removeCity(cityIndex: Int) {
+        let cityToRemove = selectedCities[cityIndex]
+        remove(city: cityToRemove)
     }
     
     func remove(city: WeatherCitySelection) {

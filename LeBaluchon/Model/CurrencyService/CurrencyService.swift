@@ -5,14 +5,17 @@
 //  Created by Yann Rouzaud on 24/03/2022.
 //
 
+
 import Foundation
 
 final class CurrencyService: CurencyServiceProtocol {
     
     init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
+        networkService: NetworkServiceProtocol = NetworkService.shared,
+        currencyUrlProvider: CurrencyUrlProviderProtocol = CurrencyUrlProvider.shared
     ) {
         self.networkService = networkService
+        self.currencyUrlProvider = currencyUrlProvider
     }
     
     
@@ -99,7 +102,8 @@ final class CurrencyService: CurencyServiceProtocol {
     
     func fetchConversionRates(completionHandler: @escaping (Result<Void, CurrencyServiceError>) -> Void) {
        
-        guard let url = getRatesUrl() else {
+        guard let url = currencyUrlProvider.getRatesUrl() else {
+            completionHandler(.failure(.failedToFetchConversionRate))
             return
         }
         
@@ -132,6 +136,7 @@ final class CurrencyService: CurencyServiceProtocol {
     // MARK: - PRIVATE: properties
     
     private let networkService: NetworkServiceProtocol
+    private let currencyUrlProvider: CurrencyUrlProviderProtocol
     
     private let currencies: [Currency] = Currency.allCases
     
@@ -177,19 +182,6 @@ final class CurrencyService: CurencyServiceProtocol {
         }
     }
     
-    private func getRatesUrl() -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "data.fixer.io"
-        urlComponents.path = "/api/latest"
-        urlComponents.queryItems = [
-            .init(name: "access_key", value: "3a76b9ba8ccd1e783d8b18001496f9fa")
-        ]
-        
-        return urlComponents.url
-    }
-    
     
     private func convertValue() {
         guard let conversionRate = conversionRate,
@@ -199,5 +191,30 @@ final class CurrencyService: CurencyServiceProtocol {
         }
         
         self.convertedValue =  Double(valueToConvert) * conversionRate
+    }
+}
+
+
+
+
+
+protocol CurrencyUrlProviderProtocol {
+    func getRatesUrl() -> URL?
+}
+
+final class CurrencyUrlProvider: CurrencyUrlProviderProtocol {
+    static let shared = CurrencyUrlProvider()
+    
+    func getRatesUrl() -> URL? {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "http"
+        urlComponents.host = "data.fixer.io"
+        urlComponents.path = "/api/latest"
+        urlComponents.queryItems = [
+            .init(name: "access_key", value: "3a76b9ba8ccd1e783d8b18001496f9fa")
+        ]
+        
+        return urlComponents.url!
     }
 }
