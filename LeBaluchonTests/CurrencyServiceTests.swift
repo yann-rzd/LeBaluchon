@@ -99,8 +99,54 @@ class CurrencyServiceTests: XCTestCase {
         XCTAssertEqual(currencyService.targetCurrency, .EUR)
     }
     
-    // MARK: - swapCurrencies
+    // MARK: - assignCurrency
     
+    func testGivenTargetCurrencyNotAssigned_WhenAssignCurrencyToTarget_ThenTargetHasCurrencyAssigned() {
+        currencyService.currencySelectionType = .target
+        
+        currencyService?.assignCurrency(currency: .JPY)
+        
+        XCTAssertEqual(currencyService.targetCurrency, .JPY)
+    }
     
+    func testGivenSourceCurrencyNotAssigned_WhenAssignCurrencyToSource_ThenSourceHasCurrencyAssigned() {
+        currencyService.currencySelectionType = .source
+        
+        currencyService?.assignCurrency(currency: .JPY)
+        
+        XCTAssertEqual(currencyService.sourceCurrency, .JPY)
+    }
+    
+    func testGivenNoCurrencyAssigned_WhenAssignCurrencyToNone_ThenBreak() {
+        currencyService.currencySelectionType = .none
+        
+        currencyService?.assignCurrency(currency: .JPY)
+        
+        XCTAssertEqual(currencyService.sourceCurrency, .EUR)
+        XCTAssertEqual(currencyService.targetCurrency, .USD)
+    }
+    
+    // MARK: - emptySourceText
+    
+    func testGivenSearchTextIsNotEmpty_WhenDeleteSearchTextContent_ThenSourceTextIsEmpty() {
+        currencyService.searchText = "I am not empty"
+        currencyService.emptySourceText()
+        
+        XCTAssertEqual(currencyService.searchText, "")
+    }
+
+    // MARK: - emptySourceText
+    
+    func testGivenSourceAndTargetCurrencyAssigned_WhenChangeAmount_ThenTargetValueIsConverted() {
+        currencyService.valueToConvert = 0
+        
+        XCTAssertEqual(currencyService.convertedValue, nil)
+    }
+    
+    func testGivenSourceAndTargetCurrencyAssigned_WhenDoingNothing_ThenValueIsNotConverted() {
+        currencyService.valueToConvert = nil
+        
+        XCTAssertEqual(currencyService.convertedValue, nil)
+    }
 }
 
