@@ -10,8 +10,14 @@ import XCTest
 
 class CurrencyServiceTests: XCTestCase {
     
+    var currencyService: CurrencyService!
     
-    // MARK: fetchConversionRates
+    override func setUp() {
+        super.setUp()
+        currencyService = CurrencyService()
+    }
+    
+    // MARK: - fetchConversionRates
     
     func test_givenFailingNetwork_whenFetchRates_thenGetFailure() throws {
         let failureNetworkServiceMock = NetworkServiceMock(result: .failure(.failedToFetch))
@@ -29,10 +35,7 @@ class CurrencyServiceTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
-        
         wait(for: [expectation], timeout: 0.1)
-        
     }
     
     
@@ -52,15 +55,8 @@ class CurrencyServiceTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
-        
         wait(for: [expectation], timeout: 0.1)
-        
     }
-    
-    
-    
-    
     
     func test_givenValidNetwork_whenFetchRates_thenGetSuccess() throws {
         let mockResponse = FixerLatestResponse(
@@ -88,37 +84,23 @@ class CurrencyServiceTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
-        
         wait(for: [expectation], timeout: 0.1)
-        
     }
     
+    // MARK: - swapCurrencies
+    
+    func testGivenSourceAndTargetCurrency_WhenSwapCurrencies_ThenCurrenciesSwiped() {
+        currencyService.sourceCurrency = .EUR
+        currencyService.targetCurrency = .USD
+        
+        currencyService.swapCurrencies()
+        
+        XCTAssertEqual(currencyService.sourceCurrency, .USD)
+        XCTAssertEqual(currencyService.targetCurrency, .EUR)
+    }
+    
+    // MARK: - swapCurrencies
     
     
 }
-
-
-
-
-
-final class NetworkServiceMock: NetworkServiceProtocol {
-    
-    init(
-        result: Result<FixerLatestResponse, NetworkServiceError>
-    ) {
-        self.result = result
-    }
-    
-    private let result: Result<FixerLatestResponse, NetworkServiceError>
-    
-    func fetch<T>(urlRequest: URLRequest, completionHandler: @escaping (Result<T, NetworkServiceError>) -> Void) where T : Decodable {
-        
-        
-        completionHandler(result as! Result<T, NetworkServiceError>)
-    }
-    
-    
-}
-
 

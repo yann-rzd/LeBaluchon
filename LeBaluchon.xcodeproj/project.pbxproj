@@ -45,6 +45,7 @@
 		E4E1A30A284904CA0064D82A /* CurrencySelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A309284904CA0064D82A /* CurrencySelectionType.swift */; };
 		E4E6367627F7536C00DDDB6D /* LanguagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */; };
 		E4F455652833E8540075AAF5 /* CustomWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */; };
+		E4F4B2422865FEF700CB7E15 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */; };
 		E4F583C127F73DD400FB6D59 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		E4E1A309284904CA0064D82A /* CurrencySelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionType.swift; sourceTree = "<group>"; };
 		E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerViewController.swift; sourceTree = "<group>"; };
 		E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWeatherTableViewCell.swift; sourceTree = "<group>"; };
+		E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,8 +230,8 @@
 		E45B8C2727E386E100238229 /* LeBaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
-				E4D54E7F2864B99D00973FA6 /* Mocks */,
 				E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */,
+				E4D54E7F2864B99D00973FA6 /* Mocks */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */,
+				E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 			files = (
 				E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */,
 				E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */,
+				E4F4B2422865FEF700CB7E15 /* NetworkServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
