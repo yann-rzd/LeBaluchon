@@ -19,10 +19,9 @@ class CurrencyServiceTests: XCTestCase {
     
     // MARK: - fetchConversionRates
     
-    func test_givenFailingNetwork_whenFetchRates_thenGetFailure() throws {
-        let failureNetworkServiceMock = NetworkServiceMock(result: .failure(.failedToFetch))
+    func testGivenFailingNetwork_WhenFetchRates_ThenGetFailure() throws {
+        let failureNetworkServiceMock = CurrencyNetworkServiceMock(result: .failure(.failedToFetch))
         let currencyService = CurrencyService(networkService: failureNetworkServiceMock)
-        
         
         let expectation = XCTestExpectation(description: "Wait for completion")
         
@@ -39,7 +38,7 @@ class CurrencyServiceTests: XCTestCase {
     }
     
     
-    func test_givenFailingUrl_whenFetchRates_thenGetFailure() throws {
+    func testGivenFailingUrl_WhenFetchRates_ThenGetFailure() throws {
         let currencyUrlProviderMock = CurrencyUrlProviderMock()
         let currencyService = CurrencyService(currencyUrlProvider: currencyUrlProviderMock)
         
@@ -58,7 +57,7 @@ class CurrencyServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    func test_givenValidNetwork_whenFetchRates_thenGetSuccess() throws {
+    func testGivenValidNetwork_WhenFetchRates_ThenGetSuccess() throws {
         let mockResponse = FixerLatestResponse(
             success: true,
             timestamp: 120321,
@@ -67,10 +66,8 @@ class CurrencyServiceTests: XCTestCase {
             rates: ["USD": 1.25]
         )
         
-        let networkServiceMock = NetworkServiceMock(result: .success(mockResponse))
-        
+        let networkServiceMock = CurrencyNetworkServiceMock(result: .success(mockResponse))
         let currencyService = CurrencyService(networkService: networkServiceMock)
-        
         
         let expectation = XCTestExpectation(description: "Wait for completion")
         

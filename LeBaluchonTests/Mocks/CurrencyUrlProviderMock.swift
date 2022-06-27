@@ -8,8 +8,6 @@
 import Foundation
 @testable import LeBaluchon
 
-
-
 final class CurrencyUrlProviderMock: CurrencyUrlProviderProtocol {
     func getRatesUrl() -> URL? {
         return nil

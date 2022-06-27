@@ -25,6 +25,9 @@
 		E45B8C3527E386E100238229 /* LeBaluchonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */; };
 		E4643BC327FAE40800E1C478 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4643BC227FAE40800E1C478 /* Currency.swift */; };
 		E46C26E128085EB00070ECEC /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46C26E028085EB00070ECEC /* CityPickerViewController.swift */; };
+		E47A8E9F2869FBCB0000887C /* TranslateUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */; };
+		E47A8EA12869FC3E0000887C /* TranslateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */; };
+		E47A8EA3286A068B0000887C /* TranslateNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */; };
 		E4C8E159283BC1130034DE8B /* CustomCityPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */; };
 		E4C8E15D283BE5B50034DE8B /* WeatherCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */; };
 		E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */; };
@@ -45,7 +48,7 @@
 		E4E1A30A284904CA0064D82A /* CurrencySelectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E1A309284904CA0064D82A /* CurrencySelectionType.swift */; };
 		E4E6367627F7536C00DDDB6D /* LanguagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */; };
 		E4F455652833E8540075AAF5 /* CustomWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */; };
-		E4F4B2422865FEF700CB7E15 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */; };
+		E4F4B2422865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F4B2412865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift */; };
 		E4F583C127F73DD400FB6D59 /* CurrencyPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,9 @@
 		E45B8C3427E386E100238229 /* LeBaluchonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeBaluchonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E4643BC227FAE40800E1C478 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		E46C26E028085EB00070ECEC /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
+		E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateUrlProviderMock.swift; sourceTree = "<group>"; };
+		E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceTests.swift; sourceTree = "<group>"; };
+		E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateNetworkServiceMock.swift; sourceTree = "<group>"; };
 		E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCityPickerTableViewCell.swift; sourceTree = "<group>"; };
 		E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCityResponse.swift; sourceTree = "<group>"; };
 		E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProviderMock.swift; sourceTree = "<group>"; };
@@ -109,7 +115,7 @@
 		E4E1A309284904CA0064D82A /* CurrencySelectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionType.swift; sourceTree = "<group>"; };
 		E4E6367527F7536C00DDDB6D /* LanguagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerViewController.swift; sourceTree = "<group>"; };
 		E4F455642833E8540075AAF5 /* CustomWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWeatherTableViewCell.swift; sourceTree = "<group>"; };
-		E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		E4F4B2412865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyNetworkServiceMock.swift; sourceTree = "<group>"; };
 		E4F583C027F73DD400FB6D59 /* CurrencyPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */,
+				E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */,
 				E4D54E7F2864B99D00973FA6 /* Mocks */,
 			);
 			path = LeBaluchonTests;
@@ -257,8 +264,10 @@
 		E4D54E7F2864B99D00973FA6 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				E4F4B2412865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift */,
+				E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */,
 				E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */,
-				E4F4B2412865FEF700CB7E15 /* NetworkServiceMock.swift */,
+				E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -478,9 +487,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E47A8EA12869FC3E0000887C /* TranslateServiceTests.swift in Sources */,
 				E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */,
 				E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */,
-				E4F4B2422865FEF700CB7E15 /* NetworkServiceMock.swift in Sources */,
+				E4F4B2422865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift in Sources */,
+				E47A8E9F2869FBCB0000887C /* TranslateUrlProviderMock.swift in Sources */,
+				E47A8EA3286A068B0000887C /* TranslateNetworkServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

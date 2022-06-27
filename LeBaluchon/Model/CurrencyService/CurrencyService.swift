@@ -49,7 +49,6 @@ final class CurrencyService: CurencyServiceProtocol {
     
     var sourceCurrency: Currency = .EUR {
         didSet {
-            print("6. JAPELLE LE BLOCK DE CODE QUI A ETE ASSIGNER POUR ECOUTER LES CHANGEMENTS SUR SOURCE CURRENCY")
             onSourceCurrencyChanged?(sourceCurrency)
             convertValue()
         }
@@ -57,7 +56,6 @@ final class CurrencyService: CurencyServiceProtocol {
     
     var targetCurrency: Currency = .USD {
         didSet {
-            print("6. JAPELLE LE BLOCK DE CODE QUI A ETE ASSIGNER POUR ECOUTER LES CHANGEMENTS SUR TARGET CURRENCY")
             onTargetCurrencyChanged?(targetCurrency)
             convertValue()
         }
@@ -87,13 +85,10 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     func assignCurrency(currency: Currency) {
-        print("4. JASSIGNE LA DEVISE SELECTIONNER SELON LE TYPE DE SELECTION FAIT A LETAPE 1")
         switch currencySelectionType {
         case .target:
-            print("5. JASSIGNE A LA TARGET")
             targetCurrency = currency
         case .source:
-            print("5. JASSIGNE A LA SOURCE")
             sourceCurrency = currency
         case .none:
             break
@@ -193,7 +188,6 @@ final class CurrencyService: CurencyServiceProtocol {
         self.convertedValue =  Double(valueToConvert) * conversionRate
     }
 }
-
 
 
 

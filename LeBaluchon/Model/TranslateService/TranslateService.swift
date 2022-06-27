@@ -12,10 +12,13 @@ import Combine
 final class TranslateService {
     
     init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
+        networkService: NetworkServiceProtocol = NetworkService.shared,
+        translateUrlProvider: TranslateUrlProviderProtocol = TranslateUrlProvider.shared
     ) {
         self.networkService = networkService
+        self.translateUrlProvider = translateUrlProvider
     }
+    
     
     // MARK: - INTERNAL: properties
     
@@ -88,7 +91,7 @@ final class TranslateService {
     func fetchTranslation(
         completionHandler: @escaping (Result<Void, TranslateServiceError>) -> Void) {
        
-        guard let url = getFetchTranslationUrl() else {
+            guard let url = translateUrlProvider.getFetchTranslationUrl() else {
             completionHandler(.failure(.failedToFetchTranslation))
             return
         }
@@ -151,6 +154,7 @@ final class TranslateService {
     // MARK: - PRIVATE: properties
     
     private let networkService: NetworkServiceProtocol
+    private let translateUrlProvider: TranslateUrlProviderProtocol
     
     private(set) var targetText = "" {
         didSet {
@@ -159,8 +163,6 @@ final class TranslateService {
     }
     
     private let languages: [Language] = Language.allCases
-    
-    private let apiKey = "AIzaSyBuDzRZPMVSRwstm7sVDV8Bd86rLGeg9ZM"
     
     
     // MARK: - PRIVATE: methods
@@ -175,14 +177,24 @@ final class TranslateService {
         }
     }
     
-    private func getFetchTranslationUrl() -> URL? {
+    
+}
+
+protocol TranslateUrlProviderProtocol {
+    func getFetchTranslationUrl() -> URL?
+}
+
+final class TranslateUrlProvider: TranslateUrlProviderProtocol {
+    static let shared = TranslateUrlProvider()
+    
+    func getFetchTranslationUrl() -> URL? {
         
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "translation.googleapis.com"
         urlComponents.path = "/language/translate/v2"
         urlComponents.queryItems = [
-            .init(name: "key", value: apiKey)
+            .init(name: "key", value: "AIzaSyBuDzRZPMVSRwstm7sVDV8Bd86rLGeg9ZM")
         ]
         
         return urlComponents.url
