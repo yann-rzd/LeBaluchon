@@ -42,13 +42,9 @@ final class WeatherService {
         }
     }
     
-    var weatherCities: [WeatherCitySelection : WeatherCity] = [:
-//        .newyork : .init(title: "New-York", description: "Bell eclaircies", temperatureMax: 21, temparatureMin: 10, temperatureCurrent: 19),
-//        .paris : .init(title: "Paris", description: "Nuages", temperatureMax: 19, temparatureMin: 8, temperatureCurrent: 17)
-    ] {
+    var weatherCities: [WeatherCitySelection : WeatherCity] = [:] {
         didSet {
             weatherCitiesDidChange?()
-            // notifiy viewcontroller that the weather cities changed => tableview reload data
         }
     }
     

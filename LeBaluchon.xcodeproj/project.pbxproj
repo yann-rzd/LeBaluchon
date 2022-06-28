@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41FDB1D286B40B20011A500 /* JSONEncoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB1C286B40B20011A500 /* JSONEncoderMock.swift */; };
+		E41FDB1F286B41240011A500 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB1E286B41240011A500 /* MockError.swift */; };
+		E41FDB21286B45C10011A500 /* TranslationResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB20286B45C10011A500 /* TranslationResponseMock.swift */; };
+		E41FDB23286B468E0011A500 /* TranslateNetworkServiceFailureResponseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB22286B468E0011A500 /* TranslateNetworkServiceFailureResponseMock.swift */; };
 		E45860D12810441500FBD56C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45860D02810441500FBD56C /* Language.swift */; };
 		E459433427ECC8DE00FE0259 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433327ECC8DE00FE0259 /* NetworkService.swift */; };
 		E459433727ECC92000FE0259 /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E459433627ECC92000FE0259 /* NetworkServiceError.swift */; };
@@ -73,6 +77,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E41FDB1C286B40B20011A500 /* JSONEncoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderMock.swift; sourceTree = "<group>"; };
+		E41FDB1E286B41240011A500 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
+		E41FDB20286B45C10011A500 /* TranslationResponseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResponseMock.swift; sourceTree = "<group>"; };
+		E41FDB22286B468E0011A500 /* TranslateNetworkServiceFailureResponseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateNetworkServiceFailureResponseMock.swift; sourceTree = "<group>"; };
 		E45860D02810441500FBD56C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		E459433327ECC8DE00FE0259 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E459433627ECC92000FE0259 /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
@@ -277,6 +285,10 @@
 				E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */,
 				E482C72E286B065B006EC2A0 /* WeatherUrlProviderMock.swift */,
 				E482C730286B0723006EC2A0 /* WeatherNetworkServiceMock.swift */,
+				E41FDB1C286B40B20011A500 /* JSONEncoderMock.swift */,
+				E41FDB1E286B41240011A500 /* MockError.swift */,
+				E41FDB20286B45C10011A500 /* TranslationResponseMock.swift */,
+				E41FDB22286B468E0011A500 /* TranslateNetworkServiceFailureResponseMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -496,11 +508,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E41FDB21286B45C10011A500 /* TranslationResponseMock.swift in Sources */,
+				E41FDB1F286B41240011A500 /* MockError.swift in Sources */,
 				E47A8EA12869FC3E0000887C /* TranslateServiceTests.swift in Sources */,
 				E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */,
+				E41FDB1D286B40B20011A500 /* JSONEncoderMock.swift in Sources */,
 				E482C72D286AFE4C006EC2A0 /* WeatherServiceTests.swift in Sources */,
 				E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */,
 				E4F4B2422865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift in Sources */,
+				E41FDB23286B468E0011A500 /* TranslateNetworkServiceFailureResponseMock.swift in Sources */,
 				E47A8E9F2869FBCB0000887C /* TranslateUrlProviderMock.swift in Sources */,
 				E47A8EA3286A068B0000887C /* TranslateNetworkServiceMock.swift in Sources */,
 				E482C72F286B065B006EC2A0 /* WeatherUrlProviderMock.swift in Sources */,

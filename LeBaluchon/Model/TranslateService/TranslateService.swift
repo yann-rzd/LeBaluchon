@@ -13,10 +13,12 @@ final class TranslateService {
     
     init(
         networkService: NetworkServiceProtocol = NetworkService.shared,
-        translateUrlProvider: TranslateUrlProviderProtocol = TranslateUrlProvider.shared
+        translateUrlProvider: TranslateUrlProviderProtocol = TranslateUrlProvider.shared,
+        jsonEncoder: JSONEncoderProtocol = JSONEncoder()
     ) {
         self.networkService = networkService
         self.translateUrlProvider = translateUrlProvider
+        self.jsonEncoder = jsonEncoder
     }
     
     
@@ -109,7 +111,7 @@ final class TranslateService {
             target: targetLanguage.rawValue
         )
         
-        guard let encoddedBody = try? JSONEncoder().encode(body) else {
+        guard let encoddedBody = try? jsonEncoder.encode(body) else {
             completionHandler(.failure(.failedToFetchTranslation))
             return
         }
@@ -159,6 +161,7 @@ final class TranslateService {
     
     private let networkService: NetworkServiceProtocol
     private let translateUrlProvider: TranslateUrlProviderProtocol
+    private let jsonEncoder: JSONEncoderProtocol
 
     private(set) var targetText = "" {
         didSet {
@@ -202,3 +205,16 @@ final class TranslateUrlProvider: TranslateUrlProviderProtocol {
         return urlComponents.url
     }
 }
+
+
+
+protocol JSONEncoderProtocol {
+    func encode<T>(_ value: T) throws -> Data where T : Encodable
+}
+
+extension JSONEncoder: JSONEncoderProtocol {
+    
+}
+
+
+
