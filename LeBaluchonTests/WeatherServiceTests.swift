@@ -37,7 +37,7 @@ class WeatherServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for completion")
         
-        weatherService.fetchConversionRates { result in
+        weatherService.fetchCitiesInformation { result in
             switch result {
             case .failure(let error):
                 XCTAssertEqual(error, .failedToFetchConversionRate)

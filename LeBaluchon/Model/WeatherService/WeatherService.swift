@@ -12,7 +12,7 @@ final class WeatherService {
     
     init(
         networkService: NetworkServiceProtocol = NetworkService.shared,
-        weatherUrlProvider: WeatherUrlProvider = WeatherUrlProvider.shared
+        weatherUrlProvider: WeatherUrlProviderProtocol = WeatherUrlProvider.shared
     ) {
         self.networkService = networkService
         self.weatherUrlProvider = weatherUrlProvider
@@ -121,7 +121,7 @@ final class WeatherService {
     private let cities: [WeatherCitySelection] = WeatherCitySelection.allCases
     
     private let networkService: NetworkServiceProtocol
-    private let weatherUrlProvider: WeatherUrlProvider
+    private let weatherUrlProvider: WeatherUrlProviderProtocol
     
     
     // MARK: - PRIVATE: methods
