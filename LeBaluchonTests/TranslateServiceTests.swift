@@ -80,6 +80,59 @@ class TranslateServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
+    
+    //MARK: - assignLanguage
+    
+    func testGivenTargetLanguageNotAssigned_WhenAssignLanguageToTarget_ThenTargetHasLanguageAssigned() {
+        translateService.languageSelectionType = .target
+        translateService.assignLanguage(language: .it)
+        XCTAssertEqual(translateService.targetLanguage, .it)
+    }
+    
+    func testGivenSourceLanguageNotAssigned_WhenAssignLanguageToSource_ThenSourceHasLanguageAssigned() {
+        translateService.languageSelectionType = .source
+        translateService.assignLanguage(language: .it)
+        XCTAssertEqual(translateService.sourceLanguage, .it)
+    }
+    
+    func testGivenSourceLanguageNotAssigned_WhenAssignLanguageToNone_ThenBreak() {
+        translateService.languageSelectionType = .none
+        translateService.assignLanguage(language: .it)
+        XCTAssertEqual(translateService.targetLanguage, .en)
+        XCTAssertEqual(translateService.sourceLanguage, nil)
+    }
+    
+    // MARK: - emptySourceText
+    
+    func testGivenSourceTextIsNotEmpty_WhenDeleteSourceTextContent_ThenSourceTextIsEmpty() {
+        translateService.sourceText = "I am not empty"
+        translateService.emptySourceText()
+        
+        XCTAssertEqual(translateService.sourceText, "")
+    }
+    
+    // MARK: - emptySearchText
+    
+    func testGivenSearchTextIsNotEmpty_WhenDeleteSearchTextContent_ThenSearchTextIsEmpty() {
+        translateService.searchText = "I am not empty"
+        translateService.emptySearchText()
+        
+        XCTAssertEqual(translateService.searchText, "")
+    }
+    
+    // MARK: - setup
+    
+    func testGivenSourceLanguageTranslated_WhenSetup_ThenDefaultConfiguration() {
+        translateService.sourceLanguage = .it
+        translateService.targetLanguage = .ja
+        translateService.isLoading = true
+        
+        translateService.setup()
+        
+        XCTAssertEqual(translateService.sourceLanguage, nil)
+        XCTAssertEqual(translateService.targetLanguage, .en)
+        XCTAssertEqual(translateService.isLoading, false)
+    }
 }
 
 

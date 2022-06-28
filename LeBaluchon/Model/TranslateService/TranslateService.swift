@@ -88,6 +88,10 @@ final class TranslateService {
         sourceText.removeAll()
     }
     
+    func emptySearchText() {
+        searchText.removeAll()
+    }
+    
     func fetchTranslation(
         completionHandler: @escaping (Result<Void, TranslateServiceError>) -> Void) {
        
@@ -155,7 +159,7 @@ final class TranslateService {
     
     private let networkService: NetworkServiceProtocol
     private let translateUrlProvider: TranslateUrlProviderProtocol
-    
+
     private(set) var targetText = "" {
         didSet {
             onTargetTextChanged?(targetText)
@@ -176,8 +180,6 @@ final class TranslateService {
             language.name.lowercased().contains(searchText.lowercased())
         }
     }
-    
-    
 }
 
 protocol TranslateUrlProviderProtocol {

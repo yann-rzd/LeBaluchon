@@ -123,16 +123,16 @@ class CurrencyServiceTests: XCTestCase {
         XCTAssertEqual(currencyService.targetCurrency, .USD)
     }
     
-    // MARK: - emptySourceText
+    // MARK: - emptySearchText
     
-    func testGivenSearchTextIsNotEmpty_WhenDeleteSearchTextContent_ThenSourceTextIsEmpty() {
+    func testGivenSearchTextIsNotEmpty_WhenDeleteSearchTextContent_ThenSearchTextIsEmpty() {
         currencyService.searchText = "I am not empty"
-        currencyService.emptySourceText()
+        currencyService.emptySearchText()
         
         XCTAssertEqual(currencyService.searchText, "")
     }
 
-    // MARK: - emptySourceText
+    // MARK: - convert value
     
     func testGivenSourceAndTargetCurrencyAssigned_WhenChangeAmount_ThenTargetValueIsConverted() {
         currencyService.valueToConvert = 0

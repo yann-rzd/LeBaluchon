@@ -28,6 +28,9 @@
 		E47A8E9F2869FBCB0000887C /* TranslateUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */; };
 		E47A8EA12869FC3E0000887C /* TranslateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */; };
 		E47A8EA3286A068B0000887C /* TranslateNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */; };
+		E482C72D286AFE4C006EC2A0 /* WeatherServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482C72C286AFE4C006EC2A0 /* WeatherServiceTests.swift */; };
+		E482C72F286B065B006EC2A0 /* WeatherUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482C72E286B065B006EC2A0 /* WeatherUrlProviderMock.swift */; };
+		E482C731286B0723006EC2A0 /* WeatherNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E482C730286B0723006EC2A0 /* WeatherNetworkServiceMock.swift */; };
 		E4C8E159283BC1130034DE8B /* CustomCityPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */; };
 		E4C8E15D283BE5B50034DE8B /* WeatherCityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */; };
 		E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */; };
@@ -95,6 +98,9 @@
 		E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateUrlProviderMock.swift; sourceTree = "<group>"; };
 		E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceTests.swift; sourceTree = "<group>"; };
 		E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateNetworkServiceMock.swift; sourceTree = "<group>"; };
+		E482C72C286AFE4C006EC2A0 /* WeatherServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceTests.swift; sourceTree = "<group>"; };
+		E482C72E286B065B006EC2A0 /* WeatherUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUrlProviderMock.swift; sourceTree = "<group>"; };
+		E482C730286B0723006EC2A0 /* WeatherNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherNetworkServiceMock.swift; sourceTree = "<group>"; };
 		E4C8E158283BC1130034DE8B /* CustomCityPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCityPickerTableViewCell.swift; sourceTree = "<group>"; };
 		E4C8E15C283BE5B50034DE8B /* WeatherCityResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCityResponse.swift; sourceTree = "<group>"; };
 		E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProviderMock.swift; sourceTree = "<group>"; };
@@ -238,6 +244,7 @@
 			children = (
 				E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */,
 				E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */,
+				E482C72C286AFE4C006EC2A0 /* WeatherServiceTests.swift */,
 				E4D54E7F2864B99D00973FA6 /* Mocks */,
 			);
 			path = LeBaluchonTests;
@@ -265,9 +272,11 @@
 			isa = PBXGroup;
 			children = (
 				E4F4B2412865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift */,
-				E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */,
 				E4D54E802864B9BB00973FA6 /* CurrencyUrlProviderMock.swift */,
+				E47A8EA2286A068B0000887C /* TranslateNetworkServiceMock.swift */,
 				E47A8E9E2869FBCB0000887C /* TranslateUrlProviderMock.swift */,
+				E482C72E286B065B006EC2A0 /* WeatherUrlProviderMock.swift */,
+				E482C730286B0723006EC2A0 /* WeatherNetworkServiceMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -489,10 +498,13 @@
 			files = (
 				E47A8EA12869FC3E0000887C /* TranslateServiceTests.swift in Sources */,
 				E45B8C2927E386E100238229 /* CurrencyServiceTests.swift in Sources */,
+				E482C72D286AFE4C006EC2A0 /* WeatherServiceTests.swift in Sources */,
 				E4D54E812864B9BB00973FA6 /* CurrencyUrlProviderMock.swift in Sources */,
 				E4F4B2422865FEF700CB7E15 /* CurrencyNetworkServiceMock.swift in Sources */,
 				E47A8E9F2869FBCB0000887C /* TranslateUrlProviderMock.swift in Sources */,
 				E47A8EA3286A068B0000887C /* TranslateNetworkServiceMock.swift in Sources */,
+				E482C72F286B065B006EC2A0 /* WeatherUrlProviderMock.swift in Sources */,
+				E482C731286B0723006EC2A0 /* WeatherNetworkServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

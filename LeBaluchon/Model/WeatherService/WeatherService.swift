@@ -11,9 +11,11 @@ import Foundation
 final class WeatherService {
     
     init(
-        networkService: NetworkServiceProtocol = NetworkService.shared
+        networkService: NetworkServiceProtocol = NetworkService.shared,
+        weatherUrlProvider: WeatherUrlProvider = WeatherUrlProvider.shared
     ) {
         self.networkService = networkService
+        self.weatherUrlProvider = weatherUrlProvider
     }
     
     
@@ -119,30 +121,13 @@ final class WeatherService {
     private let cities: [WeatherCitySelection] = WeatherCitySelection.allCases
     
     private let networkService: NetworkServiceProtocol
-    
-    private let apiKey = "fdec102a8f3538aeca01f9b15b1c58a7"
+    private let weatherUrlProvider: WeatherUrlProvider
     
     
     // MARK: - PRIVATE: methods
     
-    private func getWeatherUrl(city: String) -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
-        urlComponents.queryItems = [
-            .init(name: "q", value: city),
-            .init(name: "lang", value: "fr"),
-            .init(name: "units", value: "metric"),
-            .init(name: "appid", value: apiKey)
-        ]
-        
-        return urlComponents.url
-    }
-    
     private func fetch(citySelection: WeatherCitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
-        guard let url = getWeatherUrl(city: citySelection.title) else {
+        guard let url = weatherUrlProvider.getWeatherUrl(city: citySelection.title) else {
             return
         }
 
@@ -188,5 +173,29 @@ final class WeatherService {
         return cities.filter { city in
             city.title.lowercased().contains(searchText.lowercased())
         }
+    }
+}
+
+protocol WeatherUrlProviderProtocol {
+    func getWeatherUrl(city: String) -> URL?
+}
+
+final class WeatherUrlProvider: WeatherUrlProviderProtocol {
+    static let shared = WeatherUrlProvider()
+    
+    func getWeatherUrl(city: String) -> URL? {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
+        urlComponents.queryItems = [
+            .init(name: "q", value: city),
+            .init(name: "lang", value: "fr"),
+            .init(name: "units", value: "metric"),
+            .init(name: "appid", value: "fdec102a8f3538aeca01f9b15b1c58a7")
+        ]
+        
+        return urlComponents.url
     }
 }

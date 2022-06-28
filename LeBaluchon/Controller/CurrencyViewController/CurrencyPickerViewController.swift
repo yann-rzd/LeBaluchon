@@ -63,7 +63,7 @@ final class CurrencyPickerViewController: UIViewController {
         
         let clearButton = UIBarButtonItem(
             title: "CLEAR",
-            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptySourceText() } )
+            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptySearchText() } )
         )
         
         clearButton.tintColor = .gray

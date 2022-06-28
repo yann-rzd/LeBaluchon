@@ -123,7 +123,7 @@ final class CurrencyService: CurencyServiceProtocol {
         }
     }
     
-    func emptySourceText() {
+    func emptySearchText() {
         searchText.removeAll()
     }
     
