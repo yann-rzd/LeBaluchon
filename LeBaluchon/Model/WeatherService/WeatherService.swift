@@ -84,10 +84,9 @@ final class WeatherService {
         selectedCities.removeAll { citySelection in
             citySelection == city
         }
-        print("AFTER REMOVAL THERE IS \(selectedCities)")
     }
     
-    func emptySourceText() {
+    func emptySearchText() {
         searchText.removeAll()
     }
     

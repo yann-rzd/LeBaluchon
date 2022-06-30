@@ -10,6 +10,12 @@ import XCTest
 
 class WeatherServiceTests: XCTestCase {
     
+    var weatherService: WeatherService!
+    
+    override func setUp() {
+        super.setUp()
+        weatherService = WeatherService()
+    }
     // MARK: - fetchConversionRates
     
     func testGivenFailingNetwork_WhenFetchCity_ThenGetFailure() throws {
@@ -84,4 +90,43 @@ class WeatherServiceTests: XCTestCase {
 //        }
 //        wait(for: [expectation], timeout: 0.1)
 //    }
+    
+    // MARK: - add(city: WeatherCitySelection)
+    
+    func testGivenSelectedCitiesIsEmpty_WhenAddCity_ThenCityAddedToSelectedCities() {
+        weatherService.selectedCities = []
+        
+        weatherService.add(city: .newYork)
+        
+        XCTAssertEqual(weatherService.selectedCities, [.newYork])
+    }
+    
+    func testGivenSelectedCitiesContainsParis_WhenAddParis_ThenErrorOccured() {
+        weatherService.selectedCities = [.paris]
+        
+        weatherService.add(city: .paris)
+        
+        weatherService.didProduceError = { error in
+            XCTAssertEqual(error, WeatherServiceError.failedToAddNewCityAlreadyThere)
+        }
+    }
+    
+    // MARK: - removeCity(cityIndex: Int)
+    
+    func testGivenSelectedCitiesContainsACity_WhenRemomveCity_ThenCityIsRemovedFromSelectedCities() {
+        weatherService.selectedCities = [.newYork]
+        
+        weatherService.removeCity(cityIndex: 0)
+        
+        XCTAssertTrue(weatherService.selectedCities.isEmpty)
+    }
+    
+    // MARK: - emptySourceText
+    
+    func testGivenSourceTextIsNotEmpty_WhenDeleteSourceTextContent_ThenSourceTextIsEmpty() {
+        weatherService.searchText = "I am not empty"
+        weatherService.emptySearchText()
+        
+        XCTAssertEqual(weatherService.searchText, "")
+    }
 }

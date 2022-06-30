@@ -96,7 +96,7 @@ class CityPickerViewController: UIViewController {
         
         let clearButton = UIBarButtonItem(
             title: "CLEAR",
-            primaryAction: UIAction(handler: { [weak self] _ in self?.weatherService.emptySourceText() } )
+            primaryAction: UIAction(handler: { [weak self] _ in self?.weatherService.emptySearchText() } )
         )
         
         clearButton.tintColor = .gray
