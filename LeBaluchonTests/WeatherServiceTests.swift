@@ -33,63 +33,46 @@ class WeatherServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-//    func testGivenValidNetwork_WhenFetchCity_ThenGetSuccess() throws {
-//        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .success(<#T##WeatherCityResponse#>))
-//        let weatherService = WeatherService(networkService: failureNetworkServiceMock)
-//        
-//        let expectation = XCTestExpectation(description: "Wait for completion")
-//        
-//        weatherService.isLoadingDidChange = { [weak self] isLoading in
-//            if isLoading {
-//                XCTAssertEqual(is)
-//                expectation.fulfill()
-//            }
-//        }
-//        
-//        weatherService.fetchCitiesInformation()
-//        wait(for: [expectation], timeout: 0.1)
-//    }
-    
-    
-    func testGivenFailingUrl_WhenFetchCity_ThenGetFailure() throws {
-        let weatherUrlProviderMock = WeatherUrlProviderMock()
-        let weatherService = WeatherService(weatherUrlProvider: weatherUrlProviderMock)
-        
+    func testGivenFailureUrl_WhenFetchCity_ThenFailedToFetchCityWeather() {
+        let failureUrlProviderMock = WeatherUrlProviderMock()
+        let weatherService = WeatherService(weatherUrlProvider: failureUrlProviderMock)
         
         let expectation = XCTestExpectation(description: "Wait for completion")
-//
-//        weatherService.fetchCitiesInformation { result in
-//            switch result {
-//            case .failure(let error):
-//                XCTAssertEqual(error, WeatherServiceError.failedToFetchCityWeather)
-//            case .success:
-//                XCTFail("Should not be successful")
-//            }
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.1)
+        
+        weatherService.didProduceError = { error in
+            XCTAssertEqual(error, WeatherServiceError.failedToFetchCityWeather)
+            expectation.fulfill()
+        }
+        
+        weatherService.fetchCitiesInformation()
+        wait(for: [expectation], timeout: 0.1)
+        
+        
+        
+        
+        
+        
     }
     
-//    func testGivenValidNetwork_WhenFetchCity_ThenGetSuccess() throws {
-//        // let mockResponse =
-//
-//        let networkServiceMock = WeatherNetworkServiceMock(result: .success(mockResponse))
-//        let weatherService = WeatherService(networkService: networkServiceMock)
-//
-//        let expectation = XCTestExpectation(description: "Wait for completion")
-//
-//        weatherService.fetchCitiesInformation { result in
-//            switch result {
-//            case .failure:
-//                XCTFail("Should be succesful")
-//
-//            case .success:
-//                XCTAssertTrue(true)
-//            }
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.1)
-//    }
+    func testGivenValidNetworkWithNewYorkSelectedCity_WhenFetchCityAndFinishLoading_ThenGetSuccessfullyNewYorkData() throws {
+        let mockRepsonse = WeatherCityResponse.initWithDefaultValues()
+        
+        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .success(mockRepsonse))
+        let weatherService = WeatherService(networkService: failureNetworkServiceMock)
+
+        let expectation = XCTestExpectation(description: "Wait for completion")
+
+        weatherService.isLoadingDidChange = { [weak self] isLoading in
+            if !isLoading {
+                let newYorkCityData = try!  XCTUnwrap(weatherService.weatherCities[.newYork])
+                XCTAssertEqual(newYorkCityData.temparatureMin, 1)
+                expectation.fulfill()
+            }
+        }
+
+        weatherService.fetchCitiesInformation()
+        wait(for: [expectation], timeout: 0.1)
+    }
     
     // MARK: - add(city: WeatherCitySelection)
     

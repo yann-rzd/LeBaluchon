@@ -123,6 +123,7 @@ final class WeatherService {
     
     private func fetch(citySelection: WeatherCitySelection, completionHandler: @escaping (Result<WeatherCity, WeatherServiceError>) -> Void) {
         guard let url = weatherUrlProvider.getWeatherUrl(city: citySelection.title) else {
+            completionHandler(.failure(.failedToFetchCityWeather))
             return
         }
 

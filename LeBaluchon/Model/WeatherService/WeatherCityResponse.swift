@@ -20,6 +20,38 @@ struct WeatherCityResponse: Codable {
     let timezone, id: Int
     let name: String
     let cod: Int
+    
+    
+    static func initWithDefaultValues() -> Self {
+        WeatherCityResponse(
+            coord: .init(lon: 10, lat: 50),
+            weather: [],
+            base: "",
+            main: .init(
+                temp: 10,
+                feelsLike: 1,
+                tempMin: 1,
+                tempMax: 1,
+                pressure: 1,
+                humidity: 1
+            ),
+            visibility: 1,
+            wind: .init(speed: 1, deg: 1),
+            clouds: .init(all: 1),
+            dt: 1,
+            sys: .init(
+                type: 1,
+                id: 1,
+                country: "NewYork",
+                sunrise: 1,
+                sunset: 1
+            ),
+            timezone: 1,
+            id: 1,
+            name: "Name",
+            cod: 1
+        )
+    }
 }
 
 struct Coord: Codable {
