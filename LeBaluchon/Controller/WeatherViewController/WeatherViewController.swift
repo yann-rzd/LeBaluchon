@@ -60,6 +60,18 @@ final class WeatherViewController: UIViewController {
         return refreshDataBarButton
     }()
     
+    private var loadingBarButtonItem: UIBarButtonItem = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+        activityIndicatorView.color = .white
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        
+        let loadingBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
+        return loadingBarButtonItem
+    }()
+    
+    private let refreshControl = UIRefreshControl()
+    
     private let weatherService = WeatherService.shared
     
     // MARK: - PRIVATE: methods
@@ -100,19 +112,6 @@ final class WeatherViewController: UIViewController {
         present(navigationController, animated: true, completion: nil)
     }
 
-    
-    private var loadingBarButtonItem: UIBarButtonItem = {
-        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
-        activityIndicatorView.color = .white
-        activityIndicatorView.hidesWhenStopped = true
-        activityIndicatorView.startAnimating()
-        
-        let loadingBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
-        return loadingBarButtonItem
-    }()
-    
-    
-    
     @objc private func didTapRefreshButton() {
         weatherService.fetchCitiesInformation()
     }
@@ -125,7 +124,7 @@ final class WeatherViewController: UIViewController {
     }
     
     
-    private let refreshControl = UIRefreshControl()
+    
     
 }
 
@@ -142,9 +141,7 @@ extension WeatherViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        
         let selectedCity = weatherService.selectedCities[indexPath.row]
-        print("SELECTED CITY => ✅✅ \(selectedCity)")
         
         cell.citySelection = selectedCity
         cell.cityWeatherModel = weatherService.weatherCities[selectedCity]

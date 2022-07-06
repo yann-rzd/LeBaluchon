@@ -28,11 +28,16 @@ final class CurrencyService: CurencyServiceProtocol {
     var onSourceCurrencyChanged: ((Currency) -> Void)?
     var onTargetCurrencyChanged: ((Currency) -> Void)?
     var onSearchResultChanged: (() -> Void)?
+    var isLoadingDidChange: ((Bool) -> Void)?
+    
+    var isLoading: Bool {
+        currentDownloadCount != 0
+    }
     
     var valueToConvert: Int? = 1 {
         didSet {
             onValueToConvertChanged?(valueToConvert)
-            if let valueToConvert = valueToConvert {
+            if valueToConvert != nil {
                 convertValue()
             } else {
                 convertedValue = nil
@@ -106,6 +111,7 @@ final class CurrencyService: CurencyServiceProtocol {
         
         urlRequest.httpMethod = "GET"
         
+        currentDownloadCount += 1
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<FixerLatestResponse, NetworkServiceError>) in
             switch result {
             case .failure:
@@ -118,8 +124,8 @@ final class CurrencyService: CurencyServiceProtocol {
                 completionHandler(.success(()))
                 print(ratesResponse)
                 return
-                
             }
+            self?.currentDownloadCount -= 1
         }
     }
     
@@ -156,13 +162,19 @@ final class CurrencyService: CurencyServiceProtocol {
         // SOURCE CHF 1.1 / EUR 1.0
         // TARGET USD 1.5 / EUR 1.0
         
-        // (1.5 / 1.0) * (1.0 / 1.2) => 1.5 / 1.2
+        // (1.5 / 1.0) * (1.0 / 1.1) => 1.5 / 1.1
         
         return targetRate / sourceRate
 
     }
     
     private var rates: [String: Double]?
+    
+    private var currentDownloadCount = 0 {
+        didSet {
+            isLoadingDidChange?(isLoading)
+        }
+    }
     
     
     // MARK: - PRIVATE: methods

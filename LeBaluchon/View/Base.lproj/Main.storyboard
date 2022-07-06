@@ -81,11 +81,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="81" id="2K2-mm-Ena"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="EUR">
-                                            <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
-                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="EUR"/>
                                         <connections>
                                             <segue destination="oUg-Sk-jZB" kind="presentation" identifier="CurrencySourceSegue" id="4RZ-Bk-n2n"/>
                                         </connections>
@@ -107,11 +105,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="81" id="ZkH-4h-eg9"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="USD">
-                                            <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
-                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="26"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="USD"/>
                                         <connections>
                                             <segue destination="oUg-Sk-jZB" kind="presentation" identifier="CurrencyTargetSegue" id="M9s-fe-Dex"/>
                                         </connections>
@@ -206,11 +202,9 @@
                                             <constraint firstAttribute="width" constant="140" id="vs0-R0-swv"/>
                                             <constraint firstAttribute="height" constant="43" id="wVY-OJ-ZPt"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" title="Anglais">
-                                            <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                            <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Anglais"/>
                                         <connections>
                                             <segue destination="e4D-zZ-BI5" kind="presentation" identifier="LanguageTargetSegue" id="Ibe-P7-6cy"/>
                                         </connections>

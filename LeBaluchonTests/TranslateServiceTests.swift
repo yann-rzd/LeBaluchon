@@ -121,27 +121,7 @@ class TranslateServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-    
-//    func testGivenFailureTranslationResponse_WhenFetchTranslation_ThenGetFailure() throws {
-//        let mockResponse = TranslationResponseMock(data: nil)
-//        
-//        let networkServiceMock = TranslateNetworkServiceFailureResponseMock(result: .success(mockResponse))
-//        let translateService = TranslateService(networkService: networkServiceMock)
-//        
-//        let expectation = XCTestExpectation(description: "Wait for completion")
-//        
-//        translateService.fetchTranslation { result in
-//            switch result {
-//            case .failure:
-//                XCTFail("Should be succesful")
-//            case .success(let error):
-//                XCTAssertTrue(true)
-//                XCTAssertEqual(error, .failedToFetchTranslation)
-//            }
-//            expectation.fulfill()
-//        }
-//        wait(for: [expectation], timeout: 0.1)
-//    }
+
     
     //MARK: - assignLanguage
     

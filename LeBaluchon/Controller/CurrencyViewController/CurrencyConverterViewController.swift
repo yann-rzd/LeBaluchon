@@ -22,11 +22,25 @@ final class CurrencyConverterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar(isLoading: currencyService.isLoading)
         valueToConvertTextField.delegate = self
         valueConvertedTextField.inputView = UIView()
+
+        sourceCurrencyButton.layer.borderWidth = 1
+        sourceCurrencyButton.layer.cornerRadius = 5
+        sourceCurrencyButton.layer.borderColor = UIColor.currencyButtonBorderColor.cgColor
+        
+        targetCurrencyButton.layer.borderWidth = 1
+        targetCurrencyButton.layer.cornerRadius = 5
+        targetCurrencyButton.layer.borderColor = UIColor.currencyButtonBorderColor.cgColor
+        
+        refreshControl.addTarget(self, action: #selector(didTapRefreshRatesButton), for: .valueChanged)
         
         setupBindings()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         currencyService.fetchConversionRates { result in
             DispatchQueue.main.async {
                 switch result {
@@ -37,16 +51,6 @@ final class CurrencyConverterViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let refreshRatesBarButtonImage = UIImage(systemName: "arrow.counterclockwise")
-        let refreshRatesBarButton = UIBarButtonItem(image: refreshRatesBarButtonImage, style: .plain, target: self, action: #selector(didTapRefreshRatesButton))
-        navigationItem.rightBarButtonItem = refreshRatesBarButton
-        refreshRatesBarButton.tintColor = .white
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,31 +61,14 @@ final class CurrencyConverterViewController: UIViewController {
         {
             switch segueIdentifier {
             case "CurrencySourceSegue":
-                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE SOURCE")
                 currencyService.currencySelectionType = .source
             case "CurrencyTargetSegue":
-                print("1. JE COMMENCE LE PROCESSUS DE SELECTION DE LA DEVISE CIBLE")
                 currencyService.currencySelectionType = .target
             default: break
             }
-            
-            print("2. JE PRESENTE LECRAN DE SELECTION DE DEVISE")
         }
     }
 
-    @objc public func didTapRefreshRatesButton() {
-        currencyService.fetchConversionRates { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let rates):
-                    print(rates)
-                }
-            }
-        }
-    }
-    
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         valueToConvertTextField.resignFirstResponder()
         valueConvertedTextField.resignFirstResponder()
@@ -96,19 +83,35 @@ final class CurrencyConverterViewController: UIViewController {
     // MARK: - PRIVATE: properties
     
     private let currencyService = CurrencyService.shared
+
+    private lazy var refreshBarButton: UIBarButtonItem = {
+        let refreshDataImage = UIImage(systemName: "arrow.clockwise")
+        let refreshDataBarButton = UIBarButtonItem(image: refreshDataImage, style: .plain, target: self, action: #selector(didTapRefreshRatesButton))
+        refreshDataBarButton.tintColor = .white
+        return refreshDataBarButton
+    }()
+    
+    private var loadingBarButtonItem: UIBarButtonItem = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+        activityIndicatorView.color = .white
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.startAnimating()
+        
+        let loadingBarButtonItem = UIBarButtonItem(customView: activityIndicatorView)
+        return loadingBarButtonItem
+    }()
+    
+    private let refreshControl = UIRefreshControl()
     
     
     // MARK: - PRIVATE: methods
     
     private func setupBindings() {
-        print("0. J?ASSIGNE LES BLOCKS DE CODES POUR INDIQUER QUOI FAIRE QUAND SOURCE ETT TARGET CHANGENT")
         currencyService.onSourceCurrencyChanged = { [weak self] sourceCurrency in
-            print("7. LA SOURCE A CHANGE JAPPLIQUER (ViewController) LES CHANGEMENT (assigner au source currency button le titre)")
             self?.sourceCurrencyButton.setTitle(sourceCurrency.rawValue, for: .normal)
         }
         
         currencyService.onTargetCurrencyChanged = { [weak self] targetCurrency in
-            print("7. LA TARGET A CHANGE JAPPLIQUER (ViewController) LES CHANGEMENT (assigner au target currency button le titre)")
             self?.targetCurrencyButton.setTitle(targetCurrency.rawValue, for: .normal)
         }
         
@@ -119,6 +122,34 @@ final class CurrencyConverterViewController: UIViewController {
         currencyService.onConvertedValueChanged =  { [weak self] convertedValue in
             self?.valueConvertedTextField.text = convertedValue?.description ?? ""
         }
+        
+        currencyService.isLoadingDidChange = { [weak self] isLoading in
+            DispatchQueue.main.async {
+                self?.setupNavigationBar(isLoading: isLoading)
+                if !isLoading {
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+        }
+    }
+    
+    @objc private func didTapRefreshRatesButton() {
+        currencyService.fetchConversionRates { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let rates):
+                    print(rates)
+                }
+            }
+        }
+    }
+    
+    private func setupNavigationBar(isLoading: Bool) {
+        navigationItem.rightBarButtonItems = [
+            isLoading ? loadingBarButtonItem : refreshBarButton
+        ]
     }
 }
 
@@ -151,6 +182,15 @@ extension CurrencyConverterViewController: UITextFieldDelegate {
         currencyService.valueToConvert = valueToConvert
         
         return false
+    }
+}
+
+extension UIColor {
+    class var currencyButtonBorderColor: UIColor {
+        if let color = UIColor(named: "customBlue") {
+            return color
+        }
+        fatalError("Could not find weatherCellsBackground color")
     }
 }
 

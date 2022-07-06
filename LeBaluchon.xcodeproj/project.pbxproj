@@ -251,8 +251,8 @@
 				E45B8C2827E386E100238229 /* CurrencyServiceTests.swift */,
 				E47A8EA02869FC3E0000887C /* TranslateServiceTests.swift */,
 				E482C72C286AFE4C006EC2A0 /* WeatherServiceTests.swift */,
-				E4D54E7F2864B99D00973FA6 /* Mocks */,
 				E4DF9E33286DEC11002AF8AE /* NetworkServiceTests.swift */,
+				E4D54E7F2864B99D00973FA6 /* Mocks */,
 			);
 			path = LeBaluchonTests;
 			sourceTree = "<group>";

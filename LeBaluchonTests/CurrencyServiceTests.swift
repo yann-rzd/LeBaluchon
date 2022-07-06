@@ -71,6 +71,8 @@ class CurrencyServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for completion")
         
+        
+        
         currencyService.fetchConversionRates { result in
             switch result {
             case .failure:
@@ -78,10 +80,12 @@ class CurrencyServiceTests: XCTestCase {
                 
             case .success:
                 XCTAssertTrue(true)
+                
             }
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 0.1)
+        
     }
     
     // MARK: - swapCurrencies
@@ -144,6 +148,10 @@ class CurrencyServiceTests: XCTestCase {
         currencyService.valueToConvert = nil
         
         XCTAssertEqual(currencyService.convertedValue, nil)
+    }
+    
+    func testGivenzf_Whenzef_Thenzf() {
+        
     }
 }
 

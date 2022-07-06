@@ -25,6 +25,11 @@ class TranslateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupToolBar()
+        
+        targetLanguageTextView.layer.borderWidth = 1
+        targetLanguageTextView.layer.cornerRadius = 5
+        targetLanguageTextView.layer.borderColor = UIColor.TranslateButtonBorderColor.cgColor
+        
         sourceLanguageTextView.delegate = self
         sourceLanguageTextView.text = ""
         sourceLanguageTextView.layer.cornerRadius = 10.0
@@ -166,5 +171,14 @@ extension TranslateViewController: UITextViewDelegate {
         translateService.sourceText = valueToConvertText
         
         return false
+    }
+}
+
+extension UIColor {
+    class var TranslateButtonBorderColor: UIColor {
+        if let color = UIColor(named: "customBlue") {
+            return color
+        }
+        fatalError("Could not find weatherCellsBackground color")
     }
 }
