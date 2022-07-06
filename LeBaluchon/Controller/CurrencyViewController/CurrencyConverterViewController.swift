@@ -24,6 +24,7 @@ final class CurrencyConverterViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar(isLoading: currencyService.isLoading)
         setupToolBar()
+        
         valueToConvertTextField.delegate = self
         valueConvertedTextField.inputView = UIView()
 
@@ -108,9 +109,15 @@ final class CurrencyConverterViewController: UIViewController {
     // MARK: - PRIVATE: methods
     
     private func setupBindings() {
-        currencyService.onSourceTextChanged = { [weak self] valueToConvert in
+        currencyService.onSourceValueTextChanged = { [weak self] valueToConvert in
             DispatchQueue.main.async {
                 self?.valueToConvertTextField.text = valueToConvert
+            }
+        }
+        
+        currencyService.onConvertedValueTextChanged = { [weak self] convertedValue in
+            DispatchQueue.main.async {
+                self?.valueConvertedTextField.text = convertedValue
             }
         }
         
@@ -136,6 +143,12 @@ final class CurrencyConverterViewController: UIViewController {
                 if !isLoading {
                     self?.refreshControl.endRefreshing()
                 }
+            }
+        }
+        
+        currencyService.didProduceError = { [weak self] currencyServiceError in
+            DispatchQueue.main.async {
+                self?.displayAlert(error: currencyServiceError)
             }
         }
     }
@@ -164,7 +177,7 @@ final class CurrencyConverterViewController: UIViewController {
         
         let clearButton = UIBarButtonItem(
             title: "CLEAR",
-            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptySourceText() } )
+            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptyValues() } )
         )
         
         clearButton.tintColor = .gray
@@ -182,6 +195,13 @@ final class CurrencyConverterViewController: UIViewController {
         
         toolBar.sizeToFit()
         valueToConvertTextField.inputAccessoryView = toolBar
+    }
+    
+    private func displayAlert(error: CurrencyServiceError) {
+        let alertController = UIAlertController(title: error.alertTitle, message: error.alertMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
 }
 

@@ -29,16 +29,23 @@ final class CurrencyService: CurencyServiceProtocol {
     var onTargetCurrencyChanged: ((Currency) -> Void)?
     var onSearchResultChanged: (() -> Void)?
     var isLoadingDidChange: ((Bool) -> Void)?
-    var onSourceTextChanged: ((String) -> Void)?
+    var onSourceValueTextChanged: ((String) -> Void)?
+    var onConvertedValueTextChanged: ((String) -> Void)?
+    var didProduceError: ((CurrencyServiceError) -> Void)?
     
     var isLoading: Bool {
         currentDownloadCount != 0
     }
     
-    var sourceText = "" {
+    var sourceValueText = "" {
         didSet {
-            print(sourceText)
-            onSourceTextChanged?(sourceText)
+            onSourceValueTextChanged?(sourceValueText)
+        }
+    }
+    
+    var convertedValueText = "" {
+        didSet {
+            onConvertedValueTextChanged?(convertedValueText)
         }
     }
 
@@ -112,6 +119,7 @@ final class CurrencyService: CurencyServiceProtocol {
     func fetchConversionRates(completionHandler: @escaping (Result<Void, CurrencyServiceError>) -> Void) {
        
         guard let url = currencyUrlProvider.getRatesUrl() else {
+            self.didProduceError?(.failedToFetchConversionRate)
             completionHandler(.failure(.failedToFetchConversionRate))
             return
         }
@@ -123,9 +131,8 @@ final class CurrencyService: CurencyServiceProtocol {
         currentDownloadCount += 1
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<FixerLatestResponse, NetworkServiceError>) in
             switch result {
-            case .failure:
+            case .failure(let error):
                 completionHandler(.failure(.failedToFetchConversionRate))
-                print("Erreur lors de la récupération des taux de conversion")
                 return
             case .success(let ratesResponse):
                 let rates = ratesResponse.rates
@@ -138,9 +145,11 @@ final class CurrencyService: CurencyServiceProtocol {
         }
     }
     
-    func emptySourceText() {
-        sourceText.removeAll()
+    func emptyValues() {
+        sourceValueText.removeAll()
+        convertedValueText.removeAll()
     }
+
     
     func emptySearchText() {
         searchText.removeAll()

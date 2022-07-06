@@ -26,9 +26,9 @@ class TranslateViewController: UIViewController {
         super.viewDidLoad()
         setupToolBar()
         
-        targetLanguageTextView.layer.borderWidth = 1
-        targetLanguageTextView.layer.cornerRadius = 5
-        targetLanguageTextView.layer.borderColor = UIColor.TranslateButtonBorderColor.cgColor
+        targetLanguageButton.layer.borderWidth = 1
+        targetLanguageButton.layer.cornerRadius = 5
+        targetLanguageButton.layer.borderColor = UIColor.TranslateButtonBorderColor.cgColor
         
         sourceLanguageTextView.delegate = self
         sourceLanguageTextView.text = ""
