@@ -29,10 +29,19 @@ final class CurrencyService: CurencyServiceProtocol {
     var onTargetCurrencyChanged: ((Currency) -> Void)?
     var onSearchResultChanged: (() -> Void)?
     var isLoadingDidChange: ((Bool) -> Void)?
+    var onSourceTextChanged: ((String) -> Void)?
     
     var isLoading: Bool {
         currentDownloadCount != 0
     }
+    
+    var sourceText = "" {
+        didSet {
+            print(sourceText)
+            onSourceTextChanged?(sourceText)
+        }
+    }
+
     
     var valueToConvert: Int? = 1 {
         didSet {
@@ -127,6 +136,10 @@ final class CurrencyService: CurencyServiceProtocol {
             }
             self?.currentDownloadCount -= 1
         }
+    }
+    
+    func emptySourceText() {
+        sourceText.removeAll()
     }
     
     func emptySearchText() {

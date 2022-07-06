@@ -23,6 +23,7 @@ final class CurrencyConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar(isLoading: currencyService.isLoading)
+        setupToolBar()
         valueToConvertTextField.delegate = self
         valueConvertedTextField.inputView = UIView()
 
@@ -107,6 +108,12 @@ final class CurrencyConverterViewController: UIViewController {
     // MARK: - PRIVATE: methods
     
     private func setupBindings() {
+        currencyService.onSourceTextChanged = { [weak self] valueToConvert in
+            DispatchQueue.main.async {
+                self?.valueToConvertTextField.text = valueToConvert
+            }
+        }
+        
         currencyService.onSourceCurrencyChanged = { [weak self] sourceCurrency in
             self?.sourceCurrencyButton.setTitle(sourceCurrency.rawValue, for: .normal)
         }
@@ -150,6 +157,31 @@ final class CurrencyConverterViewController: UIViewController {
         navigationItem.rightBarButtonItems = [
             isLoading ? loadingBarButtonItem : refreshBarButton
         ]
+    }
+    
+    private func setupToolBar() {
+        let toolBar = UIToolbar()
+        
+        let clearButton = UIBarButtonItem(
+            title: "CLEAR",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.currencyService.emptySourceText() } )
+        )
+        
+        clearButton.tintColor = .gray
+        
+        let doneButton = UIBarButtonItem(
+            title: "DONE",
+            primaryAction: UIAction(handler: { [weak self] _ in self?.view.endEditing(true) } )
+        )
+        
+        toolBar.items = [
+            clearButton,
+            .flexibleSpace(),
+            doneButton
+        ]
+        
+        toolBar.sizeToFit()
+        valueToConvertTextField.inputAccessoryView = toolBar
     }
 }
 

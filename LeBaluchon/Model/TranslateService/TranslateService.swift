@@ -54,11 +54,10 @@ final class TranslateService {
     }
     
     var sourceText = "" {
-            didSet {
-                print(sourceText)
-                onSourceTextChanged?(sourceText)
-            }
+        didSet {
+            onSourceTextChanged?(sourceText)
         }
+    }
     
     var searchText = "" {
         didSet {
