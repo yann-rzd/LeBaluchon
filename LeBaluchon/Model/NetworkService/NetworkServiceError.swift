@@ -8,5 +8,7 @@
 import Foundation
 
 enum NetworkServiceError: Error {
-    case failedToFetch
+    case failedToFetchUnknownError
+    case failedToFetchBadStatusCode
+    case failedToFetchCouldNoDecode
 }

@@ -20,7 +20,7 @@ class TranslateServiceTests: XCTestCase {
     //MARK: - fetchTranslation
     
     func testGivenFailingNetwork_WhenFetchTranslation_ThenGetFailure() throws {
-        let failureNetworkServiceMock = TranslateNetworkServiceMock(result: .failure(.failedToFetch))
+        let failureNetworkServiceMock = TranslateNetworkServiceMock(result: .failure(.failedToFetchCouldNoDecode))
         let translateService = TranslateService(networkService: failureNetworkServiceMock)
         
         let expectation = XCTestExpectation(description: "Wait for completion")

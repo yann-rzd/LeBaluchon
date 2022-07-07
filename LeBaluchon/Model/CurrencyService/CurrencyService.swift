@@ -117,7 +117,7 @@ final class CurrencyService: CurencyServiceProtocol {
     }
     
     func fetchConversionRates(completionHandler: @escaping (Result<Void, CurrencyServiceError>) -> Void) {
-       
+        
         guard let url = currencyUrlProvider.getRatesUrl() else {
             self.didProduceError?(.failedToFetchConversionRate)
             completionHandler(.failure(.failedToFetchConversionRate))
@@ -130,18 +130,21 @@ final class CurrencyService: CurencyServiceProtocol {
         
         currentDownloadCount += 1
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<FixerLatestResponse, NetworkServiceError>) in
+            self?.currentDownloadCount -= 1
             switch result {
-            case .failure(let error):
+            case .failure:
                 completionHandler(.failure(.failedToFetchConversionRate))
+                self?.didProduceError?(.failedToFetchConversionRate)
                 return
             case .success(let ratesResponse):
                 let rates = ratesResponse.rates
                 self?.rates = rates
+                self?.convertValue()
                 completionHandler(.success(()))
                 print(ratesResponse)
                 return
             }
-            self?.currentDownloadCount -= 1
+            
         }
     }
     

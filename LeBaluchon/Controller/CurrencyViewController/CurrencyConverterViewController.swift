@@ -122,19 +122,28 @@ final class CurrencyConverterViewController: UIViewController {
         }
         
         currencyService.onSourceCurrencyChanged = { [weak self] sourceCurrency in
-            self?.sourceCurrencyButton.setTitle(sourceCurrency.rawValue, for: .normal)
+            DispatchQueue.main.async {
+                self?.sourceCurrencyButton.setTitle(sourceCurrency.rawValue, for: .normal)
+            }
         }
         
         currencyService.onTargetCurrencyChanged = { [weak self] targetCurrency in
-            self?.targetCurrencyButton.setTitle(targetCurrency.rawValue, for: .normal)
+            DispatchQueue.main.async {
+                self?.targetCurrencyButton.setTitle(targetCurrency.rawValue, for: .normal)
+            }
         }
         
         currencyService.onValueToConvertChanged = { [weak self] valueToConvert in
-            self?.valueToConvertTextField.text = valueToConvert?.description ?? ""
+            DispatchQueue.main.async {
+                self?.valueToConvertTextField.text = valueToConvert?.description ?? ""
+            }
         }
         
+        
         currencyService.onConvertedValueChanged =  { [weak self] convertedValue in
-            self?.valueConvertedTextField.text = convertedValue?.description ?? ""
+            DispatchQueue.main.async {
+                self?.valueConvertedTextField.text = convertedValue?.description ?? ""
+            }
         }
         
         currencyService.isLoadingDidChange = { [weak self] isLoading in

@@ -166,11 +166,12 @@ extension TranslateViewController: UITextViewDelegate {
         else {
             return false
         }
-        
+
         let valueToConvertText = textViewText.replacingCharacters(in: rangeIn, with: text)
+        
         translateService.sourceText = valueToConvertText
         
-        return false
+        return text.count > 1
     }
 }
 

@@ -20,7 +20,7 @@ class CurrencyServiceTests: XCTestCase {
     // MARK: - fetchConversionRates
     
     func testGivenFailingNetwork_WhenFetchRates_ThenGetFailure() throws {
-        let failureNetworkServiceMock = CurrencyNetworkServiceMock(result: .failure(.failedToFetch))
+        let failureNetworkServiceMock = CurrencyNetworkServiceMock(result: .failure(.failedToFetchBadStatusCode))
         let currencyService = CurrencyService(networkService: failureNetworkServiceMock)
         
         let expectation = XCTestExpectation(description: "Wait for completion")
@@ -134,6 +134,17 @@ class CurrencyServiceTests: XCTestCase {
         currencyService.emptySearchText()
         
         XCTAssertEqual(currencyService.searchText, "")
+    }
+    
+    // MARK: - empty values
+    
+    func testGivenValuesTextAreNotEmpty_WhenDeleteValuesTextContent_ThenValuesTexAreEmpty() {
+        currencyService.sourceValueText = "I am not empty"
+        currencyService.convertedValueText = "I am not empty"
+        currencyService.emptyValues()
+        
+        XCTAssertEqual(currencyService.sourceValueText, "")
+        XCTAssertEqual(currencyService.convertedValueText, "")
     }
 
     // MARK: - convert value

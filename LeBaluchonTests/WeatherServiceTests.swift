@@ -16,10 +16,15 @@ class WeatherServiceTests: XCTestCase {
         super.setUp()
         weatherService = WeatherService()
     }
+    
+    override func tearDown() {
+        super.tearDown()
+        weatherService = nil
+    }
     // MARK: - fetchConversionRates
     
     func testGivenFailingNetwork_WhenFetchCity_ThenGetFailure() throws {
-        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .failure(.failedToFetch))
+        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .failure(.failedToFetchUnknownError))
         let weatherService = WeatherService(networkService: failureNetworkServiceMock)
         
         let expectation = XCTestExpectation(description: "Wait for completion")
@@ -55,14 +60,14 @@ class WeatherServiceTests: XCTestCase {
     }
     
     func testGivenValidNetworkWithNewYorkSelectedCity_WhenFetchCityAndFinishLoading_ThenGetSuccessfullyNewYorkData() throws {
-        let mockRepsonse = WeatherCityResponse.initWithDefaultValues()
+        let mockResponse = WeatherCityResponse.initWithDefaultValues()
         
-        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .success(mockRepsonse))
+        let failureNetworkServiceMock = WeatherNetworkServiceMock(result: .success(mockResponse))
         let weatherService = WeatherService(networkService: failureNetworkServiceMock)
 
         let expectation = XCTestExpectation(description: "Wait for completion")
 
-        weatherService.isLoadingDidChange = { [weak self] isLoading in
+        weatherService.isLoadingDidChange = { isLoading in
             if !isLoading {
                 let newYorkCityData = try!  XCTUnwrap(weatherService.weatherCities[.newYork])
                 XCTAssertEqual(newYorkCityData.temparatureMin, 1)
@@ -84,14 +89,24 @@ class WeatherServiceTests: XCTestCase {
         XCTAssertEqual(weatherService.selectedCities, [.newYork])
     }
     
+    
+    
     func testGivenSelectedCitiesContainsParis_WhenAddParis_ThenErrorOccured() {
         weatherService.selectedCities = [.paris]
         
-        weatherService.add(city: .paris)
+        
+        let expectation = XCTestExpectation(description: "Wait for completion")
         
         weatherService.didProduceError = { error in
             XCTAssertEqual(error, WeatherServiceError.failedToAddNewCityAlreadyThere)
+            expectation.fulfill()
         }
+        
+        
+        weatherService.add(city: .paris)
+
+      
+        wait(for: [expectation], timeout: 0.1)
     }
     
     // MARK: - removeCity(cityIndex: Int)
