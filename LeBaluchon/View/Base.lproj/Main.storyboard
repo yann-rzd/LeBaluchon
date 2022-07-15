@@ -174,25 +174,26 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="FJh-V8-z5O">
                                 <rect key="frame" x="20" y="128" width="374" height="43"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-wA-UIT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-wA-UIT">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="6Us-Wp-aKM"/>
                                             <constraint firstAttribute="height" constant="43" id="kMB-u2-xrE"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Français">
-                                            <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                                        </buttonConfiguration>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Français"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp3-Bg-NDU">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kp3-Bg-NDU">
                                         <rect key="frame" x="165.5" y="0.0" width="43" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="EKe-LU-jTz"/>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="43" id="nlE-Pq-JsM"/>
+                                            <constraint firstAttribute="width" constant="43" id="nlE-Pq-JsM"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button" image="right-arrows"/>
+                                        <state key="normal" image="right-arrows">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcH-fb-elr">
                                         <rect key="frame" x="234" y="0.0" width="140" height="43"/>
@@ -208,9 +209,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Kp3-Bg-NDU" firstAttribute="centerX" secondItem="FJh-V8-z5O" secondAttribute="centerX" id="gZO-AC-i6R"/>
-                                </constraints>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FH0-x5-SEp">
                                 <rect key="frame" x="20" y="187" width="374" height="281.5"/>
