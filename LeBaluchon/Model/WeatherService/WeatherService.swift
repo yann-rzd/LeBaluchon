@@ -131,7 +131,7 @@ final class WeatherService {
 
         urlRequest.httpMethod = "GET"
 
-        networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<WeatherCityResponse, NetworkServiceError>) in
+        networkService.fetch(urlRequest: urlRequest) { (result: Result<WeatherCityResponse, NetworkServiceError>) in
             switch result {
             case .failure:
                 completionHandler(.failure(.failedToFetchCityWeather))

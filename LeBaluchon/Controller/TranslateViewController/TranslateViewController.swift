@@ -70,7 +70,7 @@ class TranslateViewController: UIViewController {
     @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
         translateService.fetchTranslation { result in
             switch result {
-            case .failure(let error):
+            case .failure:
                 self.presentAlert()
             case .success:
                 print("Success")

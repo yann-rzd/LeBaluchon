@@ -51,7 +51,7 @@ class NetworkServiceTests: XCTestCase {
             urlRequest: urlRequest
         ) { (result: Result<MockCodable, NetworkServiceError> ) in
             switch result {
-            case .failure(let error):
+            case .failure:
                 XCTFail("Should not be successful")
             case .success:
                 XCTAssertTrue(true)
