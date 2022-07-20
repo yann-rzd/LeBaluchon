@@ -8,7 +8,6 @@
 import UIKit
 
 final class CustomCityPickerTableViewCell: UITableViewCell {
-    static let identifier = "CustomCityPickerTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,6 +19,11 @@ final class CustomCityPickerTableViewCell: UITableViewCell {
         commonInit()
     }
     
+    
+    // MARK: - INTERNAL: properties
+    
+    static let identifier = "CustomCityPickerTableViewCell"
+
     
     // MARK: - PRIVATE: methods
     

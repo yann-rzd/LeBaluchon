@@ -141,7 +141,6 @@ final class CurrencyService: CurencyServiceProtocol {
                 self?.rates = rates
                 self?.convertValue()
                 completionHandler(.success(()))
-                print(ratesResponse)
                 return
             }
             
@@ -225,9 +224,6 @@ final class CurrencyService: CurencyServiceProtocol {
         self.convertedValue =  Double(valueToConvert) * conversionRate
     }
 }
-
-
-
 
 protocol CurrencyUrlProviderProtocol {
     func getRatesUrl() -> URL?

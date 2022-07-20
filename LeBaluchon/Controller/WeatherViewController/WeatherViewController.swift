@@ -18,12 +18,12 @@ final class WeatherViewController: UIViewController {
         tableView.backgroundColor = UIColor.tableViewBackground
         tableView.dataSource = self
         tableView.refreshControl = refreshControl
-        
         refreshControl.addTarget(self, action: #selector(didTapRefreshButton), for: .valueChanged)
         
         view.addSubview(tableView)
         
         setupBindings()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -122,10 +122,6 @@ final class WeatherViewController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
-    
-    
-    
-    
 }
 
 

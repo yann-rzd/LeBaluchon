@@ -36,7 +36,6 @@ final class NetworkService: NetworkServiceProtocol {
                 completionHandler(.failure(.failedToFetchBadStatusCode))
                 return
             }
-            
 
             let jsonDecoder = JSONDecoder()
             

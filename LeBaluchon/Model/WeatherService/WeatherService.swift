@@ -107,6 +107,7 @@ final class WeatherService {
     
     
     // MARK: - PRIVATE: properties
+    
     private var currentDownloadCount = 0 {
         didSet {
             isLoadingDidChange?(isLoading)
@@ -130,12 +131,11 @@ final class WeatherService {
         var urlRequest = URLRequest(url: url)
 
         urlRequest.httpMethod = "GET"
-
+        
         networkService.fetch(urlRequest: urlRequest) { (result: Result<WeatherCityResponse, NetworkServiceError>) in
             switch result {
             case .failure:
                 completionHandler(.failure(.failedToFetchCityWeather))
-                print("Erreur lors de la récupération de la météo")
                 return
             case .success(let weatherCityResponse):
                 let cityName = weatherCityResponse.name
@@ -156,7 +156,6 @@ final class WeatherService {
                 
                 completionHandler(.success(weatherCity))
                 return
-
             }
         }
     }

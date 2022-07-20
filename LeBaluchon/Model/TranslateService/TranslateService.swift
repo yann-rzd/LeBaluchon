@@ -119,12 +119,10 @@ final class TranslateService {
         
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        print("✅✅ is  Loading => SET TO TRUE ")
         isLoading = true
         
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<TranslationResponse, NetworkServiceError>) in
             
-            print("❌❌ is  Loading => SET TO FALSE ")
             self?.isLoading = false
             
             switch result {
