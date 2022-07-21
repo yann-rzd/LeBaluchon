@@ -147,11 +147,9 @@ struct MockCodable: Codable {
 }
 
 
-
 protocol MockURLResponder {
     static func respond(to request: URLRequest) throws -> FakeContainerResponder
 }
-
 
 
 struct FakeContainerResponder {
@@ -159,6 +157,7 @@ struct FakeContainerResponder {
     let statusCode: Int
     let error: MockError?
 }
+
 
 class DataSuccessNoErrorResponder: MockURLResponder {
     static func respond(to request: URLRequest) throws -> FakeContainerResponder {
@@ -207,33 +206,20 @@ class DataSuccessWithErrorResponder: MockURLResponder {
 }
 
 
-
 class MockUrlProtocol<Responder: MockURLResponder>: URLProtocol {
 
     override class func canInit(with request: URLRequest) -> Bool {
         true
     }
 
-
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         request
     }
-
 
     override func startLoading() {
         guard let client = client else { return }
 
         do {
-            // Here we try to get data from our responder type, and
-            // we then send that data, as well as a HTTP response,
-            // to our client. If any of those operations fail,
-            // we send an error instead:
-            //let data = try Responder.respond(to: request)
-
-            //let data = try JSONEncoder().encode(MockCodable())
-            
-             
-
             let fakeContainerResponder = try Responder.respond(to: request)
             
             guard fakeContainerResponder.error == nil else {

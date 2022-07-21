@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class CurrencyService: CurencyServiceProtocol {
+final class CurrencyService {
     
     init(
         networkService: NetworkServiceProtocol = NetworkService.shared,

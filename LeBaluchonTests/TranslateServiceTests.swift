@@ -89,7 +89,7 @@ class TranslateServiceTests: XCTestCase {
         
         translateService.fetchTranslation { result in
             switch result {
-            case .failure(let error):
+            case .failure(_):
                 XCTFail("Should be succesful")
             case .success:
                 XCTAssertTrue(true)
