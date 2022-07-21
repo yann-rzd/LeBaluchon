@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import LeBaluchon
 
 enum MockError: Error {
     case mockError

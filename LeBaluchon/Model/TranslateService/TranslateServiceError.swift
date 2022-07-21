@@ -7,6 +7,14 @@
 
 import Foundation
 
-enum TranslateServiceError: Error {
+enum TranslateServiceError: LocalizedError {
     case failedToFetchTranslation
+    
+    
+    var errorDescription: String? {
+        switch self {
+        case .failedToFetchTranslation:
+            return "Failed to translate"
+        }
+    }
 }

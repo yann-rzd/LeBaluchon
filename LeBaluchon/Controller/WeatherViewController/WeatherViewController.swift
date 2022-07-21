@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 final class WeatherViewController: UIViewController {
 
     // MARK: - INTERNAL: methods
@@ -73,6 +75,7 @@ final class WeatherViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let weatherService = WeatherService.shared
+    private let alertViewService = AlertViewService.shared
     
     // MARK: - PRIVATE: methods
     
@@ -93,8 +96,9 @@ final class WeatherViewController: UIViewController {
         }
         
         weatherService.didProduceError = { [weak self] weatherServiceError in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.displayAlert(error: weatherServiceError)
+                self.alertViewService.displayAlert(on: self, error: weatherServiceError)
             }
         }
     }
@@ -116,12 +120,6 @@ final class WeatherViewController: UIViewController {
         weatherService.fetchCitiesInformation()
     }
     
-    private func displayAlert(error: WeatherServiceError) {
-        let alertController = UIAlertController(title: error.alertTitle, message: error.alertMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
-    }
 }
 
 

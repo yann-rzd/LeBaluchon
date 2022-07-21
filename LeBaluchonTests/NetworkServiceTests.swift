@@ -10,14 +10,60 @@ import XCTest
 
 class NetworkServiceTests: XCTestCase {
 
-    func testGivenFaillingUrlSession_WhenFetching_ThenGetFailure() throws {
-        let session = URLSession(mockResponder: DataFailureNoErrorResponder.self)
+    func testGivenNoDataSuccessNoErrorResponder_WhenFetching_ThenGetFailure() throws {
+        let session = URLSession(mockResponder: NoDataSuccessNoErrorResponder.self)
         let networkSerice = NetworkService(urlSession: session)
-
 
         let url = try XCTUnwrap( URL(string: "www.google.com"))
         let urlRequest = URLRequest(url: url)
 
+        let expectation = XCTestExpectation(description: "Wait for completion")
+
+        networkSerice.fetch(
+            urlRequest: urlRequest
+        ) { (result: Result<MockCodable, NetworkServiceError> ) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .failedToFetchUnknownError)
+                
+            case .success:
+                XCTFail("Should not be successful")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testGivenDataSuccessWithErrorResponder_WhenFetching_ThenGetFailure() throws {
+        let session = URLSession(mockResponder: DataSuccessWithErrorResponder.self)
+        let networkSerice = NetworkService(urlSession: session)
+
+        let url = try XCTUnwrap( URL(string: "www.google.com"))
+        let urlRequest = URLRequest(url: url)
+
+        let expectation = XCTestExpectation(description: "Wait for completion")
+
+        networkSerice.fetch(
+            urlRequest: urlRequest
+        ) { (result: Result<MockCodable, NetworkServiceError> ) in
+            switch result {
+            case .failure(let error):
+                XCTAssertEqual(error, .failedToFetchUnknownError)
+                
+            case .success:
+                XCTFail("Should not be successful")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+    
+    func testGivenFaillingUrlSession_WhenFetching_ThenGetFailure() throws {
+        let session = URLSession(mockResponder: DataFailureNoErrorResponder.self)
+        let networkSerice = NetworkService(urlSession: session)
+
+        let url = try XCTUnwrap( URL(string: "www.google.com"))
+        let urlRequest = URLRequest(url: url)
 
         let expectation = XCTestExpectation(description: "Wait for completion")
 
@@ -35,93 +81,12 @@ class NetworkServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
     
-    
-    func testGivenSuccessfulUrlSession_WhenFetching_ThenGetSuccess() throws {
-        let session = URLSession(mockResponder: DataSuccessNoErrorResponder.self)
-        let networkSerice = NetworkService(urlSession: session)
-
-
-        let url = try XCTUnwrap( URL(string: "www.google.com"))
-        let urlRequest = URLRequest(url: url)
-
-
-        let expectation = XCTestExpectation(description: "Wait for completion")
-
-        networkSerice.fetch(
-            urlRequest: urlRequest
-        ) { (result: Result<MockCodable, NetworkServiceError> ) in
-            switch result {
-            case .failure:
-                XCTFail("Should not be successful")
-            case .success:
-                XCTAssertTrue(true)
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-    
-    func testGivenDataSuccessWithErrorResponder_WhenFetching_ThenGetFailure() throws {
-        let session = URLSession(mockResponder: DataSuccessWithErrorResponder.self)
-        let networkSerice = NetworkService(urlSession: session)
-
-
-        let url = try XCTUnwrap( URL(string: "www.google.com"))
-        let urlRequest = URLRequest(url: url)
-
-
-        let expectation = XCTestExpectation(description: "Wait for completion")
-
-        networkSerice.fetch(
-            urlRequest: urlRequest
-        ) { (result: Result<MockCodable, NetworkServiceError> ) in
-            switch result {
-            case .failure(let error):
-                XCTAssertEqual(error, .failedToFetchUnknownError)
-                
-            case .success:
-                XCTFail("Should not be successful")
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-    
-    func testGivenNoDataSuccessNoErrorResponder_WhenFetching_ThenGetFailure() throws {
-        let session = URLSession(mockResponder: NoDataSuccessNoErrorResponder.self)
-        let networkSerice = NetworkService(urlSession: session)
-
-
-        let url = try XCTUnwrap( URL(string: "www.google.com"))
-        let urlRequest = URLRequest(url: url)
-
-
-        let expectation = XCTestExpectation(description: "Wait for completion")
-
-        networkSerice.fetch(
-            urlRequest: urlRequest
-        ) { (result: Result<MockCodable, NetworkServiceError> ) in
-            switch result {
-            case .failure(let error):
-                XCTAssertEqual(error, .failedToFetchUnknownError)
-                
-            case .success:
-                XCTFail("Should not be successful")
-            }
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 0.1)
-    }
-    
-    
     func testGivenDataWithWrongStructureSuccessNoErrorResponder_WhenFetching_ThenGetFailure() throws {
         let session = URLSession(mockResponder: DataSuccessNoErrorResponder.self)
         let networkSerice = NetworkService(urlSession: session)
 
-
         let url = try XCTUnwrap( URL(string: "www.google.com"))
         let urlRequest = URLRequest(url: url)
-
 
         let expectation = XCTestExpectation(description: "Wait for completion")
 
@@ -139,135 +104,37 @@ class NetworkServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
     }
-}
+    
+    
+    func testGivenSuccessfulUrlSession_WhenFetching_ThenGetSuccess() throws {
+        let session = URLSession(mockResponder: DataSuccessNoErrorResponder.self)
+        let networkSerice = NetworkService(urlSession: session)
 
+        let url = try XCTUnwrap( URL(string: "www.google.com"))
+        let urlRequest = URLRequest(url: url)
 
-struct MockCodable: Codable {
+        let expectation = XCTestExpectation(description: "Wait for completion")
 
-}
-
-
-protocol MockURLResponder {
-    static func respond(to request: URLRequest) throws -> FakeContainerResponder
-}
-
-
-struct FakeContainerResponder {
-    let data: Data?
-    let statusCode: Int
-    let error: MockError?
-}
-
-
-class DataSuccessNoErrorResponder: MockURLResponder {
-    static func respond(to request: URLRequest) throws -> FakeContainerResponder {
-        let data = try JSONEncoder().encode(MockCodable())
-        return .init(
-            data: data,
-            statusCode: 200,
-            error: nil
-        )
-    }
-}
-
-
-class NoDataSuccessNoErrorResponder: MockURLResponder {
-    static func respond(to request: URLRequest) throws -> FakeContainerResponder {
-        return .init(
-            data: nil,
-            statusCode: 200,
-            error: nil
-        )
-    }
-}
-
-
-class DataFailureNoErrorResponder: MockURLResponder {
-    static func respond(to request: URLRequest) throws -> FakeContainerResponder {
-        let data = try JSONEncoder().encode(MockCodable())
-        return .init(
-            data: data,
-            statusCode: 400,
-            error: nil
-        )
-    }
-}
-
-
-class DataSuccessWithErrorResponder: MockURLResponder {
-    static func respond(to request: URLRequest) throws -> FakeContainerResponder {
-        let data = try JSONEncoder().encode(MockCodable())
-        return .init(
-            data: data,
-            statusCode: 200,
-            error: MockError.mockError
-        )
-    }
-}
-
-
-class MockUrlProtocol<Responder: MockURLResponder>: URLProtocol {
-
-    override class func canInit(with request: URLRequest) -> Bool {
-        true
-    }
-
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
-        request
-    }
-
-    override func startLoading() {
-        guard let client = client else { return }
-
-        do {
-            let fakeContainerResponder = try Responder.respond(to: request)
-            
-            guard fakeContainerResponder.error == nil else {
-                throw fakeContainerResponder.error ?? MockError.mockError
+        networkSerice.fetch(
+            urlRequest: urlRequest
+        ) { (result: Result<MockCodable, NetworkServiceError> ) in
+            switch result {
+            case .failure:
+                XCTFail("Should not be successful")
+            case .success:
+                XCTAssertTrue(true)
             }
-            
-            let response = try XCTUnwrap(HTTPURLResponse(
-                url: XCTUnwrap(request.url),
-                statusCode: fakeContainerResponder.statusCode,
-                httpVersion: "HTTP/1.1",
-                headerFields: nil
-            ))
-
-            client.urlProtocol(self,
-                               didReceive: response,
-                               cacheStoragePolicy: .notAllowed
-            )
-            
-            guard let data = fakeContainerResponder.data else {
-                throw MockError.mockError
-                
-            }
-            
-            client.urlProtocol(self, didLoad: data)
-        } catch {
-            client.urlProtocol(self, didFailWithError: error)
+            expectation.fulfill()
         }
-
-        client.urlProtocolDidFinishLoading(self)
+        wait(for: [expectation], timeout: 0.1)
     }
-
-    override func stopLoading() {
-
-    }
-
 }
-
-
-
 
 extension URLSession {
-    convenience init<T: MockURLResponder>(mockResponder: T.Type) {
+    convenience init<T: MockURLResponderProtocol>(mockResponder: T.Type) {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [MockUrlProtocol<T>.self]
         self.init(configuration: config)
         URLProtocol.registerClass(MockUrlProtocol<T>.self)
     }
 }
-
-
-

@@ -7,23 +7,14 @@
 
 import Foundation
 
-enum WeatherServiceError: Error {
+enum WeatherServiceError: LocalizedError {
     case failedToFetchCityWeather
     case failedToAddNewCityAlreadyThere
     
     
-    var alertTitle: String {
-        switch self {
-        case .failedToFetchCityWeather:
-            return "Error"
-        case .failedToAddNewCityAlreadyThere:
-            return "Error"
-        }
-    }
     
     
-    
-    var alertMessage: String {
+    var errorDescription: String {
         switch self {
         case .failedToFetchCityWeather:
             return  "Failed to fetch city information."

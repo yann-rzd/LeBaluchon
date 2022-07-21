@@ -85,6 +85,7 @@ final class CurrencyConverterViewController: UIViewController {
     // MARK: - PRIVATE: properties
     
     private let currencyService = CurrencyService.shared
+    private let alertViewService = AlertViewService.shared
 
     private lazy var refreshBarButton: UIBarButtonItem = {
         let refreshDataImage = UIImage(systemName: "arrow.clockwise")
@@ -156,8 +157,9 @@ final class CurrencyConverterViewController: UIViewController {
         }
         
         currencyService.didProduceError = { [weak self] currencyServiceError in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.displayAlert(error: currencyServiceError)
+                self.alertViewService.displayAlert(on: self, error: currencyServiceError)
             }
         }
     }
@@ -206,12 +208,6 @@ final class CurrencyConverterViewController: UIViewController {
         valueToConvertTextField.inputAccessoryView = toolBar
     }
     
-    private func displayAlert(error: CurrencyServiceError) {
-        let alertController = UIAlertController(title: error.alertTitle, message: error.alertMessage, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
-    }
 }
 
 

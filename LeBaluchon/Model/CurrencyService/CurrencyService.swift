@@ -11,7 +11,8 @@ import Foundation
 final class CurrencyService {
     
     init(
-        networkService: NetworkServiceProtocol = NetworkService.shared,
+        //networkService: NetworkServiceProtocol = NetworkService.shared,
+        networkService: NetworkServiceProtocol = CurrencyNetworkServiceMock.prototype,
         currencyUrlProvider: CurrencyUrlProviderProtocol = CurrencyUrlProvider.shared
     ) {
         self.networkService = networkService
@@ -128,6 +129,8 @@ final class CurrencyService {
         
         urlRequest.httpMethod = "GET"
         
+        urlRequest.addValue("p0wnUjeVTctuLS8GxvpiTgh6xDPSDoc2", forHTTPHeaderField: "apikey")
+        
         currentDownloadCount += 1
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<FixerLatestResponse, NetworkServiceError>) in
             self?.currentDownloadCount -= 1
@@ -225,23 +228,4 @@ final class CurrencyService {
     }
 }
 
-protocol CurrencyUrlProviderProtocol {
-    func getRatesUrl() -> URL?
-}
 
-final class CurrencyUrlProvider: CurrencyUrlProviderProtocol {
-    static let shared = CurrencyUrlProvider()
-    
-    func getRatesUrl() -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "data.fixer.io"
-        urlComponents.path = "/api/latest"
-        urlComponents.queryItems = [
-            .init(name: "access_key", value: "3a76b9ba8ccd1e783d8b18001496f9fa")
-        ]
-        
-        return urlComponents.url!
-    }
-}

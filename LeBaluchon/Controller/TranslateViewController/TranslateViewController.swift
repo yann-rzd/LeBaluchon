@@ -68,12 +68,15 @@ class TranslateViewController: UIViewController {
     
     
     @IBAction func didTapOnTranslateButton(_ sender: UIButton) {
-        translateService.fetchTranslation { result in
-            switch result {
-            case .failure:
-                self.presentAlert()
-            case .success:
-                print("Success")
+        translateService.fetchTranslation { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    self.alertViewService.displayAlert(on: self, error: error)
+                case .success:
+                    break
+                }
             }
         }
     }
@@ -82,6 +85,7 @@ class TranslateViewController: UIViewController {
     // MARK: - PRIVATE: properties
     
     private let translateService = TranslateService.shared
+    private let alertViewService = AlertViewService.shared
     
     
     // MARK: - PRIVATE: methods
@@ -118,14 +122,6 @@ class TranslateViewController: UIViewController {
                 self?.translateButton.setTitle(buttonTitle, for: .normal)
                 self?.activityIndicator.isHidden = !isLoading
             }
-        }
-    }
-    
-    private func presentAlert() {
-        DispatchQueue.main.async {
-            let alertVC = UIAlertController(title: "Error", message: "Failed to translate", preferredStyle: .alert)
-            alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alertVC, animated: true, completion: nil)
         }
     }
     

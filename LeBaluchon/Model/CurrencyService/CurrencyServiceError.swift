@@ -7,17 +7,11 @@
 
 import Foundation
 
-enum CurrencyServiceError: Error {
+enum CurrencyServiceError: LocalizedError {
     case failedToFetchConversionRate
     
-    var alertTitle: String {
-        switch self {
-        case .failedToFetchConversionRate:
-            return "Error"
-        }
-    }
     
-    var alertMessage: String {
+    var errorDescription: String {
         switch self {
         case .failedToFetchConversionRate:
             return  "Failed to fetch rates."
