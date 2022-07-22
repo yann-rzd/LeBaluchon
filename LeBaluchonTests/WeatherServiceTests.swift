@@ -51,12 +51,6 @@ class WeatherServiceTests: XCTestCase {
         
         weatherService.fetchCitiesInformation()
         wait(for: [expectation], timeout: 0.1)
-        
-        
-        
-        
-        
-        
     }
     
     func testGivenValidNetworkWithNewYorkSelectedCity_WhenFetchCityAndFinishLoading_ThenGetSuccessfullyNewYorkData() throws {

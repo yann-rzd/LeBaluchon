@@ -182,29 +182,6 @@ final class TranslateService {
     }
 }
 
-protocol TranslateUrlProviderProtocol {
-    func getFetchTranslationUrl() -> URL?
-}
-
-final class TranslateUrlProvider: TranslateUrlProviderProtocol {
-    static let shared = TranslateUrlProvider()
-    
-    func getFetchTranslationUrl() -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "translation.googleapis.com"
-        urlComponents.path = "/language/translate/v2"
-        urlComponents.queryItems = [
-            .init(name: "key", value: "AIzaSyBuDzRZPMVSRwstm7sVDV8Bd86rLGeg9ZM")
-        ]
-        
-        return urlComponents.url
-    }
-}
-
-
-
 protocol JSONEncoderProtocol {
     func encode<T>(_ value: T) throws -> Data where T : Encodable
 }
@@ -212,6 +189,3 @@ protocol JSONEncoderProtocol {
 extension JSONEncoder: JSONEncoderProtocol {
     
 }
-
-
-

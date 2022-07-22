@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E411EF44288AA96F00858D59 /* TranslateUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E411EF43288AA96F00858D59 /* TranslateUrlProvider.swift */; };
 		E41FDB1D286B40B20011A500 /* JSONEncoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB1C286B40B20011A500 /* JSONEncoderMock.swift */; };
 		E41FDB1F286B41240011A500 /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41FDB1E286B41240011A500 /* MockError.swift */; };
 		E43644192889987A00A25B6B /* CurrencyUrlProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43644182889987A00A25B6B /* CurrencyUrlProvider.swift */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E411EF43288AA96F00858D59 /* TranslateUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateUrlProvider.swift; sourceTree = "<group>"; };
 		E41FDB1C286B40B20011A500 /* JSONEncoderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderMock.swift; sourceTree = "<group>"; };
 		E41FDB1E286B41240011A500 /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockError.swift; sourceTree = "<group>"; };
 		E43644182889987A00A25B6B /* CurrencyUrlProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUrlProvider.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				E4E1A3032848F9C50064D82A /* LanguageSelectionType.swift */,
 				E45860D02810441500FBD56C /* Language.swift */,
 				E4E1A2FB2848F5CF0064D82A /* TranslateServiceError.swift */,
+				E411EF43288AA96F00858D59 /* TranslateUrlProvider.swift */,
 			);
 			path = TranslateService;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				E4D6E41C27F35B4C002200F8 /* WeatherService.swift in Sources */,
 				E459433427ECC8DE00FE0259 /* NetworkService.swift in Sources */,
 				E4643BC327FAE40800E1C478 /* Currency.swift in Sources */,
+				E411EF44288AA96F00858D59 /* TranslateUrlProvider.swift in Sources */,
 				E459433D27ECC95900FE0259 /* CurrencyService.swift in Sources */,
 				E4E1A3002848F6240064D82A /* CurrencyServiceError.swift in Sources */,
 				E4D6E41827F35B27002200F8 /* TranslateService.swift in Sources */,

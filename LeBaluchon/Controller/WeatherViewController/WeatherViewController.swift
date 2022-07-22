@@ -75,6 +75,7 @@ final class WeatherViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     private let weatherService = WeatherService.shared
+    
     private let alertViewService = AlertViewService.shared
     
     // MARK: - PRIVATE: methods
