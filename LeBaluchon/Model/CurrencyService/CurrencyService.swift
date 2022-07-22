@@ -185,11 +185,6 @@ final class CurrencyService {
         else {
             return nil
         }
-    
-        // SOURCE CHF 1.1 / EUR 1.0
-        // TARGET USD 1.5 / EUR 1.0
-        
-        // (1.5 / 1.0) * (1.0 / 1.1) => 1.5 / 1.1
         
         return targetRate / sourceRate
 

@@ -128,7 +128,6 @@ final class TranslateService {
             switch result {
             case .failure:
                 completionHandler(.failure(.failedToFetchTranslation))
-                print("Erreur lors de la récupération de la traduction")
                 return
             case .success(let translationResponse):
                 print(translationResponse)
