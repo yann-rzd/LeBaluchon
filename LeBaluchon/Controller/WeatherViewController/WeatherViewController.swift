@@ -127,6 +127,7 @@ final class WeatherViewController: UIViewController {
 // MARK: - EXTENSIONS
 
 extension WeatherViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherService.selectedCities.count
     }

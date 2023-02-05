@@ -188,7 +188,7 @@ final class WeatherUrlProvider: WeatherUrlProviderProtocol {
             .init(name: "q", value: city),
             .init(name: "lang", value: "fr"),
             .init(name: "units", value: "metric"),
-            .init(name: "appid", value: "fdec102a8f3538aeca01f9b15b1c58a7")
+            .init(name: "appid", value: APIKeys.weatherKey)
         ]
         
         return urlComponents.url

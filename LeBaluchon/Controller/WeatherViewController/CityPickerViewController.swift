@@ -110,7 +110,6 @@ class CityPickerViewController: UIViewController {
             clearButton,
             .flexibleSpace(),
             doneButton
-           
         ]
         
         toolBar.sizeToFit()

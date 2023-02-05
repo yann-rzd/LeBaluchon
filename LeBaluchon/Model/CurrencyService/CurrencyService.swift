@@ -129,7 +129,7 @@ final class CurrencyService {
         
         urlRequest.httpMethod = "GET"
         
-        urlRequest.addValue("p0wnUjeVTctuLS8GxvpiTgh6xDPSDoc2", forHTTPHeaderField: "apikey")
+        urlRequest.addValue(APIKeys.currencyKey, forHTTPHeaderField: "apikey")
         
         currentDownloadCount += 1
         networkService.fetch(urlRequest: urlRequest) { [weak self] (result: Result<FixerLatestResponse, NetworkServiceError>) in

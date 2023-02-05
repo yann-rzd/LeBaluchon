@@ -108,7 +108,7 @@ extension LanguagePickerViewController: UITableViewDelegate {
 
 extension LanguagePickerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        translateService.filteredLanguages.count
+        return translateService.filteredLanguages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -193,10 +193,6 @@ final class CustomWeatherTableViewCell: UITableViewCell {
         ])
     }
     
-    
-    
-    
-    
     @objc private func deleteCitySelection() {
         guard let citySelection = citySelection else {
             return

@@ -36,10 +36,6 @@ final class NetworkService: NetworkServiceProtocol {
                 completionHandler(.failure(.failedToFetchBadStatusCode))
                 return
             }
-            
-            print(
-                "HERE IS THE DATA AS STRING ❌❌❌❌\n \(String(data: data, encoding: .utf8)!)"
-            )
 
             let jsonDecoder = JSONDecoder()
             

@@ -21,7 +21,7 @@ final class TranslateUrlProvider: TranslateUrlProviderProtocol {
         urlComponents.host = "translation.googleapis.com"
         urlComponents.path = "/language/translate/v2"
         urlComponents.queryItems = [
-            .init(name: "key", value: "AIzaSyBuDzRZPMVSRwstm7sVDV8Bd86rLGeg9ZM")
+            .init(name: "key", value: APIKeys.translationKey)
         ]
         
         return urlComponents.url
