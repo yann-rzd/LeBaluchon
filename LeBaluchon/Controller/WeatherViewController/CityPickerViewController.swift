@@ -50,6 +50,8 @@ class CityPickerViewController: UIViewController {
             tableAndSearchStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableAndSearchStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        weatherService.searchText = ""
     }
     
 

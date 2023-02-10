@@ -29,6 +29,8 @@ final class CurrencyPickerViewController: UIViewController {
         searchBar.delegate = self
         
         currencyService.filteredCurrencies = currencyService.filteredCurrencies
+        
+        currencyService.searchText = ""
     }
     
     

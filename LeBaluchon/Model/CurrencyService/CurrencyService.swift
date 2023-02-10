@@ -220,6 +220,10 @@ final class CurrencyService {
         }
         
         self.convertedValue =  Double(valueToConvert) * conversionRate
+        guard let convertedValue = self.convertedValue else {
+            return
+        }
+        self.convertedValue = (convertedValue * 100).rounded() / 100
     }
 }
 
