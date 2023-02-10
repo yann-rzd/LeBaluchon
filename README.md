@@ -9,7 +9,7 @@
 
 <img src="https://i.imgur.com/1fOCVRA.png" width="200" height="450">&nbsp; &nbsp; <img src="https://i.imgur.com/I0toyf3.png" width="200" height="450">&nbsp; &nbsp; <img src="https://i.imgur.com/8PrqR5o.png" width="200" height="450"> 
 
-## 🍕 About
+## 🌍 About
 Le Baluchon is an application for travelers looking to simplify their trip. It offers a currency converter, a multilingual translator and a weather forecast for your destination. All in all, Le Baluchon is an essential tool for any budget-conscious traveler. 
 
 ## 💻 Requirements
