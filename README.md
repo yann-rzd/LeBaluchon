@@ -4,8 +4,8 @@
   <br>
 </h1>
 
-# Reciplease
-🍽 Find and save a recipe with reciplease app
+# Le Baluchon
+💰 Converter | 🗣 Translator | 🌤️ Weather
 
 <img src="https://i.imgur.com/1fOCVRA.png" width="200" height="450">&nbsp; &nbsp; <img src="https://i.imgur.com/I0toyf3.png" width="200" height="450">&nbsp; &nbsp; <img src="https://i.imgur.com/8PrqR5o.png" width="200" height="450"> 
 
@@ -13,7 +13,7 @@
 Le Baluchon is an application for travelers looking to simplify their trip. It offers a currency converter, a multilingual translator and a weather forecast for your destination. All in all, Le Baluchon is an essential tool for any budget-conscious traveler. 
 
 ## 💻 Requirements
-Reciplease is written in Swift 5 and supports iOS 13.0+. Built with Xcode 13.
+The Baluchon is written in Swift 5 and supports iOS 13.0+. Built with Xcode 13.
 
 ## 🍀 Architecture
 This application is developed according to the [MVC](https://medium.com/@joespinelli_6190/mvc-model-view-controller-ef878e2fd6f5) architecture.
