@@ -21,7 +21,7 @@ This application is developed according to the [MVC](https://medium.com/@joespin
 ## 🛠 APIs
 The Baluchon uses [Fixer](https://fixer.io/) to convert currency, [Google's Translation](https://translate.google.com/intl/fr/about/forbusiness/) to translate text and [OpenWeather](https://openweathermap.org/api) to return city weather data.
 
-## 🕵️‍♂️ How to test 
+## 🕵️ How to test 
 ### Clone the project
 
 Run `git@https://github.com/yann-rzd/LeBaluchon.git`
